@@ -75,7 +75,13 @@ public class Personal {
         this.salario = salario;
     }
     
+    @Override
     public String toString(){
-        return "";
+        return "id "+ id+
+                "dni persona "+dni+
+                "rol "+rol+
+                "departamento "+depart+
+                "especialidad "+ Especial+
+                "salario"+salario;
     }
 }
