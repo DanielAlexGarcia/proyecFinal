@@ -36,6 +36,19 @@ public class CitaDAO extends AbstracDAO{
         return ejecutarCRUDTemplate(sql, setter, "agregar cita");
     }
     
+    public boolean cambiosCita(Cita cit){
+        String sql = "EXEC SP_CambiosCita @ID = ?, @IDDoctor = ?, "
+                + "@Fecha = ?, @Hora = ?, @Estado = ? "; 
+        Date fecha = convertirStringAFechaSQL(cit.getFech());
+        StatementSetter setter = (stmt) -> {
+                    stmt.setInt(1, cit.getId());
+                    stmt.setInt(2, cit.getIddoc());
+                    stmt.setDate(3, fecha);
+                    stmt.setString(4, cit.getHora());
+                    stmt.setString(5, cit.getEst());
+                };
+        return ejecutarCRUDTemplate(sql, setter, "actualizar cita");
+    }
     
     
     
