@@ -79,12 +79,12 @@ public class PacienteDAO extends AbstracDAO{
     }
     
     public boolean setPaciente(Paciente paci){
-        String sql = " update Paciente set numSeguro = ?, alergias = ? "
-                + " where ID = ?";
+        String sql = " EXEC SP_CambiosPaciente @ID = ? , @NumSeg = ? , @Alergi = ?";
         StatementSetter setter = (stmt) -> {
-                stmt.setString(1, paci.getNumSeg());
-	        stmt.setString(2, paci.getAlergias());
-                stmt.setInt(3, paci.getId());
+            stmt.setInt(1, paci.getId());    
+            stmt.setString(2, paci.getNumSeg());
+	        stmt.setString(3, paci.getAlergias());
+                
                 };
         return ejecutarCRUDTemplate(sql, setter, "Actualizar paciente");
     }

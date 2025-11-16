@@ -22,11 +22,11 @@ public class ProyectoFinal2 {
         
         Paciente perso = new Paciente(7, 116, "calimbo", "O+", 
                 "pecos");
-        ResultSet listo = per.resultadosBusquedaPacientes("elena");
-        per.imprimirresultadoBusqueda(listo);
+        boolean listo = per.setPaciente(perso);
+        //per.imprimirresultadoBusqueda(listo);
         
         //Paciente m = per.buscarPaciente(5);
-        //System.out.println(listo);
+        System.out.println(listo);
         
         
     }
