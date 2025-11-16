@@ -4,7 +4,7 @@
 
 package com.playwindow.proyectofinal2;
 import Controlador.*;
-import Modelo.Personal;
+import Modelo.*;
 import Vistas.*;
 import java.math.BigDecimal;
 
@@ -17,11 +17,11 @@ public class ProyectoFinal2 {
     public static void main(String[] args) {
         System.out.println("iniciando");
         VentanaInicio interfaz = new VentanaInicio();
-        PersonalDAO per = new PersonalDAO(interfaz);
+        PacienteDAO per = new PacienteDAO(interfaz);
         
-        //Personal perso = new Personal(5, 117, "Doctor", "clinic", 
-          //      "perso", new BigDecimal(80020.89));
-        boolean listo = per.bajasPersonal(1021);
+        Paciente perso = new Paciente(5, 116, "92nosa78", "O+", 
+                "ninguna");
+        boolean listo = per.altasPaciente(perso);
         System.out.println(listo);
         
         
