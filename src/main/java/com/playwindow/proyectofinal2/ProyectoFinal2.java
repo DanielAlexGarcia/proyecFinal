@@ -22,7 +22,7 @@ public class ProyectoFinal2 {
         
         //Cita perso = new Cita(1005, 2,1,  "2020-10-11", "14:20", 
                 //"seguimiento", "camcelada");
-        ResultSet listo = per.busquedaPorNombreDoc("Ana");
+        ResultSet listo = per.busquedaPorEstadoCita("Comple");
         per.imprimirresultadoBusqueda(listo);
         
         //Paciente m = per.buscarPaciente(5);

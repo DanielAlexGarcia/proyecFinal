@@ -59,6 +59,21 @@ public class CitaDAO extends AbstracDAO{
         return ejecutarQueryTemplate(sql, setter, "Busqueda por nombre personal");
     }
     
+    public ResultSet busquedaPorNombrePac (String nomPaciente){
+        String sql = "select * from fn_buscarCitasNomPaciente(?)";
+        StatementSetter setter = (stmt) -> {
+            stmt.setString(1, nomPaciente);
+                };
+        return ejecutarQueryTemplate(sql, setter, "Busqueda por nombre paciente");
+    }
+    
+    public ResultSet busquedaPorEstadoCita (String estado){
+        String sql = "select * from fn_buscarCitasEstado (?)";
+        StatementSetter setter = (stmt) -> {
+            stmt.setString(1, estado);
+                };
+        return ejecutarQueryTemplate(sql, setter, "Busqueda por estado de la cita");
+    }
     
     public static Date convertirStringAFechaSQL(String fechaString) {
         
