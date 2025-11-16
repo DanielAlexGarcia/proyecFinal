@@ -22,11 +22,7 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     
     public final String PanelAlta = "PanelAltaPersona";
     public final String PanelBaja = "PanelBajaPersona";
-    public final String PanelEdit = "PanelEditPersona";
     
-    private PersonaAlta perAlta;
-    private PersonaBaja perBaja;
-    private PersonalEdit perEdit;
     
     /**
      * Creates new form PersoEdit
@@ -44,13 +40,7 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     public void setinterfaz(VentanaInicio fas){
         if(fas != null && interfa == null){
             interfa = fas;
-            perAlta = new PersonaAlta(interfa);
-            perBaja = new PersonaBaja(interfa);
-            perEdit = new PersonalEdit(interfa);
         }else{
-            perAlta = new PersonaAlta(interfa);
-            perBaja = new PersonaBaja(interfa);
-            perEdit = new PersonalEdit(interfa);
         }
     }
     
@@ -58,9 +48,6 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         cardLayout = new CardLayout();
         panelDeContenido = new JPanel(cardLayout);
 
-        panelDeContenido.add(perAlta, PanelAlta);
-        panelDeContenido.add(perBaja, PanelBaja);
-        panelDeContenido.add(perEdit, PanelEdit);
         
 
         getContentPane().removeAll(); // quitamos el layout vacío generado por NetBeans
@@ -74,24 +61,15 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     protected void setCardLayaout(String namePanel){
         cardLayout.show(panelDeContenido, namePanel);
         if(namePanel.equals(PanelAlta)){
-            perAlta.setVaciarComponentes();
         }else if (namePanel.equals(PanelBaja)){
-            perBaja.setVaciarComponentes();
-        }else if (namePanel.equals(PanelEdit)){
-            perEdit.setVaciarComponentes();
         }
     }
     
     public void setWindowShow(int numVentana){
         if(numVentana == 1){
             setCardLayaout(PanelAlta);
-            perAlta.setVaciarComponentes();
         }else if (numVentana == 2){
             setCardLayaout(PanelBaja);
-            perBaja.setVaciarComponentes();
-        }else if (numVentana == 3){
-            setCardLayaout(PanelEdit);
-            perEdit.setVaciarComponentes();
         }
     }
 
@@ -108,7 +86,6 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         jToolBar1 = new javax.swing.JToolBar();
         BAñadir = new javax.swing.JButton();
         Beliminar = new javax.swing.JButton();
-        BModificar = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -138,17 +115,6 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(Beliminar);
 
-        BModificar.setText("Modificar");
-        BModificar.setFocusable(false);
-        BModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BModificar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BModificarActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(BModificar);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,14 +139,9 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         setCardLayaout(PanelAlta);
     }//GEN-LAST:event_BAñadirActionPerformed
 
-    private void BModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BModificarActionPerformed
-        setCardLayaout(PanelEdit);
-    }//GEN-LAST:event_BModificarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAñadir;
-    private javax.swing.JButton BModificar;
     private javax.swing.JButton Beliminar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JToolBar jToolBar1;
