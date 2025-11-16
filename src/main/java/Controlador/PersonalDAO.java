@@ -5,6 +5,7 @@
 package Controlador;
 import Modelo.Personal;
 import Vistas.VentanaInicio;
+import java.sql.ResultSet;
 
 /**
  *
@@ -40,4 +41,14 @@ public class PersonalDAO extends AbstracDAO{
         return ejecutarCRUDTemplate(sql, setter, "insertar Personal");
     }
     
+    public ResultSet allPersonal(){
+        String sql = "select * from fn_AllPeronals()";
+        StatementSetter setter = (stmt) -> {
+                };
+        return ejecutarQueryTemplate(sql, setter, "Consultar todo el personal");
+    }
+    
+    public void imprimirresultadoBusqueda(ResultSet rs){
+        imprimirResultSet(rs);
+    }
 }

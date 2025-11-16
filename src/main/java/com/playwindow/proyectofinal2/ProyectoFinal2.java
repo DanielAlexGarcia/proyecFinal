@@ -18,11 +18,11 @@ public class ProyectoFinal2 {
     public static void main(String[] args) {
         System.out.println("iniciando");
         VentanaInicio interfaz = new VentanaInicio();
-        PacienteDAO per = new PacienteDAO(interfaz);
+        PersonalDAO per = new PersonalDAO(interfaz);
         
         Paciente perso = new Paciente(7, 116, "calimbo", "O+", 
                 "pecos");
-        ResultSet listo = per.todosPacientes();
+        ResultSet listo = per.allPersonal();
         per.imprimirresultadoBusqueda(listo);
         
         //Paciente m = per.buscarPaciente(5);
