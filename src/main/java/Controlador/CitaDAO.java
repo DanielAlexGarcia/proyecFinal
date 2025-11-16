@@ -75,6 +75,14 @@ public class CitaDAO extends AbstracDAO{
         return ejecutarQueryTemplate(sql, setter, "Busqueda por estado de la cita");
     }
     
+    public ResultSet allCitas(){
+        String sql = "select * from fn_TodasLasCitas ()";
+        StatementSetter setter = (stmt) -> {
+                };
+        return ejecutarQueryTemplate(sql, setter, "todas las citas");
+    }
+    
+    
     public static Date convertirStringAFechaSQL(String fechaString) {
         
         DateTimeFormatter formatoEntrada = DateTimeFormatter.ofPattern("yyyy-dd-MM");
