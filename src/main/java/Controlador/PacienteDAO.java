@@ -88,5 +88,16 @@ public class PacienteDAO extends AbstracDAO{
                 };
         return ejecutarCRUDTemplate(sql, setter, "Actualizar paciente");
     }
+    public ResultSet resultadosBusquedaPacientes (String nombres){
+        String sql = "select * from fn_PacienteBuquedaNombres(?)";
+        StatementSetter setter = (stmt) -> {
+                stmt.setString(1, nombres);
+                };
+        return ejecutarQueryTemplate(sql, setter, "Busqueda Pacientes");
+    }
+    
+    public void imprimirresultadoBusqueda(ResultSet rs){
+        imprimirResultSet(rs);
+    }
     
 }

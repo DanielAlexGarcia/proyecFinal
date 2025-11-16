@@ -7,6 +7,7 @@ import Controlador.*;
 import Modelo.*;
 import Vistas.*;
 import java.math.BigDecimal;
+import java.sql.ResultSet;
 
 /**
  *
@@ -21,9 +22,11 @@ public class ProyectoFinal2 {
         
         Paciente perso = new Paciente(7, 116, "calimbo", "O+", 
                 "pecos");
-        boolean listo = per.setPaciente(perso);
+        ResultSet listo = per.resultadosBusquedaPacientes("elena");
+        per.imprimirresultadoBusqueda(listo);
+        
         //Paciente m = per.buscarPaciente(5);
-        System.out.println(listo);
+        //System.out.println(listo);
         
         
     }
