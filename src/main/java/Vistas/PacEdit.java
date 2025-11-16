@@ -4,7 +4,7 @@
  */
 package Vistas;
 
-import com.playwindow.proyecto_final_tallerbasesdatos.Vistas.PanelsPaciente.*;
+
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -21,8 +21,6 @@ public class PacEdit extends javax.swing.JInternalFrame {
     private final String panelAñadi = "PanelAñadirPaciente";
     private final String panelEdit = "PanelModificarPaciente";
     
-    private PacienteAlta PacAlta = new PacienteAlta();
-    private PacienteEdit pacModifi = new PacienteEdit();
     /**
      * Creates new form PacEdit
      */
@@ -37,8 +35,6 @@ public class PacEdit extends javax.swing.JInternalFrame {
         cardLayout = new CardLayout();
         panelDeContenido = new JPanel(cardLayout);
         
-        panelDeContenido.add(PacAlta, panelAñadi);
-        panelDeContenido.add(pacModifi, panelEdit);
         
         getContentPane().removeAll(); // quitamos el layout vacío generado por NetBeans
         getContentPane().setLayout(new BorderLayout());
@@ -52,19 +48,15 @@ public class PacEdit extends javax.swing.JInternalFrame {
     private void showCardLayaout(String namePanel){
         cardLayout.show(panelDeContenido, namePanel);
         if(namePanel.equals(panelAñadi)){
-            PacAlta.setVaciarComponentes();
         }else if (namePanel.equals(panelEdit)){
-            pacModifi.setVaciarComponentes();
         }
     }
     
     public void setWindowShow(int numWindow){
         if (numWindow == 1){
             showCardLayaout(panelAñadi);
-            PacAlta.setVaciarComponentes();
         }else if (numWindow == 2){
             showCardLayaout(panelEdit);
-            pacModifi.setVaciarComponentes();
         }
     }
     
