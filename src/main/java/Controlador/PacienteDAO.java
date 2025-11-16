@@ -99,5 +99,12 @@ public class PacienteDAO extends AbstracDAO{
     public void imprimirresultadoBusqueda(ResultSet rs){
         imprimirResultSet(rs);
     }
+    public ResultSet todosPacientes(){
+        String sql = "select * from fn_AllPacientes()";
+        StatementSetter setter = (stmt) -> {
+                
+                };
+        return ejecutarQueryTemplate(sql, setter, "buscar todos los pacientes");
+    }
     
 }

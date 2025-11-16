@@ -22,8 +22,8 @@ public class ProyectoFinal2 {
         
         Paciente perso = new Paciente(7, 116, "calimbo", "O+", 
                 "pecos");
-        boolean listo = per.setPaciente(perso);
-        //per.imprimirresultadoBusqueda(listo);
+        ResultSet listo = per.todosPacientes();
+        per.imprimirresultadoBusqueda(listo);
         
         //Paciente m = per.buscarPaciente(5);
         System.out.println(listo);
