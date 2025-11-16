@@ -27,7 +27,7 @@ public class PersonalDAO extends AbstracDAO{
     }
     
     public boolean altasPersonal(Personal personal){
-        String sql = "insert into (DNIPersona, rol, departamento, especialidad, salario)"
+        String sql = "insert into Personal(DNIPersona, rol, departamento, especialidad, salario)"
                 + "values (?,?,?,?,?)";
         StatementSetter setter = (stmt) -> {
                     
