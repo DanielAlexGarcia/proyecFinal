@@ -16,17 +16,13 @@ import java.sql.ResultSet;
 public class ProyectoFinal2 {
 
     public static void main(String[] args) {
-        System.out.println("iniciando");
-        VentanaInicio interfaz = new VentanaInicio();
-        CitaDAO per = new CitaDAO(interfaz);
-        
-        Cita perso = new Cita(1005, 2,1,  "2020-10-11", "14:20", 
-                "seguimiento", "camcelada");
-        boolean listo = per.altasCitas(perso);
-        //per.imprimirresultadoBusqueda(listo);
-        
-        //Paciente m = per.buscarPaciente(5);
-        System.out.println(listo);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                VentanaInicio ventana = VentanaInicio.getInstance(); 
+                ventana.setVisible(true);
+                ventana.setInstance(ventana);
+            }
+        });
         
         
     }
