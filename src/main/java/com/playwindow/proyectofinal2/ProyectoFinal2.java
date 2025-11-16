@@ -19,9 +19,10 @@ public class ProyectoFinal2 {
         VentanaInicio interfaz = new VentanaInicio();
         PacienteDAO per = new PacienteDAO(interfaz);
         
-        Paciente perso = new Paciente(5, 116, "92nosa78", "O+", 
-                "ninguna");
-        boolean listo = per.altasPaciente(perso);
+        Paciente perso = new Paciente(7, 116, "calimbo", "O+", 
+                "pecos");
+        boolean listo = per.setPaciente(perso);
+        //Paciente m = per.buscarPaciente(5);
         System.out.println(listo);
         
         

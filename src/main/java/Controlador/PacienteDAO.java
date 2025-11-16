@@ -79,7 +79,7 @@ public class PacienteDAO extends AbstracDAO{
     }
     
     public boolean setPaciente(Paciente paci){
-        String sql = " update Paciente set numSeguro = ?, alergias = ? )"
+        String sql = " update Paciente set numSeguro = ?, alergias = ? "
                 + " where ID = ?";
         StatementSetter setter = (stmt) -> {
                 stmt.setString(1, paci.getNumSeg());
