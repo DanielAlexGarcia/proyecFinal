@@ -34,10 +34,11 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtGrupSangi = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAlergias = new javax.swing.JTextArea();
         BGuardar = new javax.swing.JButton();
         BReset = new javax.swing.JButton();
+        txtEspecialidad = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtSalario = new javax.swing.JFormattedTextField();
 
         jLabel1.setText("Añadir personal");
 
@@ -45,19 +46,17 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
 
         CBPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel3.setText("Numero de seguro");
+        jLabel3.setText("Rol");
 
-        jLabel4.setText("Grupo sangineo");
+        jLabel4.setText("Departamento");
 
-        jLabel5.setText("Alergias");
-
-        txtAlergias.setColumns(20);
-        txtAlergias.setRows(5);
-        jScrollPane1.setViewportView(txtAlergias);
+        jLabel5.setText("Especialidad");
 
         BGuardar.setText("Guardar");
 
         BReset.setText("Reset");
+
+        jLabel6.setText("Salario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -74,19 +73,21 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CBPersona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CBPersona, 0, 238, Short.MAX_VALUE)
                             .addComponent(txtNumSeg)
                             .addComponent(txtGrupSangi)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtEspecialidad)
+                            .addComponent(txtSalario)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(218, 218, 218)
                         .addComponent(BReset)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BGuardar)))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,14 +107,18 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(txtGrupSangi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
+                    .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BGuardar)
                     .addComponent(BReset))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,9 +132,10 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtAlergias;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtEspecialidad;
     private javax.swing.JTextField txtGrupSangi;
     private javax.swing.JTextField txtNumSeg;
+    private javax.swing.JFormattedTextField txtSalario;
     // End of variables declaration//GEN-END:variables
 }
