@@ -4,20 +4,104 @@
  */
 package Vistas;
 
+
+import Controlador.ConexionBD;
+import java.beans.PropertyVetoException;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.*;
+
 /**
  *
  * @author daniel
  */
 public class VentanaInicio extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaInicio.class.getName());
+    public static VentanaInicio instance;
+    public static JFrame frame = new JFrame();
+    
+    PersoEdit perEdit;
+    PacEdit pacdit;
+    CitEdit citdit;
+    private ArrayList<String[]> listadoPersonas;
+    private void coneccionDB(){
+        System.out.println("--- Iniciando prueba de conexión ---");
+
+        // 1. Obtener la única instancia de la clase ConexionBD
+        ConexionBD db = ConexionBD.getInstancia();
+
+        // 2. Obtener el objeto Connection
+        Connection conn = db.getConnection();
+
+        // 3. Verificar si la conexión es válida
+        try {
+            if (conn != null && !conn.isClosed()) {
+                System.out.println("✅ La conexión a la base de datos es exitosa y está abierta.");
+                System.out.println("URL: " + conn.getMetaData().getURL());
+                
+                // Opcional: Probar un método de la clase DAO (ej. si estuviera en la misma clase)
+                // db.connecctionDatabase("otro_esquema");
+            } else {
+                System.out.println("❌ La conexión falló o está cerrada. Revisa los errores en el constructor.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("❌ Error al verificar la conexión.");
+        }
+    }
 
     /**
      * Creates new form VentanaInicio
      */
-    public VentanaInicio() {
+    private VentanaInicio() {
         initComponents();
+        contraseña.setText("");
+        añadirOpciones(false);
+        
     }
+    
+    private void loadPags(){
+        perEdit = new PersoEdit(instance);
+        pacdit = new PacEdit();
+        citdit = new CitEdit();
+        destopPanel.add(perEdit);
+        destopPanel.add(pacdit);
+        destopPanel.add(citdit);
+    }
+    public void showMessageDialog(JFrame fame, String n, boolean activar) {
+		  // ventana = JFrame padre
+        if (activar) {
+        	cargando = new JDialog(frame, "Espere...", false);
+        	JLabel mensaje = new JLabel(n, SwingConstants.CENTER);
+            mensaje.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+            cargando.add(mensaje);
+            cargando.pack();
+            cargando.setLocationRelativeTo(this);
+            cargando.setVisible(true);
+    	}else {
+    		if(cargando != null) {
+    			cargando.dispose();
+    			cargando = null; // libera la referencia para la proxima creacion de la ventana
+    		}
+    	}
+        }
+    public ArrayList<String[]> getlistPersonas(){
+        return listadoPersonas;
+    }
+    
+    private boolean comprovarUsuario(String usuario){
+		
+		if (usuario.equals("admin")) {
+			return true;
+		}
+		return false;
+	}
+	private boolean comprovarPassword(String pasword) {
+		if(pasword.equals("2008admin")) {
+			return true;
+		}
+		return false;
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,47 +112,383 @@ public class VentanaInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem4 = new javax.swing.JMenuItem();
+        cargando = new javax.swing.JDialog();
+        destopPanel = new javax.swing.JDesktopPane();
+        InicioSecion = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Usuario = new javax.swing.JTextArea();
+        contraseña = new javax.swing.JPasswordField();
+        BEntrar = new javax.swing.JButton();
+        problema1 = new javax.swing.JLabel();
+        problema2 = new javax.swing.JLabel();
+        MenuBarOP = new javax.swing.JMenuBar();
+        MenuPersonal = new javax.swing.JMenu();
+        PersonalAlta = new javax.swing.JMenuItem();
+        PersonalBaja = new javax.swing.JMenuItem();
+        MenuPaciente = new javax.swing.JMenu();
+        PacienteAlta = new javax.swing.JMenuItem();
+        PacienteModificar = new javax.swing.JMenuItem();
+        MenuCita = new javax.swing.JMenu();
+        CitaAgendar = new javax.swing.JMenuItem();
+        CitaEditar = new javax.swing.JMenuItem();
+        CitaConsultar = new javax.swing.JMenuItem();
+        estadistica = new javax.swing.JMenu();
+        Reporte = new javax.swing.JMenu();
+
+        jMenuItem4.setText("jMenuItem4");
+
+        javax.swing.GroupLayout cargandoLayout = new javax.swing.GroupLayout(cargando.getContentPane());
+        cargando.getContentPane().setLayout(cargandoLayout);
+        cargandoLayout.setHorizontalGroup(
+            cargandoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        cargandoLayout.setVerticalGroup(
+            cargandoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        InicioSecion.setVisible(true);
+
+        jLabel1.setText("Iniciar secion");
+
+        jLabel2.setText("Usuario");
+
+        jLabel3.setText("Contraseña");
+
+        Usuario.setColumns(20);
+        Usuario.setRows(5);
+        jScrollPane1.setViewportView(Usuario);
+
+        contraseña.setText("jPasswordField2");
+        contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contraseñaActionPerformed(evt);
+            }
+        });
+
+        BEntrar.setText("Entrar");
+        BEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BEntrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout InicioSecionLayout = new javax.swing.GroupLayout(InicioSecion.getContentPane());
+        InicioSecion.getContentPane().setLayout(InicioSecionLayout);
+        InicioSecionLayout.setHorizontalGroup(
+            InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InicioSecionLayout.createSequentialGroup()
+                .addGroup(InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(InicioSecionLayout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(InicioSecionLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(BEntrar))
+                    .addGroup(InicioSecionLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(problema1)
+                            .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(problema2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        InicioSecionLayout.setVerticalGroup(
+            InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InicioSecionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(problema1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(problema2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BEntrar)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        destopPanel.setLayer(InicioSecion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout destopPanelLayout = new javax.swing.GroupLayout(destopPanel);
+        destopPanel.setLayout(destopPanelLayout);
+        destopPanelLayout.setHorizontalGroup(
+            destopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(destopPanelLayout.createSequentialGroup()
+                .addGap(245, 245, 245)
+                .addComponent(InicioSecion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(249, Short.MAX_VALUE))
+        );
+        destopPanelLayout.setVerticalGroup(
+            destopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(destopPanelLayout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(InicioSecion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(228, Short.MAX_VALUE))
+        );
+
+        MenuPersonal.setText("Personal");
+
+        PersonalAlta.setText("Dar de alta");
+        PersonalAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PersonalAltaActionPerformed(evt);
+            }
+        });
+        MenuPersonal.add(PersonalAlta);
+
+        PersonalBaja.setText("Dar de baja");
+        PersonalBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PersonalBajaActionPerformed(evt);
+            }
+        });
+        MenuPersonal.add(PersonalBaja);
+
+        MenuBarOP.add(MenuPersonal);
+
+        MenuPaciente.setText("Paciente");
+
+        PacienteAlta.setText("Nuevo");
+        PacienteAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PacienteAltaActionPerformed(evt);
+            }
+        });
+        MenuPaciente.add(PacienteAlta);
+
+        PacienteModificar.setText("Modificar");
+        PacienteModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PacienteModificarActionPerformed(evt);
+            }
+        });
+        MenuPaciente.add(PacienteModificar);
+
+        MenuBarOP.add(MenuPaciente);
+
+        MenuCita.setText("Cita");
+
+        CitaAgendar.setText("Egendar");
+        CitaAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CitaAgendarActionPerformed(evt);
+            }
+        });
+        MenuCita.add(CitaAgendar);
+
+        CitaEditar.setText("Editar");
+        CitaEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CitaEditarActionPerformed(evt);
+            }
+        });
+        MenuCita.add(CitaEditar);
+
+        CitaConsultar.setText("Consultar");
+        CitaConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CitaConsultarActionPerformed(evt);
+            }
+        });
+        MenuCita.add(CitaConsultar);
+
+        MenuBarOP.add(MenuCita);
+
+        estadistica.setText("Grafico");
+        MenuBarOP.add(estadistica);
+
+        Reporte.setText("Reporte");
+        MenuBarOP.add(Reporte);
+
+        setJMenuBar(MenuBarOP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(destopPanel)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(destopPanel)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void PersonalAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersonalAltaActionPerformed
+        perEdit.setVisible(true);
+        perEdit.setWindowShow(1);
+    }//GEN-LAST:event_PersonalAltaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VentanaInicio().setVisible(true));
+    private void PersonalBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersonalBajaActionPerformed
+        perEdit.setVisible(true);
+        perEdit.setWindowShow(2);
+    }//GEN-LAST:event_PersonalBajaActionPerformed
+
+    private void CitaAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CitaAgendarActionPerformed
+        citdit.setVisible(true);
+        citdit.setWindowShow(1);
+    }//GEN-LAST:event_CitaAgendarActionPerformed
+
+    private void CitaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CitaEditarActionPerformed
+        citdit.setVisible(true);
+        citdit.setWindowShow(2);
+    }//GEN-LAST:event_CitaEditarActionPerformed
+
+    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contraseñaActionPerformed
+
+    private void BEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEntrarActionPerformed
+        // TODO add your handling code here:
+        
+        problema1.setText("");
+			problema2.setText("");
+			String usuarios = Usuario.getText();
+			String contrs = new String(contraseña.getPassword());
+
+			boolean usuarioValido = false;
+			boolean passwordValido = false;
+
+			// Validación de usuario
+			if (usuarios.isEmpty()) {
+			    problema1.setText("Ingresa el usuario");
+			} else if (!comprovarUsuario(usuarios)) {
+			    problema1.setText("Usuario incorrecto");
+			} else {
+			    usuarioValido = true;
+			}
+
+			// Validación de contraseña
+			if (contrs.isEmpty()) {
+			    problema2.setText("Ingresa la contraseña");
+			} else if (!comprovarPassword(contrs)) {
+			    problema2.setText("Contraseña incorrecta");
+			} else {
+			    passwordValido = true;
+			}
+
+			if (usuarioValido && passwordValido) {
+				JOptionPane.showMessageDialog(null, "¡Bienvenido, " + usuarios + "!","Login Exitoso", // Título del diálogo
+				        JOptionPane.INFORMATION_MESSAGE );
+				try {
+					InicioSecion.setClosed(true);
+				} catch (PropertyVetoException e1) {
+					e1.printStackTrace();
+				}
+				añadirOpciones(true);
+			}
+    }//GEN-LAST:event_BEntrarActionPerformed
+
+    private void PacienteAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PacienteAltaActionPerformed
+        pacdit.setVisible(true);
+        pacdit.setWindowShow(1);
+    }//GEN-LAST:event_PacienteAltaActionPerformed
+
+    private void PacienteModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PacienteModificarActionPerformed
+        pacdit.setVisible(true);
+        pacdit.setWindowShow(2);
+    }//GEN-LAST:event_PacienteModificarActionPerformed
+
+    private void CitaConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CitaConsultarActionPerformed
+       citdit.setVisible(true);
+       citdit.setWindowShow(4);
+    }//GEN-LAST:event_CitaConsultarActionPerformed
+
+    
+    private void añadirOpciones(boolean accion){
+        MenuBarOP.setVisible(accion);
     }
+    
+    public static VentanaInicio getInstance(){
+        if (instance == null){
+            instance = new VentanaInicio();
+        }
+        return instance;
+    }
+    
+    public void setInstance(VentanaInicio fas){
+        if (fas != null && instance == null){
+            instance = fas;
+        }if (instance != null){
+                System.out.println("patron singleton listo");
+                loadPags(); // se hizo el metodo dado a complicasiones con la inicializacion y sincronizacion con el patron singlrton (se iniciaban antes de asignar algo a la variable del patron)
+            }
+    }
+    
+    
+    
+    public static void main(String args[]) {
+        
+        java.awt.EventQueue.invokeLater(() -> {
+            instance = getInstance();
+    });
+        
+    
+        
+    }
+    public void ShowMessageFeerback(String message) {
+		JOptionPane.showMessageDialog(this, 
+		        		message, 
+		        "Informacion", 
+		        JOptionPane.INFORMATION_MESSAGE);
+	}
+    
+    public void ShowMessage(String message) {
+		JOptionPane.showMessageDialog(this, 
+		        "Ocurrio un error\n"+
+		        		message, 
+		        "Error", 
+		        JOptionPane.INFORMATION_MESSAGE);
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BEntrar;
+    private javax.swing.JMenuItem CitaAgendar;
+    private javax.swing.JMenuItem CitaConsultar;
+    private javax.swing.JMenuItem CitaEditar;
+    private javax.swing.JInternalFrame InicioSecion;
+    private javax.swing.JMenuBar MenuBarOP;
+    private javax.swing.JMenu MenuCita;
+    private javax.swing.JMenu MenuPaciente;
+    private javax.swing.JMenu MenuPersonal;
+    private javax.swing.JMenuItem PacienteAlta;
+    private javax.swing.JMenuItem PacienteModificar;
+    private javax.swing.JMenuItem PersonalAlta;
+    private javax.swing.JMenuItem PersonalBaja;
+    private javax.swing.JMenu Reporte;
+    private javax.swing.JTextArea Usuario;
+    private javax.swing.JDialog cargando;
+    private javax.swing.JPasswordField contraseña;
+    private javax.swing.JDesktopPane destopPanel;
+    private javax.swing.JMenu estadistica;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel problema1;
+    private javax.swing.JLabel problema2;
     // End of variables declaration//GEN-END:variables
 }
