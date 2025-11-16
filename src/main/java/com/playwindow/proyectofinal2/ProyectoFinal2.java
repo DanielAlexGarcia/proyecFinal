@@ -20,13 +20,13 @@ public class ProyectoFinal2 {
         VentanaInicio interfaz = new VentanaInicio();
         CitaDAO per = new CitaDAO(interfaz);
         
-        Cita perso = new Cita(1005, 2,1,  "2020-10-11", "14:20", 
-                "seguimiento", "camcelada");
-        boolean listo = per.cambiosCita(perso);
-        //per.imprimirresultadoBusqueda(listo);
+        //Cita perso = new Cita(1005, 2,1,  "2020-10-11", "14:20", 
+                //"seguimiento", "camcelada");
+        ResultSet listo = per.busquedaPorNombreDoc("Ana");
+        per.imprimirresultadoBusqueda(listo);
         
         //Paciente m = per.buscarPaciente(5);
-        System.out.println(listo);
+        //System.out.println(listo);
         
         
     }

@@ -6,6 +6,7 @@ package Controlador;
 import Modelo.Cita;
 import Vistas.VentanaInicio;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -50,6 +51,13 @@ public class CitaDAO extends AbstracDAO{
         return ejecutarCRUDTemplate(sql, setter, "actualizar cita");
     }
     
+    public ResultSet busquedaPorNombreDoc (String nomDoctor){
+        String sql = "select * from fn_buscarCitasNomPersonal(?)";
+        StatementSetter setter = (stmt) -> {
+            stmt.setString(1, nomDoctor);
+                };
+        return ejecutarQueryTemplate(sql, setter, "Busqueda por nombre personal");
+    }
     
     
     public static Date convertirStringAFechaSQL(String fechaString) {
@@ -65,5 +73,8 @@ public class CitaDAO extends AbstracDAO{
             System.err.println("Error al parsear la fecha. Asegúrese que el formato sea 'yyyy-dd-mm'. String: " + fechaString);
             return null;
         }
+    }
+    public void imprimirresultadoBusqueda(ResultSet rs){
+        imprimirResultSet(rs);
     }
 }
