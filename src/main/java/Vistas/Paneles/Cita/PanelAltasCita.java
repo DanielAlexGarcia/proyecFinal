@@ -221,7 +221,7 @@ public class PanelAltasCita extends javax.swing.JPanel {
             if (n4 || n5){
                 if(n4){
                     mensaje = mensaje + "Fecha mal escrita o vacia \n";
-                }else{
+                }if (n5){
                     mensaje = mensaje+ "Hora mal escrita o vacia \n";
                 }
             }

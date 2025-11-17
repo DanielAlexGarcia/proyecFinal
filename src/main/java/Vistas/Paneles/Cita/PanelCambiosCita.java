@@ -5,6 +5,7 @@
 package Vistas.Paneles.Cita;
 
 import Controlador.ListadosConcurrentes;
+import Hilos.HilosCita;
 import Modelo.Cita;
 import Vistas.VentanaInicio;
 import Vistas.formatosTextArea;
@@ -39,25 +40,26 @@ public class PanelCambiosCita extends javax.swing.JPanel {
         txtIDCita.setText("");
         CBEstado.setSelectedIndex(0);
         CBPersonal.setSelectedItem(null);
+        setEnablecomponentes(false);
+        txtIDCita.setEditable(true);
+        HilosCita l = new HilosCita(faz, null);
+        l.allCita(TableCitas);
+        
+        
+    }
+    
+    private void setEnablecomponentes(boolean n){
+        CBEstado.setEnabled(n);
+        CBPersonal.setEnabled(n);
+        txtHora.setEditable(n);
+        txtFecha.setEditable(n);
+        
     }
     
     public void ActualizarTabla(TableModel model){
         TableCitas.setModel(model);
     }
-    public void actualizardatos(Cita cit){
-        txtFecha.setText(cit.getFech());
-        txtHora.setText(cit.getHora());
-        CBEstado.setSelectedItem(cit.getEst());
-        String doctor = "";
-        for (String[] doc : lists.getListaPersonal()){
-            int n = Integer.parseInt(doc[0]);
-            if(n == cit.getIddoc()){
-                doctor = doc[1];
-                break;
-            }
-        }
-        CBPersonal.setSelectedItem(doctor);
-    }
+    
             
 
     /**
@@ -130,6 +132,11 @@ public class PanelCambiosCita extends javax.swing.JPanel {
         });
 
         BGuardar.setText("Guardar");
+        BGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -209,13 +216,46 @@ public class PanelCambiosCita extends javax.swing.JPanel {
         if(txtIDCita.getText().trim().equals("")){
             faz.ShowMessageFeerback("ingresa el ID para cargar");
         }else{
-            System.out.println("none");
+            HilosCita hcit = new HilosCita(faz, null);
+            hcit.BuscarCita(Integer.parseInt(txtIDCita.getText().trim()), CBEstado, CBPersonal, txtFecha, txtHora, txtIDCita);
+            
         }
     }//GEN-LAST:event_BBuscarActionPerformed
 
     private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
         setVaciarComponentes();
     }//GEN-LAST:event_BResetActionPerformed
+
+    private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
+        boolean n = CBPersonal.getSelectedItem() != null;
+        boolean n2 = lists.fechaValida(txtFecha.getText().trim());
+        boolean n3 = lists.horaValida(txtHora.getText().trim());
+        boolean n4 = CBEstado.getSelectedItem() != null;
+        String mensaje="";
+        if (n && n2 && n3 && n4){
+            int idcit = Integer.parseInt(txtIDCita.getText().trim());
+            int idDoc = 0;
+            for (String[] nn : lists.getListaPersonal()){
+                if (nn[1].equalsIgnoreCase((String) CBPersonal.getSelectedItem())){
+                    idDoc = Integer.parseInt(nn[0]);
+                }
+            }
+            Cita cit = new Cita(idcit, 0, idDoc, txtFecha.getText().trim(), txtHora.getText().trim(), "", (String) CBEstado.getSelectedItem());
+            HilosCita hcit = new HilosCita(faz, cit);
+            hcit.CambiarCita();
+            setVaciarComponentes();
+        }else{
+            mensaje = mensaje + "no se puede guardar los datos\n";
+            if (!n2 || !n3){
+                if (!n2){
+                    mensaje = mensaje + "Fecha mal escrita o campo vacio \n";
+                }else{
+                    mensaje = mensaje + "Hora mal escrita o campo vacio \n";
+                }
+            }
+            faz.ShowMessage(mensaje);
+        }
+    }//GEN-LAST:event_BGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -7,8 +7,11 @@ import Modelo.Cita;
 import Vistas.VentanaInicio;
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  *
@@ -82,6 +85,51 @@ public class CitaDAO extends AbstracDAO{
         return ejecutarQueryTemplate(sql, setter, "todas las citas");
     }
     
+    public Cita BuqCitaPorID(int id){
+        String sql = "select * from Cita where id = ?";
+        StatementSetter setter = (stmt) -> {
+            stmt.setInt(1, id);
+                };
+        ResultSet n = ejecutarQueryTemplate(sql, setter, "todas las citas");
+        try {
+            ArrayList<String> li = resultSetToList(n);
+            Cita c = convertArrayListTOCita(li);
+            return c;
+        } catch (Exception e) {
+            System.out.println("Error al intentar convertir resultset a arraylist");
+            return null;
+        }
+    }
+    
+    private Cita convertArrayListTOCita(ArrayList<String> datos){
+        Cita c = new Cita(Integer.parseInt(datos.get(0)),
+                Integer.parseInt(datos.get(1)),
+                Integer.parseInt(datos.get(2)),
+                datos.get(3),
+                datos.get(4),
+                datos.get(5), 
+                datos.get(6));
+        return c;
+    }
+    
+    private static ArrayList<String> resultSetToList(ResultSet rs) throws SQLException {
+
+    ArrayList<String> lista = new ArrayList<>();
+
+    // Primero verificamos si existe una fila
+    if (rs.next()) {
+        ResultSetMetaData meta = rs.getMetaData();
+        int columnCount = meta.getColumnCount();
+
+        // Recorrer todas las columnas de la fila
+        for (int i = 1; i <= columnCount; i++) {
+            Object valor = rs.getObject(i);
+            lista.add(valor != null ? valor.toString() : null);
+        }
+    }
+
+    return lista;
+}
     
     public static Date convertirStringAFechaSQL(String fechaString) {
         
