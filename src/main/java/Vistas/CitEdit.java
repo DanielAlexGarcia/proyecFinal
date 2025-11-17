@@ -5,6 +5,8 @@
 package Vistas;
 
 
+import Controlador.ListadosConcurrentes;
+import Vistas.Paneles.Cita.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -18,22 +20,38 @@ public class CitEdit extends javax.swing.JInternalFrame {
     private String PanelAñadir = "CitaAñadir";
     private String PanelConsultar = "CitaConsultar";
     private String PanelModificar = "CitaModificar";
-    private String PanelDeletCita = "CitaEliminar";
     private JPanel panelDeContenido;
     private CardLayout cardLayout;
+    private VentanaInicio faz;
+    private ListadosConcurrentes lists;
+    
+    private PanelAltasCita citAlta;
+    private PanelCambiosCita citCambio;
+    private PanelConsultaCita citConsult;
+    
     /**
      * Creates new form CitEdit
      */
-    public CitEdit() {
+    public CitEdit(VentanaInicio interfaz, ListadosConcurrentes listas) {
+        this.faz = interfaz;
+        this.lists = listas;
         initComponents();
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         iniciarCardLayaout();
         setWindowShow(1);
     }
     
     private void iniciarCardLayaout(){
+        this.citAlta = new PanelAltasCita(lists, faz);
+        this.citCambio = new PanelCambiosCita(lists, faz);
+        this.citConsult = new PanelConsultaCita(lists, faz);
+        
         cardLayout = new CardLayout();
         panelDeContenido = new JPanel(cardLayout);
         
+        panelDeContenido.add(citAlta, PanelAñadir);
+        panelDeContenido.add(citCambio, PanelModificar);
+        panelDeContenido.add(citConsult, PanelConsultar);
         
         getContentPane().removeAll(); // quitamos el layout vacío generado por NetBeans
         getContentPane().setLayout(new BorderLayout());
@@ -47,6 +65,7 @@ public class CitEdit extends javax.swing.JInternalFrame {
     private void showCardLayaout(String namePanel){
         cardLayout.show(panelDeContenido, namePanel);
         if(namePanel.equals(PanelAñadir)){
+            citAlta.SetVaciarComponentes();
         }else if (namePanel.equals(PanelModificar)){
         }else if (namePanel.equals(PanelConsultar)){
         }
@@ -75,6 +94,8 @@ public class CitEdit extends javax.swing.JInternalFrame {
         BNewCita = new javax.swing.JButton();
         BModifiCita = new javax.swing.JButton();
         BModifiEstate = new javax.swing.JButton();
+
+        setClosable(true);
 
         jToolBar1.setRollover(true);
 

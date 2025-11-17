@@ -4,18 +4,29 @@
  */
 package Vistas.Paneles.Cita;
 
+import Controlador.ListadosConcurrentes;
+import Vistas.VentanaInicio;
+
 /**
  *
  * @author daniel
  */
 public class PanelConsultaCita extends javax.swing.JPanel {
-
+    ListadosConcurrentes lists;
+    VentanaInicio faz;
     /**
      * Creates new form PanelConsultaCita
      */
-    public PanelConsultaCita() {
+    public PanelConsultaCita(ListadosConcurrentes listas, VentanaInicio fa) {
+        this.faz = fa;
+        this.lists = listas;
         initComponents();
     }
+    
+    public void setVaciarComponentes(){
+        
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,6 +37,7 @@ public class PanelConsultaCita extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BGBusqueda = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -131,6 +143,7 @@ public class PanelConsultaCita extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBuscar;
+    private javax.swing.ButtonGroup BGBusqueda;
     private javax.swing.JButton BReset;
     private javax.swing.JComboBox<String> CBEstado;
     private javax.swing.JComboBox<String> CBPaciente;

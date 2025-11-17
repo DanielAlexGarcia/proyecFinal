@@ -3,18 +3,69 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Vistas.Paneles.Cita;
+import Controlador.ListadosConcurrentes;
+import Vistas.VentanaInicio;
+import Vistas.formatosTextArea;
 
 /**
  *
  * @author daniel
  */
 public class PanelAltasCita extends javax.swing.JPanel {
-
+    ListadosConcurrentes lists;
+    VentanaInicio interfaz;
     /**
      * Creates new form PanelAltasCita
      */
-    public PanelAltasCita() {
+    public PanelAltasCita(ListadosConcurrentes listas, VentanaInicio faz) {
+        this.lists = listas;
+        this.interfaz = faz;
         initComponents();
+        formatosTextArea.FormatoFecha(txtFecha);
+        formatosTextArea.FormatoHora(txtHora);
+        formatosTextArea.setSoloLetras(txtMotivo, 70);
+        CBEstado.setModel(lists.crearModeloComboBox(lists.getListaEstados()));
+        CBPacientes.setModel(lists.crearModeloComboBox2(lists.getListaPacientes()));
+        CBPersonal.setModel(lists.crearModeloComboBox2(lists.getListaPersonal()));
+        //CBPacientes.setEditable(true);
+        //CBPersonal.setEditable(true);
+        //formatosTextArea.attachFilter(CBPersonal);
+        //formatosTextArea.attachFilter(CBPacientes);
+        
+        
+        
+        
+    }
+    
+    public boolean baiter(String valo, int listado){
+        if(listado == 1){
+           for (String[] val : lists.getListaPacientes()){
+            if (val[1].equalsIgnoreCase(valo)){
+                System.out.println("Coincidencia");
+                System.out.println(val[0]);
+                return true;
+            }
+        }
+        }else{
+            for (String[] val : lists.getListaPersonal()){
+            if (val[1].equalsIgnoreCase(valo)){
+                System.out.println("Coincidencia");
+                System.out.println(val[0]);
+                return true;
+            }
+        }
+        }
+        return false;
+    }
+    
+    public void SetVaciarComponentes(){
+        CBPacientes.setSelectedItem(null);
+        CBPersonal.setSelectedItem(null);
+        CBEstado.setSelectedIndex(0);
+        txtFecha.setText("");
+        txtHora.setText("");
+        txtMotivo.setText("");
+        
     }
 
     /**
@@ -34,13 +85,13 @@ public class PanelAltasCita extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtHora = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtMotivo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CBEstado = new javax.swing.JComboBox<>();
         BReset = new javax.swing.JButton();
         BGuardar = new javax.swing.JButton();
+        txtHora = new javax.swing.JFormattedTextField();
 
         jLabel1.setText("Añadir cita");
 
@@ -60,11 +111,26 @@ public class PanelAltasCita extends javax.swing.JPanel {
 
         jLabel7.setText("Estado");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBEstadoActionPerformed(evt);
+            }
+        });
 
         BReset.setText("Reset");
+        BReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BResetActionPerformed(evt);
+            }
+        });
 
         BGuardar.setText("Guardar");
+        BGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -85,19 +151,19 @@ public class PanelAltasCita extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, 110, Short.MAX_VALUE)
-                            .addComponent(txtMotivo)
-                            .addComponent(txtHora)
-                            .addComponent(txtFecha)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CBPacientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CBPersonal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(CBPersonal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFecha)
+                            .addComponent(txtMotivo)
+                            .addComponent(CBEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(217, 217, 217)
                         .addComponent(BReset)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BGuardar)))
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(250, 250, 250))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +193,7 @@ public class PanelAltasCita extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BReset)
@@ -136,13 +202,25 @@ public class PanelAltasCita extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBEstadoActionPerformed
+
+    private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
+        ////////////
+    }//GEN-LAST:event_BGuardarActionPerformed
+
+    private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
+        SetVaciarComponentes();
+    }//GEN-LAST:event_BResetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BGuardar;
     private javax.swing.JButton BReset;
+    private javax.swing.JComboBox<String> CBEstado;
     private javax.swing.JComboBox<String> CBPacientes;
     private javax.swing.JComboBox<String> CBPersonal;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -151,7 +229,7 @@ public class PanelAltasCita extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JFormattedTextField txtFecha;
-    private javax.swing.JTextField txtHora;
+    private javax.swing.JFormattedTextField txtHora;
     private javax.swing.JTextField txtMotivo;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,7 @@
  */
 package Vistas;
 
+import Controlador.ListadosConcurrentes;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     private JPanel panelDeContenido;
     private CardLayout cardLayout;
     private VentanaInicio interfa;
+    private ListadosConcurrentes lists;
     
     public final String PanelAlta = "PanelAltaPersona";
     public final String PanelBaja = "PanelBajaPersona";
@@ -27,11 +29,9 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     /**
      * Creates new form PersoEdit
      */
-    public PersoEdit(VentanaInicio inter) {
-        System.out.println(inter);
+    public PersoEdit(VentanaInicio inter, ListadosConcurrentes listados) {
         this.interfa = inter;
-        System.out.println(interfa);
-        setinterfaz(inter);
+        this.lists = listados;
         initComponents();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         iniciarCardLayout();

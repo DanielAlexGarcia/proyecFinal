@@ -8,7 +8,6 @@ import Modelo.*;
 import Vistas.*;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
-
 /**
  *
  * @author daniel

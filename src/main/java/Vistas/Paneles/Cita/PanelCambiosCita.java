@@ -4,18 +4,44 @@
  */
 package Vistas.Paneles.Cita;
 
+import Controlador.ListadosConcurrentes;
+import Vistas.VentanaInicio;
+import Vistas.formatosTextArea;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author daniel
  */
 public class PanelCambiosCita extends javax.swing.JPanel {
+    ListadosConcurrentes lists;
+    VentanaInicio faz;
 
     /**
      * Creates new form PanelCambiosCita
      */
-    public PanelCambiosCita() {
+    public PanelCambiosCita(ListadosConcurrentes listas, VentanaInicio fa) {
+        this.lists = listas;
         initComponents();
+        CBEstado.setModel(lists.crearModeloComboBox(lists.getListaEstados()));
+        CBPersonal.setModel(lists.crearModeloComboBox2(lists.getListaPersonal()));
+        formatosTextArea.setSoloNumeros(txtIDCita, 10);
+        formatosTextArea.FormatoFecha(txtFecha);
+        formatosTextArea.FormatoHora(txtHora);
     }
+    
+    public void setVaciarComponentes(){
+        txtFecha.setText("");
+        txtHora.setText("");
+        txtIDCita.setText("");
+        CBEstado.setSelectedIndex(0);
+        CBPersonal.setSelectedIndex(0);
+    }
+    
+    public void ActualizarTabla(TableModel model){
+        TableCitas.setModel(model);
+    }
+            
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +65,7 @@ public class PanelCambiosCita extends javax.swing.JPanel {
         txtIDCita = new javax.swing.JTextField();
         BBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TableCitas = new javax.swing.JTable();
         BReset = new javax.swing.JButton();
         BGuardar = new javax.swing.JButton();
 
@@ -66,7 +92,7 @@ public class PanelCambiosCita extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,9 +103,14 @@ public class PanelCambiosCita extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TableCitas);
 
         BReset.setText("Reset");
+        BReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BResetActionPerformed(evt);
+            }
+        });
 
         BGuardar.setText("Guardar");
 
@@ -158,8 +189,16 @@ public class PanelCambiosCita extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
-        // TODO add your handling code here:
+        if(!txtIDCita.getText().trim().equals("")){
+            faz.ShowMessageFeerback("ingresa el ID para cargar");
+        }else{
+            System.out.println("none");
+        }
     }//GEN-LAST:event_BBuscarActionPerformed
+
+    private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
+        setVaciarComponentes();
+    }//GEN-LAST:event_BResetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -168,6 +207,7 @@ public class PanelCambiosCita extends javax.swing.JPanel {
     private javax.swing.JButton BReset;
     private javax.swing.JComboBox<String> CBEstado;
     private javax.swing.JComboBox<String> CBPersonal;
+    private javax.swing.JTable TableCitas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -175,7 +215,6 @@ public class PanelCambiosCita extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JFormattedTextField txtFecha;
     private javax.swing.JFormattedTextField txtHora;
     private javax.swing.JTextField txtIDCita;

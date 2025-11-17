@@ -6,6 +6,7 @@ package Vistas;
 
 
 
+import Controlador.ListadosConcurrentes;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -17,6 +18,8 @@ import javax.swing.JPanel;
 public class PacEdit extends javax.swing.JInternalFrame {
     private JPanel panelDeContenido;
     private CardLayout cardLayout;
+    private VentanaInicio faz;
+    private ListadosConcurrentes lists;
     
     private final String panelAñadi = "PanelAñadirPaciente";
     private final String panelEdit = "PanelModificarPaciente";
@@ -24,7 +27,9 @@ public class PacEdit extends javax.swing.JInternalFrame {
     /**
      * Creates new form PacEdit
      */
-    public PacEdit() {
+    public PacEdit(VentanaInicio interfaz, ListadosConcurrentes listas) {
+        this.faz = interfaz;
+        this.lists = listas;
         initComponents();
         
         this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);

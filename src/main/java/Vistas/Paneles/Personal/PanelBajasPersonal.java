@@ -4,16 +4,19 @@
  */
 package Vistas.Paneles.Personal;
 
+import Controlador.ListadosConcurrentes;
+
 /**
  *
  * @author daniel
  */
 public class PanelBajasPersonal extends javax.swing.JPanel {
-
+    ListadosConcurrentes lists;
     /**
      * Creates new form PanelBajasPersonal
      */
-    public PanelBajasPersonal() {
+    public PanelBajasPersonal(ListadosConcurrentes listas) {
+        this.lists = listas;
         initComponents();
     }
 

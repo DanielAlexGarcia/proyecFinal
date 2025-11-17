@@ -4,16 +4,19 @@
  */
 package Vistas.Paneles.Paciente;
 
+import Controlador.ListadosConcurrentes;
+
 /**
  *
  * @author daniel
  */
 public class PanelAltasPaciente extends javax.swing.JPanel {
-
+    ListadosConcurrentes lists;
     /**
      * Creates new form PanelAltasPaciente
      */
-    public PanelAltasPaciente() {
+    public PanelAltasPaciente(ListadosConcurrentes listas) {
+        this.lists = listas;
         initComponents();
     }
 

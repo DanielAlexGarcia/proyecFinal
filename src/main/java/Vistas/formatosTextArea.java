@@ -5,6 +5,8 @@
 package Vistas;
 
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -14,11 +16,17 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.text.*;
 import java.util.regex.Pattern;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -220,6 +228,80 @@ public class formatosTextArea {
         // 3. Devolver el modelo.
         return model;
     }
+    public static void attachFilter(JComboBox<String> comboBox) {
+
+    // Guardar los ítems originales
+    final Vector<String> itemsOriginales = new Vector<>();
+    for (int i = 0; i < comboBox.getItemCount(); i++) {
+        itemsOriginales.add(comboBox.getItemAt(i));
+    }
+
+    comboBox.setEditable(true);
+    JTextComponent editor = (JTextComponent) comboBox.getEditor().getEditorComponent();
+
+    editor.getDocument().addDocumentListener(new DocumentListener() {
+        private boolean isAdjusting = false;
+
+        @Override
+        public void insertUpdate(DocumentEvent e) { handleTextChanged(); }
+        @Override
+        public void removeUpdate(DocumentEvent e) { handleTextChanged(); }
+        @Override
+        public void changedUpdate(DocumentEvent e) {}
+
+        private void handleTextChanged() {
+            if (isAdjusting) return;
+
+            SwingUtilities.invokeLater(() -> {
+
+                String typedText = editor.getText().toLowerCase();
+                Vector<String> itemsFiltrados = new Vector<>();
+
+                // ===============================
+                // 1. Si no hay texto → mostrar todo
+                // ===============================
+                if (typedText.isEmpty()) {
+                    isAdjusting = true;
+
+                    comboBox.setModel(new DefaultComboBoxModel<>(itemsOriginales));
+                    comboBox.setSelectedItem(null);   // No seleccionar nada
+                    editor.setText("");               // Editor vacío
+
+                    isAdjusting = false;
+
+                    comboBox.showPopup();             // MOSTRAR LISTA COMPLETA
+
+                    return;
+                }
+
+                // ===============================
+                // 2. Filtrar coincidencias
+                // ===============================
+                for (String item : itemsOriginales) {
+                    if (item.toLowerCase().startsWith(typedText)) {
+                        itemsFiltrados.add(item);
+                    }
+                }
+
+                isAdjusting = true;
+                comboBox.setModel(new DefaultComboBoxModel<>(itemsFiltrados));
+                editor.setText(typedText);
+                editor.setCaretPosition(editor.getText().length());
+                isAdjusting = false;
+
+                // Mostrar popup solo si hay coincidencias
+                if (!itemsFiltrados.isEmpty()) {
+                    comboBox.showPopup();
+                } else {
+                    comboBox.hidePopup();
+                }
+            });
+        }
+    });
+
+}
+
+    
     
     public static DefaultTableModel construirModeloTabla(ResultSet rs) throws SQLException {
     // Obtiene metadatos del ResultSet (nombres de columnas, tipos, etc.)

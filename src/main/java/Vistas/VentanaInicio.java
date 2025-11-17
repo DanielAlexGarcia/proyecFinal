@@ -6,8 +6,11 @@ package Vistas;
 
 
 import Controlador.ConexionBD;
+import Controlador.ListadosConcurrentes;
+import Controlador.PersonaDAO;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -19,36 +22,12 @@ public class VentanaInicio extends javax.swing.JFrame {
     
     public static VentanaInicio instance;
     public static JFrame frame = new JFrame();
+    private ListadosConcurrentes listados;
     
     PersoEdit perEdit;
     PacEdit pacdit;
     CitEdit citdit;
-    private ArrayList<String[]> listadoPersonas;
-    private void coneccionDB(){
-        System.out.println("--- Iniciando prueba de conexión ---");
-
-        // 1. Obtener la única instancia de la clase ConexionBD
-        ConexionBD db = ConexionBD.getInstancia();
-
-        // 2. Obtener el objeto Connection
-        Connection conn = db.getConnection();
-
-        // 3. Verificar si la conexión es válida
-        try {
-            if (conn != null && !conn.isClosed()) {
-                System.out.println("✅ La conexión a la base de datos es exitosa y está abierta.");
-                System.out.println("URL: " + conn.getMetaData().getURL());
-                
-                // Opcional: Probar un método de la clase DAO (ej. si estuviera en la misma clase)
-                // db.connecctionDatabase("otro_esquema");
-            } else {
-                System.out.println("❌ La conexión falló o está cerrada. Revisa los errores en el constructor.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("❌ Error al verificar la conexión.");
-        }
-    }
+    
 
     /**
      * Creates new form VentanaInicio
@@ -58,12 +37,15 @@ public class VentanaInicio extends javax.swing.JFrame {
         contraseña.setText("");
         añadirOpciones(false);
         
+        listados = new ListadosConcurrentes();
+        
+        
     }
     
     private void loadPags(){
-        perEdit = new PersoEdit(instance);
-        pacdit = new PacEdit();
-        citdit = new CitEdit();
+        perEdit = new PersoEdit(instance, listados);
+        pacdit = new PacEdit(instance, listados);
+        citdit = new CitEdit(instance, listados);
         destopPanel.add(perEdit);
         destopPanel.add(pacdit);
         destopPanel.add(citdit);
@@ -85,12 +67,9 @@ public class VentanaInicio extends javax.swing.JFrame {
     		}
     	}
         }
-    public ArrayList<String[]> getlistPersonas(){
-        return listadoPersonas;
-    }
+    
     
     private boolean comprovarUsuario(String usuario){
-		
 		if (usuario.equals("admin")) {
 			return true;
 		}
