@@ -6,6 +6,12 @@ package Vistas.Paneles.Cita;
 
 import Controlador.ListadosConcurrentes;
 import Vistas.VentanaInicio;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.JRadioButton;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -14,6 +20,7 @@ import Vistas.VentanaInicio;
 public class PanelConsultaCita extends javax.swing.JPanel {
     ListadosConcurrentes lists;
     VentanaInicio faz;
+    int opcion = 0;
     /**
      * Creates new form PanelConsultaCita
      */
@@ -21,15 +28,60 @@ public class PanelConsultaCita extends javax.swing.JPanel {
         this.faz = fa;
         this.lists = listas;
         initComponents();
+        BGBusqueda.add(RBBusqEstado);
+        BGBusqueda.add(RBBusqNomPac);
+        BGBusqueda.add(RBBusqNomPersonal);
+        setVaciarComponentes();
     }
     
     public void setVaciarComponentes(){
-        CBEstado.setSelectedIndex(0);
-        CBPaciente.setSelectedIndex(0);
-        CBPersonal.setSelectedIndex(0);
+        CBEstado.setSelectedItem(null);
+        CBPaciente.setSelectedItem(null);
+        CBPersonal.setSelectedItem(null);
+        disableSelectRB(BGBusqueda);
+    }
+    private void setSelect(JRadioButton seleccion){
+        if (seleccion == RBBusqEstado){
+            opcion = 1;
+        }else if (seleccion == RBBusqNomPac){
+            opcion = 2;
+        }else if (seleccion == RBBusqNomPersonal){
+            opcion = 3;
+        }
     }
     
+    private void disableSelectRB(ButtonGroup buttonGroup){
+            buttonGroup.setSelected((ButtonModel)null, false);
+        
+    }
+    
+    public void ActualizarTabla(TableModel model){
+        tablaResult.setModel(model);
+    }
+    
+    
+ public void setEnableRBFromGroup(ButtonGroup grupo) {                           // Metodo para abilitar/desbilitar campos de texto en base a RB dentro de un buttonGroup
+    // 1. Obtener el ButtonModel seleccionado
+    ButtonModel modeloSeleccionado = grupo.getSelection();
 
+    if (modeloSeleccionado != null) {
+        // 2. Iterar sobre los botones del grupo para encontrar el JRadioButton
+        Enumeration<AbstractButton> botones = grupo.getElements();
+        while (botones.hasMoreElements()) {
+            AbstractButton boton = botones.nextElement();
+            if (boton.getModel() == modeloSeleccionado) {
+                // Se encontró el JRadioButton seleccionado
+                if (boton instanceof JRadioButton) {
+                    JRadioButton rbSeleccionado = (JRadioButton) boton;
+                    
+                   setSelect(rbSeleccionado);
+
+                    break; // Salir del bucle una vez encontrado
+                }
+            }
+        }
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +94,7 @@ public class PanelConsultaCita extends javax.swing.JPanel {
         BGBusqueda = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaResult = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         RBBusqNomPersonal = new javax.swing.JRadioButton();
         RBBusqNomPac = new javax.swing.JRadioButton();
@@ -55,7 +107,7 @@ public class PanelConsultaCita extends javax.swing.JPanel {
 
         jLabel1.setText("Consultar citas");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,7 +118,7 @@ public class PanelConsultaCita extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaResult);
 
         jLabel2.setText("Resultados");
 
@@ -83,8 +135,18 @@ public class PanelConsultaCita extends javax.swing.JPanel {
         CBEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         BBuscar.setText("Buscar");
+        BBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBuscarActionPerformed(evt);
+            }
+        });
 
         BReset.setText("Reset");
+        BReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -142,6 +204,35 @@ public class PanelConsultaCita extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
+        setVaciarComponentes();
+    }//GEN-LAST:event_BResetActionPerformed
+
+    private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
+        setEnableRBFromGroup(BGBusqueda);
+        if (opcion ==1){
+            if(CBEstado.getSelectedItem() == null){
+                faz.ShowMessageFeerback("elige una opcion para hacer la busqueda");
+            }else{
+                
+            }
+        }else if (opcion == 2){
+            if (CBPaciente.getSelectedItem() == null){
+                faz.ShowMessageFeerback("elige una opcion para hacer la busqueda");
+            }else{
+                
+            }
+        }else if (opcion == 3){
+            if (CBPersonal.getSelectedItem() == null){
+                faz.ShowMessageFeerback("elige una opcion para hacer la busqueda");
+            }else{
+                
+            }
+        }else{
+            faz.ShowMessageFeerback("selecciona el metodo de busqueda");
+        }
+    }//GEN-LAST:event_BBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBuscar;
@@ -156,6 +247,6 @@ public class PanelConsultaCita extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaResult;
     // End of variables declaration//GEN-END:variables
 }

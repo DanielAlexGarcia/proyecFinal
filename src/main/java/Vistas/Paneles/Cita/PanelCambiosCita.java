@@ -30,6 +30,7 @@ public class PanelCambiosCita extends javax.swing.JPanel {
         formatosTextArea.setSoloNumeros(txtIDCita, 10);
         formatosTextArea.FormatoFecha(txtFecha);
         formatosTextArea.FormatoHora(txtHora);
+        setVaciarComponentes();
     }
     
     public void setVaciarComponentes(){
