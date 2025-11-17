@@ -68,6 +68,18 @@ public class ListadosConcurrentes extends AbstracDAO{
         return ejecutarQueryTemplate(sql, setter, "Consultar listado de personal");
     }
     
+    public void actualizarPacientes(){
+        listaPacientes = null;
+        listadoPacientes = null;
+        listadoPacientes = listaPaciente();
+        try {
+            listaPacientes = transformarResultSet(listadoPacientes);
+            System.out.println("Lista de pacientes actualizada");
+        } catch (Exception e) {
+            System.out.println("Error al actualizar datos");
+        }
+    }
+    
     private ResultSet listaPaciente(){
         String sql = "select * from fn_AllPacienteList()";
         StatementSetter setter = (stmt) -> {
@@ -80,6 +92,33 @@ public class ListadosConcurrentes extends AbstracDAO{
         StatementSetter setter = (stmt) -> {
                 };
         return ejecutarQueryTemplate(sql, setter, "Consultar listado de personas");
+    }
+    
+    public static DefaultTableModel resultSetToTableModel(ResultSet rs) throws SQLException {
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        // Crear modelo de tabla
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        // Añadir nombres de columnas
+        for (int i = 1; i <= columnCount; i++) {
+            modelo.addColumn(metaData.getColumnLabel(i));
+        }
+
+        // Añadir filas del ResultSet
+        while (rs.next()) {
+            Object[] fila = new Object[columnCount];
+
+            for (int i = 1; i <= columnCount; i++) {
+                fila[i - 1] = rs.getObject(i);
+            }
+
+            modelo.addRow(fila);
+        }
+
+        return modelo;
     }
     
     public static ArrayList<String[]> transformarResultSet(ResultSet rs) throws SQLException {

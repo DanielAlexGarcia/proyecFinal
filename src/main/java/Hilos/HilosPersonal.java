@@ -114,7 +114,8 @@ public class HilosPersonal {
                     	interfaz.showMessageDialog(interfaz.frame, "Eliminando...", false);
                     	//interfaz.interfaz.setDonador(donana, ventana);
                         interfaz.ShowMessage("Este personal tiene otras dependencias \n"
-                                + "Imposible eliminarlo sin eliminar sus dependencias antes");
+                                + "Imposible eliminarlo sin eliminar sus dependencias antes\n"
+                                + "O no existe");
                     });
                     }
             	}

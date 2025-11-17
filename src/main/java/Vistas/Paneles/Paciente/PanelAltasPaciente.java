@@ -5,6 +5,8 @@
 package Vistas.Paneles.Paciente;
 
 import Controlador.ListadosConcurrentes;
+import Hilos.HilosPaciente;
+import Modelo.Paciente;
 import Vistas.VentanaInicio;
 import Vistas.formatosTextArea;
 
@@ -158,10 +160,23 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
         if(!n || !n2 || !n3 || !n4){
             faz.ShowMessage("uno o mas campos esta vacio");
         }else{
-            System.out.println("listo");
+            int dni = getDNIpersona((String) CBPersona.getSelectedItem());
+            Paciente pac = new Paciente(0, dni, txtNumSeg.getText().trim(), txtGrupSangineo.getText().trim(), txtAlergias.getText().trim());
+            HilosPaciente hprov = new HilosPaciente(faz, pac);
+            hprov.AñadirPaciente();
         }
     }//GEN-LAST:event_BGuardarActionPerformed
 
+    private int getDNIpersona(String personaSelect){
+        for (String[] n : lists.getListaPersonas()){
+            if(n[1].equalsIgnoreCase(personaSelect)){
+                int m = Integer.parseInt(n[0]);
+                return m;
+            }
+        }
+        return 0;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BGuardar;

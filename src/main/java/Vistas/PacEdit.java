@@ -67,6 +67,7 @@ public class PacEdit extends javax.swing.JInternalFrame {
         if(namePanel.equals(panelAñadi)){
             
         }else if (namePanel.equals(panelEdit)){
+            PacCambio.actualizarCBPacientes();
         }
     }
     

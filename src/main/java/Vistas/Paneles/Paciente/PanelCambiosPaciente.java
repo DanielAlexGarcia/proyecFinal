@@ -5,7 +5,10 @@
 package Vistas.Paneles.Paciente;
 
 import Controlador.ListadosConcurrentes;
+import Hilos.HilosPaciente;
+import Modelo.Paciente;
 import Vistas.*;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -15,6 +18,8 @@ import javax.swing.table.TableModel;
 public class PanelCambiosPaciente extends javax.swing.JPanel {
     ListadosConcurrentes lists;
     VentanaInicio faz;
+    PanelCambiosPaciente interfa;
+    int id;
     /**
      * Creates new form PanelCambiosPaciente
      */
@@ -28,16 +33,29 @@ public class PanelCambiosPaciente extends javax.swing.JPanel {
         CBListPacientes.setModel(lists.crearModeloComboBox2(lists.getListaPacientes()));
         setVaciarComponentes();
         
+        
+        
+    }
+    
+    public void actualizarCBPacientes(){
+        lists.actualizarPacientes();
+        CBListPacientes.setModel(new DefaultComboBoxModel<>());
+        CBListPacientes.setModel(lists.crearModeloComboBox2(lists.getListaPacientes()));
+        CBListPacientes.setSelectedItem(null);
     }
     
     public void setVaciarComponentes(){
         jTextArea1.setText("");
+        jTextArea1.setEditable(false);
         txtNumSeg.setText("");
+        txtNumSeg.setEditable(false);
         CBListPacientes.setSelectedItem(null);
+        HilosPaciente p = new HilosPaciente(faz, null);
+        p.consultarPacientes(tablaPacientes);
     }
     
-    public void ActualizarTabla(TableModel model){
-        tablaPacientes.setModel(model);
+    private void setinstance(){
+        interfa = this;
     }
 
     /**
@@ -176,15 +194,37 @@ public class PanelCambiosPaciente extends javax.swing.JPanel {
     private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
         boolean n = txtNumSeg.getText().trim().equals("");
         boolean n1 = jTextArea1.getText().trim().equals("");
+        
+        
         if(n || n1){
             faz.ShowMessage("no puedes dejar campos vacios");
         }else{
-            System.out.println("listo");
+            if (id != 0){
+                System.out.println(txtNumSeg.getText().trim());
+                System.out.println(jTextArea1.getText().trim());
+                Paciente p = new Paciente(id, 0, txtNumSeg.getText().trim(), "", jTextArea1.getText().trim());
+                HilosPaciente hpro = new HilosPaciente(faz, p);
+                hpro.CambiarPaciente(CBListPacientes);
+                setVaciarComponentes();
+            }
+            
         }
     }//GEN-LAST:event_BGuardarActionPerformed
 
     private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
         if(CBListPacientes.getSelectedItem() != null){
+            id = 0;
+            for (String[] n : lists.getListaPacientes()){
+                if (n[1].equalsIgnoreCase((String) CBListPacientes.getSelectedItem())){
+                    id = Integer.parseInt(n[0]);
+                    
+                    break;
+                }
+            }
+            HilosPaciente hprov = new HilosPaciente(faz, null);
+            hprov.BuscarPaciente(id, txtNumSeg, jTextArea1);
+            jTextArea1.setEditable(true);
+            txtNumSeg.setEditable(true);
             CBListPacientes.setEnabled(false);
         }else{
             faz.ShowMessage("selecciona un paciente para cargar");
