@@ -5,6 +5,7 @@
 package Vistas.Paneles.Personal;
 
 import Controlador.ListadosConcurrentes;
+import Vistas.*;
 
 /**
  *
@@ -12,12 +13,29 @@ import Controlador.ListadosConcurrentes;
  */
 public class PanelAltasPersonal extends javax.swing.JPanel {
     ListadosConcurrentes lists;
+    VentanaInicio faz;
     /**
      * Creates new form PanelAltasPersonal
      */
-    public PanelAltasPersonal(ListadosConcurrentes listas) {
+    public PanelAltasPersonal(ListadosConcurrentes listas, VentanaInicio fa) {
         this.lists = listas;
+        this.faz = fa;
         initComponents();
+        
+        formatosTextArea.setSoloLetras(txtRol, 70);
+        formatosTextArea.setSoloLetras(txtDepart, 70);
+        formatosTextArea.setSoloLetras(txtEspecialidad, 70);
+        formatosTextArea.FormatoSalario(txtSalario);
+        CBPersona.setModel(lists.crearModeloComboBox2(lists.getListaPersonal()));
+        setVaciarComponentes();
+    }
+    
+    public void setVaciarComponentes(){
+        txtDepart.setText("");
+        txtEspecialidad.setText("");
+        txtRol.setText("");
+        txtSalario.setText("");
+        CBPersona.setSelectedItem(null);
     }
 
     /**
@@ -33,9 +51,9 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         CBPersona = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        txtNumSeg = new javax.swing.JTextField();
+        txtRol = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtGrupSangi = new javax.swing.JTextField();
+        txtDepart = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         BGuardar = new javax.swing.JButton();
         BReset = new javax.swing.JButton();
@@ -56,8 +74,18 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         jLabel5.setText("Especialidad");
 
         BGuardar.setText("Guardar");
+        BGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BGuardarActionPerformed(evt);
+            }
+        });
 
         BReset.setText("Reset");
+        BReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BResetActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Salario");
 
@@ -81,8 +109,8 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(CBPersona, 0, 238, Short.MAX_VALUE)
-                            .addComponent(txtNumSeg)
-                            .addComponent(txtGrupSangi)
+                            .addComponent(txtRol)
+                            .addComponent(txtDepart)
                             .addComponent(txtEspecialidad)
                             .addComponent(txtSalario)))
                     .addGroup(layout.createSequentialGroup()
@@ -104,11 +132,11 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNumSeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtGrupSangi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -125,6 +153,24 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
+        setVaciarComponentes();
+    }//GEN-LAST:event_BResetActionPerformed
+
+    private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
+        boolean n = txtDepart.getText().trim().equals("");
+        boolean n2 = txtEspecialidad.getText().trim().equals("");
+        boolean n3 = txtRol.getText().trim().equals("");
+        boolean n4 = txtSalario.getText().trim().equals("");
+        boolean n5 = CBPersona.getSelectedItem() == null;
+        if(n || n2 || n3 || n4 || n5){
+            faz.ShowMessage("uno o mas campos estan vacios");
+        }else{
+            System.out.println("paso");
+        }
+        
+    }//GEN-LAST:event_BGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BGuardar;
@@ -136,9 +182,9 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtDepart;
     private javax.swing.JTextField txtEspecialidad;
-    private javax.swing.JTextField txtGrupSangi;
-    private javax.swing.JTextField txtNumSeg;
+    private javax.swing.JTextField txtRol;
     private javax.swing.JFormattedTextField txtSalario;
     // End of variables declaration//GEN-END:variables
 }

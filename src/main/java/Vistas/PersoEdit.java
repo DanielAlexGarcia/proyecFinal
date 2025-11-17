@@ -5,6 +5,7 @@
 package Vistas;
 
 import Controlador.ListadosConcurrentes;
+import Vistas.Paneles.Personal.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     public final String PanelAlta = "PanelAltaPersona";
     public final String PanelBaja = "PanelBajaPersona";
     
+    private PanelAltasPersonal PersoAlta;
+    private PanelBajasPersonal persoBaja;
+    
     
     /**
      * Creates new form PersoEdit
@@ -34,6 +38,9 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         this.lists = listados;
         initComponents();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        PersoAlta = new PanelAltasPersonal(lists, interfa);
+        persoBaja = new PanelBajasPersonal(lists);
+        
         iniciarCardLayout();
     }
     
@@ -42,7 +49,8 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         cardLayout = new CardLayout();
         panelDeContenido = new JPanel(cardLayout);
 
-        
+        panelDeContenido.add(PersoAlta, PanelAlta);
+        panelDeContenido.add(persoBaja, PanelBaja);
 
         getContentPane().removeAll(); // quitamos el layout vacío generado por NetBeans
         getContentPane().setLayout(new BorderLayout());
@@ -55,6 +63,7 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     protected void setCardLayaout(String namePanel){
         cardLayout.show(panelDeContenido, namePanel);
         if(namePanel.equals(PanelAlta)){
+            
         }else if (namePanel.equals(PanelBaja)){
         }
     }
