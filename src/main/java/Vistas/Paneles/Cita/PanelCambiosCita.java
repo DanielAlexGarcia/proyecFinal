@@ -5,6 +5,7 @@
 package Vistas.Paneles.Cita;
 
 import Controlador.ListadosConcurrentes;
+import Modelo.Cita;
 import Vistas.VentanaInicio;
 import Vistas.formatosTextArea;
 import javax.swing.table.TableModel;
@@ -41,6 +42,20 @@ public class PanelCambiosCita extends javax.swing.JPanel {
     
     public void ActualizarTabla(TableModel model){
         TableCitas.setModel(model);
+    }
+    public void actualizardatos(Cita cit){
+        txtFecha.setText(cit.getFech());
+        txtHora.setText(cit.getHora());
+        CBEstado.setSelectedItem(cit.getEst());
+        String doctor = "";
+        for (String[] doc : lists.getListaPersonal()){
+            int n = Integer.parseInt(doc[0]);
+            if(n == cit.getIddoc()){
+                doctor = doc[1];
+                break;
+            }
+        }
+        CBPersonal.setSelectedItem(doctor);
     }
             
 
