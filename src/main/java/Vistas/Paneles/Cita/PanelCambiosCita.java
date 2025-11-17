@@ -22,6 +22,7 @@ public class PanelCambiosCita extends javax.swing.JPanel {
      */
     public PanelCambiosCita(ListadosConcurrentes listas, VentanaInicio fa) {
         this.lists = listas;
+        this.faz = fa;
         initComponents();
         CBEstado.setModel(lists.crearModeloComboBox(lists.getListaEstados()));
         CBPersonal.setModel(lists.crearModeloComboBox2(lists.getListaPersonal()));
@@ -35,7 +36,7 @@ public class PanelCambiosCita extends javax.swing.JPanel {
         txtHora.setText("");
         txtIDCita.setText("");
         CBEstado.setSelectedIndex(0);
-        CBPersonal.setSelectedIndex(0);
+        CBPersonal.setSelectedItem(null);
     }
     
     public void ActualizarTabla(TableModel model){
@@ -189,7 +190,7 @@ public class PanelCambiosCita extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
-        if(!txtIDCita.getText().trim().equals("")){
+        if(txtIDCita.getText().trim().equals("")){
             faz.ShowMessageFeerback("ingresa el ID para cargar");
         }else{
             System.out.println("none");

@@ -33,7 +33,9 @@ public class CitEdit extends javax.swing.JInternalFrame {
      * Creates new form CitEdit
      */
     public CitEdit(VentanaInicio interfaz, ListadosConcurrentes listas) {
+        System.out.println(interfaz);
         this.faz = interfaz;
+        System.out.println(faz);
         this.lists = listas;
         initComponents();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);

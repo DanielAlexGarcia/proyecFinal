@@ -113,7 +113,7 @@ public class formatosTextArea {
         try {
             // La máscara: 4 dígitos (Año), guión, 2 dígitos (Mes), guión, 2 dígitos (Día)
             MaskFormatter mascara = new MaskFormatter("####-##-##");
-            mascara.setPlaceholderCharacter('0'); // Sugerir el '0' para campos vacíos
+            mascara.setPlaceholderCharacter('_');
             
             textField.setFormatterFactory(new JFormattedTextField.AbstractFormatterFactory() {
                 @Override

@@ -24,7 +24,9 @@ public class PanelConsultaCita extends javax.swing.JPanel {
     }
     
     public void setVaciarComponentes(){
-        
+        CBEstado.setSelectedIndex(0);
+        CBPaciente.setSelectedIndex(0);
+        CBPersonal.setSelectedIndex(0);
     }
     
 

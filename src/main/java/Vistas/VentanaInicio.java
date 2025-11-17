@@ -410,6 +410,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     public void setInstance(VentanaInicio fas){
         if (fas != null && instance == null){
             instance = fas;
+            
         }if (instance != null){
                 System.out.println("patron singleton listo");
                 loadPags(); // se hizo el metodo dado a complicasiones con la inicializacion y sincronizacion con el patron singlrton (se iniciaban antes de asignar algo a la variable del patron)
