@@ -5,7 +5,9 @@
 package Vistas.Paneles.Personal;
 
 import Controlador.ListadosConcurrentes;
+import Hilos.HilosPersonal;
 import Vistas.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -16,6 +18,7 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
     ListadosConcurrentes lists;
     VentanaInicio faz;
     boolean busco = false;
+    HilosPersonal hper;
     /**
      * Creates new form PanelBajasPersonal
      */
@@ -25,15 +28,20 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         initComponents();
         formatosTextArea.setSoloLetras(txtbusqNombre, 70);
         formatosTextArea.setSoloNumeros(txtIDDelete, 10);
+        hper = new HilosPersonal(faz, null);
+        setVaciarComponentes();
         
     }
     public void setVaciarComponentes(){
         txtIDDelete.setText("");
         txtbusqNombre.setText("");
         busco = false;
+        tablaDEfault();
     }
-    public void ActualizarTabla(TableModel model){
-        tablePersonal.setModel(model);
+    public void tablaDEfault(){
+        String[][] dat = {{"no hay datos"}};
+        String[] col = {"resultados de la busqueda"};
+        tablePersonal.setModel(new DefaultTableModel(dat,col));
     }
 
     /**
@@ -141,6 +149,7 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         }else{
             busco = true;
             System.out.println("paso");
+            hper.BuscarCoincidenciaPersonal(tablePersonal, txtbusqNombre.getText().trim());
         }
     }//GEN-LAST:event_BBusquedaActionPerformed
 
@@ -148,7 +157,8 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         if (txtIDDelete.getText().trim().equals("")){
             faz.ShowMessage("no hay un ID para poder borrar a un personal");
         }else{
-            
+            Integer i = Integer.parseInt(txtIDDelete.getText().trim());
+            hper.EliminarPersonal(i, tablePersonal);
         }
     }//GEN-LAST:event_BDeleteActionPerformed
 

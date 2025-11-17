@@ -41,6 +41,15 @@ public class PersonalDAO extends AbstracDAO{
         return ejecutarCRUDTemplate(sql, setter, "insertar Personal");
     }
     
+    public ResultSet busquedaPersonal(String nom){
+        String sql = "select * from fn_buscarCoincidenciaPersonal(?)";
+        StatementSetter setter = (stmt) -> {
+            stmt.setString(1, nom);
+                };
+        return ejecutarQueryTemplate(sql, setter, "Consultar personal por nombre");
+        
+    }
+    
     public ResultSet allPersonal(){
         String sql = "select * from fn_AllPeronals()";
         StatementSetter setter = (stmt) -> {

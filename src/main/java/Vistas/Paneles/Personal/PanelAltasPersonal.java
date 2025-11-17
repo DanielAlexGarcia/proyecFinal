@@ -5,7 +5,11 @@
 package Vistas.Paneles.Personal;
 
 import Controlador.ListadosConcurrentes;
+import Hilos.HilosPersonal;
+import Modelo.Personal;
 import Vistas.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,7 +30,7 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         formatosTextArea.setSoloLetras(txtDepart, 70);
         formatosTextArea.setSoloLetras(txtEspecialidad, 70);
         formatosTextArea.FormatoSalario(txtSalario);
-        CBPersona.setModel(lists.crearModeloComboBox2(lists.getListaPersonal()));
+        CBPersona.setModel(lists.crearModeloComboBox2(lists.getListaPersonas()));
         setVaciarComponentes();
     }
     
@@ -163,14 +167,41 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         boolean n3 = txtRol.getText().trim().equals("");
         boolean n4 = txtSalario.getText().trim().equals("");
         boolean n5 = CBPersona.getSelectedItem() == null;
+        boolean n6;
+        BigDecimal salario = new BigDecimal("0");
+        try {
+            salario = new BigDecimal(txtSalario.getText().trim());
+            n6 = salario.signum() == 1;
+        } catch (NumberFormatException e) {
+            // Manejo de errores: si el String no es un número válido.
+            System.err.println("Error: El String no es un formato numérico válido.");
+            n6 = false;
+        }
         if(n || n2 || n3 || n4 || n5){
             faz.ShowMessage("uno o mas campos estan vacios");
+            if(!n6){
+                faz.ShowMessage("salario no valido");
+            }
         }else{
-            System.out.println("paso");
+            String nombre =(String) CBPersona.getSelectedItem();
+            int dni = esta(nombre);
+            Personal perso = new Personal(0,dni , txtRol.getText().trim(), txtDepart.getText().trim(), txtEspecialidad.getText().trim(), salario );
+            Hilos.HilosPersonal per = new HilosPersonal(faz, perso);
+            per.AñadirPersonal();
         }
         
     }//GEN-LAST:event_BGuardarActionPerformed
 
+    private int esta (String nom){
+        for (String[] n : lists.getListaPersonas()){
+            if (n[1].equalsIgnoreCase(nom)){
+                int  m = Integer.parseInt(n[0]);
+                return m;
+            }
+        }
+        return 0;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BGuardar;

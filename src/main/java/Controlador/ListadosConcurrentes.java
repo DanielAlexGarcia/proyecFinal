@@ -7,9 +7,12 @@ package Controlador;
 import Modelo.Paciente;
 import Modelo.Persona;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -79,7 +82,7 @@ public class ListadosConcurrentes extends AbstracDAO{
         return ejecutarQueryTemplate(sql, setter, "Consultar listado de personas");
     }
     
-    private static ArrayList<String[]> transformarResultSet(ResultSet rs) throws SQLException {
+    public static ArrayList<String[]> transformarResultSet(ResultSet rs) throws SQLException {
         
         // El ArrayList final que almacenará los datos de personas.
         ArrayList<String[]> listaPersonas = new ArrayList<>();
@@ -123,6 +126,32 @@ public class ListadosConcurrentes extends AbstracDAO{
         String[] arrayDatos = listaDatos.toArray(new String[0]);
         
         return new DefaultComboBoxModel<>(arrayDatos);
+    }
+    public static DefaultTableModel crearModeloTabla(ResultSet rs) throws SQLException {
+        // Objeto para almacenar nombres de columnas y datos
+        Vector<String> nombresColumnas = new Vector<>();
+        Vector<Vector<Object>> datosTabla = new Vector<>();
+
+        // 1. Obtener los nombres de las columnas (Metadatos)
+        ResultSetMetaData metaDatos = rs.getMetaData();
+        int cuentaColumnas = metaDatos.getColumnCount();
+
+        for (int i = 1; i <= cuentaColumnas; i++) {
+            nombresColumnas.add(metaDatos.getColumnLabel(i));
+        }
+
+        // 2. Obtener los datos fila por fila
+        while (rs.next()) {
+            Vector<Object> fila = new Vector<>();
+            for (int i = 1; i <= cuentaColumnas; i++) {
+                // Obtiene el valor de cada columna de la fila actual
+                fila.add(rs.getObject(i)); 
+            }
+            datosTabla.add(fila);
+        }
+
+        // 3. Crear el modelo de la tabla
+        return new DefaultTableModel(datosTabla, nombresColumnas);
     }
 
     public static DefaultComboBoxModel<String> crearModeloComboBox2(ArrayList<String[]> listaArreglos) {
