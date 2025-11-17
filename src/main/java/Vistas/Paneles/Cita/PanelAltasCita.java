@@ -4,6 +4,8 @@
  */
 package Vistas.Paneles.Cita;
 import Controlador.ListadosConcurrentes;
+import Hilos.HilosCita;
+import Modelo.Cita;
 import Vistas.VentanaInicio;
 import Vistas.formatosTextArea;
 
@@ -207,13 +209,65 @@ public class PanelAltasCita extends javax.swing.JPanel {
     }//GEN-LAST:event_CBEstadoActionPerformed
 
     private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
-        ////////////
+        boolean n = CBEstado.getSelectedItem() == null;
+        boolean n2= CBPacientes.getSelectedItem() == null;
+        boolean n3= CBPersonal.getSelectedItem() == null;
+        boolean n4 = !lists.fechaValida(txtFecha.getText().trim());
+        boolean n5 = !lists.horaValida(txtHora.getText().trim());
+        boolean n6 = txtMotivo.getText().trim().equals("");
+        
+        if (n || n2 || n3 || n4 || n5 || n6){
+            String mensaje = "";
+            if (n4 || n5){
+                if(n4){
+                    mensaje = mensaje + "Fecha mal escrita o vacia \n";
+                }else{
+                    mensaje = mensaje+ "Hora mal escrita o vacia \n";
+                }
+            }
+            if (n || n2 || n3 || n6){
+                mensaje = mensaje + "uno o mas campos vacios";
+            }
+            interfaz.ShowMessage(mensaje);
+        }else{
+            String pac = (String) CBPacientes.getSelectedItem();
+            String per = (String) CBPersonal.getSelectedItem();
+            int ipac = getidPac(pac);
+            int iper = getidPer(per);
+            Cita ci = new Cita(0, ipac, iper, txtFecha.getText().trim(), txtHora.getText().trim(), txtMotivo.getText().trim(), (String) CBEstado.getSelectedItem());
+            HilosCita Hcit = new HilosCita(interfaz, ci);
+            Hcit.AñadirCita();
+            
+            SetVaciarComponentes();
+        }
+        
     }//GEN-LAST:event_BGuardarActionPerformed
 
     private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
         SetVaciarComponentes();
     }//GEN-LAST:event_BResetActionPerformed
 
+    private int getidPer(String perso){
+        int i = 0;
+        for (String[] n : lists.getListaPersonal()){
+            if (n[1].equalsIgnoreCase(perso)){
+                i = Integer.parseInt(n[0]);
+                break;
+            }
+        }
+        return i;
+    }
+    
+    private int getidPac(String perso){
+        int i = 0;
+        for (String[] n : lists.getListaPacientes()){
+            if (n[1].equalsIgnoreCase(perso)){
+                i = Integer.parseInt(n[0]);
+                break;
+            }
+        }
+        return i;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BGuardar;

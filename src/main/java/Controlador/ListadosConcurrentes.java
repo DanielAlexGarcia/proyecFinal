@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  *
@@ -120,6 +124,29 @@ public class ListadosConcurrentes extends AbstracDAO{
 
         return modelo;
     }
+    
+    public static boolean fechaValida(String fecha) {
+    try {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // Si no es válida, lanzará una excepción
+        LocalDate.parse(fecha, formatter);
+
+        return true;
+    } catch (DateTimeParseException e) {
+        return false;
+    }
+}
+    public static boolean horaValida(String hora) {
+    try {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime.parse(hora, formatter);
+        return true;
+    } catch (DateTimeParseException e) {
+        return false;
+    }
+}
+
     
     public static ArrayList<String[]> transformarResultSet(ResultSet rs) throws SQLException {
         
