@@ -37,12 +37,6 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         iniciarCardLayout();
     }
     
-    public void setinterfaz(VentanaInicio fas){
-        if(fas != null && interfa == null){
-            interfa = fas;
-        }else{
-        }
-    }
     
     private void iniciarCardLayout() {
         cardLayout = new CardLayout();

@@ -5,6 +5,8 @@
 package Vistas.Paneles.Paciente;
 
 import Controlador.ListadosConcurrentes;
+import Vistas.VentanaInicio;
+import Vistas.formatosTextArea;
 
 /**
  *
@@ -12,12 +14,26 @@ import Controlador.ListadosConcurrentes;
  */
 public class PanelAltasPaciente extends javax.swing.JPanel {
     ListadosConcurrentes lists;
+    VentanaInicio faz;
     /**
      * Creates new form PanelAltasPaciente
      */
-    public PanelAltasPaciente(ListadosConcurrentes listas) {
+    public PanelAltasPaciente(ListadosConcurrentes listas, VentanaInicio fa) {
         this.lists = listas;
+        this.faz = fa;
         initComponents();
+        CBPersona.setModel(lists.crearModeloComboBox2(lists.getListaPersonas()));
+        formatosTextArea.setSoloAlfanumericos(txtNumSeg, 10);
+        formatosTextArea.setSoloAlfanumericos(txtAlergias, 450);
+        formatosTextArea.setMaxCaracteres(txtGrupSangineo, 4);
+        setVaciarComponentes();
+        
+    }
+    public void setVaciarComponentes(){
+        txtAlergias.setText("");
+        txtGrupSangineo.setText("");
+        txtNumSeg.setText("");
+        CBPersona.setSelectedItem(null);
     }
 
     /**
@@ -38,7 +54,7 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
         txtGrupSangineo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAlergias = new javax.swing.JTextArea();
         BReset = new javax.swing.JButton();
         BGuardar = new javax.swing.JButton();
 
@@ -54,13 +70,23 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
 
         jLabel5.setText("Alergias");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAlergias.setColumns(20);
+        txtAlergias.setRows(5);
+        jScrollPane1.setViewportView(txtAlergias);
 
         BReset.setText("Reset");
+        BReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BResetActionPerformed(evt);
+            }
+        });
 
         BGuardar.setText("Guardar");
+        BGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,6 +146,22 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
+        setVaciarComponentes();
+    }//GEN-LAST:event_BResetActionPerformed
+
+    private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
+        boolean n = !(txtAlergias.getText().trim().equals(""));
+        boolean n2 = !(txtGrupSangineo.getText().trim().equals(""));
+        boolean n3 = !(txtNumSeg.getText().trim().equals(""));
+        boolean n4 = !(CBPersona.getSelectedItem() == null);
+        if(!n || !n2 || !n3 || !n4){
+            faz.ShowMessage("uno o mas campos esta vacio");
+        }else{
+            System.out.println("listo");
+        }
+    }//GEN-LAST:event_BGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BGuardar;
@@ -131,7 +173,7 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtAlergias;
     private javax.swing.JTextField txtGrupSangineo;
     private javax.swing.JTextField txtNumSeg;
     // End of variables declaration//GEN-END:variables

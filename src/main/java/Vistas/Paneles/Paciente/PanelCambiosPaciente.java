@@ -5,6 +5,8 @@
 package Vistas.Paneles.Paciente;
 
 import Controlador.ListadosConcurrentes;
+import Vistas.*;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -12,12 +14,30 @@ import Controlador.ListadosConcurrentes;
  */
 public class PanelCambiosPaciente extends javax.swing.JPanel {
     ListadosConcurrentes lists;
+    VentanaInicio faz;
     /**
      * Creates new form PanelCambiosPaciente
      */
-    public PanelCambiosPaciente(ListadosConcurrentes listas) {
+    public PanelCambiosPaciente(ListadosConcurrentes listas, VentanaInicio fa) {
         this.lists = listas;
+        this.faz = fa;
         initComponents();
+        
+        formatosTextArea.setSoloAlfanumericos(txtNumSeg, 10);
+        formatosTextArea.setSoloAlfanumericos(jTextArea1, 450);
+        CBListPacientes.setModel(lists.crearModeloComboBox2(lists.getListaPacientes()));
+        setVaciarComponentes();
+        
+    }
+    
+    public void setVaciarComponentes(){
+        jTextArea1.setText("");
+        txtNumSeg.setText("");
+        CBListPacientes.setSelectedItem(null);
+    }
+    
+    public void ActualizarTabla(TableModel model){
+        tablaPacientes.setModel(model);
     }
 
     /**
@@ -40,7 +60,8 @@ public class PanelCambiosPaciente extends javax.swing.JPanel {
         BReset = new javax.swing.JButton();
         BGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaPacientes = new javax.swing.JTable();
+        BBuscar = new javax.swing.JButton();
 
         jLabel1.setText("Actualizar Paciente");
 
@@ -57,10 +78,20 @@ public class PanelCambiosPaciente extends javax.swing.JPanel {
         txtAlergias.setViewportView(jTextArea1);
 
         BReset.setText("Reset");
+        BReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BResetActionPerformed(evt);
+            }
+        });
 
         BGuardar.setText("Guardar");
+        BGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BGuardarActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -71,7 +102,14 @@ public class PanelCambiosPaciente extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaPacientes);
+
+        BBuscar.setText("Cargar");
+        BBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -94,38 +132,68 @@ public class PanelCambiosPaciente extends javax.swing.JPanel {
                             .addComponent(CBListPacientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNumSeg)
                             .addComponent(txtAlergias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BReset)
-                            .addComponent(BGuardar))))
-                .addContainerGap(81, Short.MAX_VALUE))
+                            .addComponent(BGuardar)
+                            .addComponent(BBuscar))))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(CBListPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BReset))
+                    .addComponent(BBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNumSeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BGuardar))
+                    .addComponent(txtNumSeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(txtAlergias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(txtAlergias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BReset)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BGuardar))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BResetActionPerformed
+        setVaciarComponentes();
+        CBListPacientes.setEnabled(true);
+    }//GEN-LAST:event_BResetActionPerformed
+
+    private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
+        boolean n = txtNumSeg.getText().trim().equals("");
+        boolean n1 = jTextArea1.getText().trim().equals("");
+        if(n || n1){
+            faz.ShowMessage("no puedes dejar campos vacios");
+        }else{
+            System.out.println("listo");
+        }
+    }//GEN-LAST:event_BGuardarActionPerformed
+
+    private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
+        if(CBListPacientes.getSelectedItem() != null){
+            CBListPacientes.setEnabled(false);
+        }else{
+            faz.ShowMessage("selecciona un paciente para cargar");
+        }
+    }//GEN-LAST:event_BBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BBuscar;
     private javax.swing.JButton BGuardar;
     private javax.swing.JButton BReset;
     private javax.swing.JComboBox<String> CBListPacientes;
@@ -134,8 +202,8 @@ public class PanelCambiosPaciente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTable tablaPacientes;
     private javax.swing.JScrollPane txtAlergias;
     private javax.swing.JTextField txtNumSeg;
     // End of variables declaration//GEN-END:variables

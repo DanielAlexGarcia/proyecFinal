@@ -7,6 +7,7 @@ package Vistas;
 
 
 import Controlador.ListadosConcurrentes;
+import Vistas.Paneles.Paciente.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -24,6 +25,9 @@ public class PacEdit extends javax.swing.JInternalFrame {
     private final String panelAñadi = "PanelAñadirPaciente";
     private final String panelEdit = "PanelModificarPaciente";
     
+    private PanelAltasPaciente PacAlta;
+    private PanelCambiosPaciente PacCambio;
+    
     /**
      * Creates new form PacEdit
      */
@@ -33,13 +37,21 @@ public class PacEdit extends javax.swing.JInternalFrame {
         initComponents();
         
         this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        
+        
+        PacAlta = new PanelAltasPaciente(listas, faz);
+        PacCambio = new PanelCambiosPaciente(listas, faz);
+        
         iniciarCardLayaout();
+        
     }
 
     private void iniciarCardLayaout(){
         cardLayout = new CardLayout();
         panelDeContenido = new JPanel(cardLayout);
         
+        panelDeContenido.add(PacAlta, panelAñadi);
+        panelDeContenido.add(PacCambio, panelEdit);
         
         getContentPane().removeAll(); // quitamos el layout vacío generado por NetBeans
         getContentPane().setLayout(new BorderLayout());
@@ -53,6 +65,7 @@ public class PacEdit extends javax.swing.JInternalFrame {
     private void showCardLayaout(String namePanel){
         cardLayout.show(panelDeContenido, namePanel);
         if(namePanel.equals(panelAñadi)){
+            
         }else if (namePanel.equals(panelEdit)){
         }
     }
