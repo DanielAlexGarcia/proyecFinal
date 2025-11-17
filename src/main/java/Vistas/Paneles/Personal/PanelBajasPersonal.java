@@ -5,6 +5,8 @@
 package Vistas.Paneles.Personal;
 
 import Controlador.ListadosConcurrentes;
+import Vistas.*;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -12,12 +14,26 @@ import Controlador.ListadosConcurrentes;
  */
 public class PanelBajasPersonal extends javax.swing.JPanel {
     ListadosConcurrentes lists;
+    VentanaInicio faz;
+    boolean busco = false;
     /**
      * Creates new form PanelBajasPersonal
      */
-    public PanelBajasPersonal(ListadosConcurrentes listas) {
+    public PanelBajasPersonal(ListadosConcurrentes listas, VentanaInicio fa) {
         this.lists = listas;
+        this.faz = fa;
         initComponents();
+        formatosTextArea.setSoloLetras(txtbusqNombre, 70);
+        formatosTextArea.setSoloNumeros(txtIDDelete, 10);
+        
+    }
+    public void setVaciarComponentes(){
+        txtIDDelete.setText("");
+        txtbusqNombre.setText("");
+        busco = false;
+    }
+    public void ActualizarTabla(TableModel model){
+        tablePersonal.setModel(model);
     }
 
     /**
@@ -34,7 +50,7 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         txtbusqNombre = new javax.swing.JTextField();
         BBusqueda = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablePersonal = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         txtIDDelete = new javax.swing.JTextField();
         BDelete = new javax.swing.JButton();
@@ -44,8 +60,13 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         jLabel2.setText("Buscar por nombre");
 
         BBusqueda.setText("Buscar");
+        BBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBusquedaActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,11 +77,16 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablePersonal);
 
         jLabel3.setText("ID del personal a eliminar");
 
         BDelete.setText("Eliminar");
+        BDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -109,6 +135,23 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBusquedaActionPerformed
+        if (txtbusqNombre.getText().trim().equals("")){
+            faz.ShowMessage("Ingresa un nombre para buscar");
+        }else{
+            busco = true;
+            System.out.println("paso");
+        }
+    }//GEN-LAST:event_BBusquedaActionPerformed
+
+    private void BDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDeleteActionPerformed
+        if (txtIDDelete.getText().trim().equals("")){
+            faz.ShowMessage("no hay un ID para poder borrar a un personal");
+        }else{
+            
+        }
+    }//GEN-LAST:event_BDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBusqueda;
@@ -117,7 +160,7 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablePersonal;
     private javax.swing.JTextField txtIDDelete;
     private javax.swing.JTextField txtbusqNombre;
     // End of variables declaration//GEN-END:variables

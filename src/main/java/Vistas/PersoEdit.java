@@ -39,7 +39,7 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         initComponents();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         PersoAlta = new PanelAltasPersonal(lists, interfa);
-        persoBaja = new PanelBajasPersonal(lists);
+        persoBaja = new PanelBajasPersonal(lists, interfa);
         
         iniciarCardLayout();
     }
