@@ -9,12 +9,14 @@ import Controlador.ListadosConcurrentes;
 import Vistas.VentanaInicio;
 import Modelo.Cita;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -175,4 +177,133 @@ public class HilosCita {
             }
         }).start();
     }
+    public void selectHiloBusq(String busq,int op, JTable tabla){
+        if(op == 3){
+            busqCitaNomDoc(busq, tabla);
+        }else if (op == 2){
+            busqCitaNomPac(busq, tabla);
+        }else if (op == 1){
+            busqCitaEstado(busq, tabla);
+        }
+    }
+    public void busqCitaEstado(String busq, JTable tabla) {
+    	faz.showMessageDialog(faz.frame, "Buscando...", true);
+        new Thread(() -> {								// Hilo que hace la consulta 
+            try {
+            	if(busq != null) {
+                    ResultSet donana = CDAO.busquedaPorEstadoCita(busq);
+                    if (donana != null){
+                        ListadosConcurrentes l = new ListadosConcurrentes();
+                        TableModel model = l.crearModeloTabla(donana);
+                        tabla.setModel(model);
+                        final int rowCount = model.getRowCount();
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	faz.showMessageDialog(faz.frame, "Añadiendo...", false);
+                    	if (rowCount > 0){
+                            faz.ShowMessageFeerback("Resultados encontrados");
+                        } else {
+                            faz.ShowMessage("No se encontraron citas con ese criterio.");
+                        }
+                    });
+                    }else{
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	faz.showMessageDialog(faz.frame, "Añadiendo...", false);
+                    	//interfaz.interfaz.setDonador(donana, ventana);
+                        faz.ShowMessage("No hay resultados que mostrar");
+                    });
+                    }
+            	}
+            	else {
+                        faz.showMessageDialog(faz.frame, "Buscando...", false);
+            		faz.ShowMessage("No hay datos para Buscar citas");
+            	}
+                
+
+            } catch (Exception e) {
+                System.err.println("Error al consultar datos: " + e.getMessage());
+            }
+        }).start();
+    }
+    
+    public void busqCitaNomPac(String busq, JTable tabla) {
+    	faz.showMessageDialog(faz.frame, "Buscando...", true);
+        new Thread(() -> {								// Hilo que hace la consulta 
+            try {
+            	if(busq != null) {
+                    ResultSet donana = CDAO.busquedaPorNombrePac(busq);
+                    if (donana != null){
+                        ListadosConcurrentes l = new ListadosConcurrentes();
+                        TableModel model = l.crearModeloTabla(donana);
+                        tabla.setModel(model);
+                        final int rowCount = model.getRowCount();
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	faz.showMessageDialog(faz.frame, "Añadiendo...", false);
+                    	if (rowCount > 0){
+                            faz.ShowMessageFeerback("Resultados encontrados");
+                        } else {
+                            faz.ShowMessage("No se encontraron citas con ese criterio.");
+                        }
+                    });
+                    }else{
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	faz.showMessageDialog(faz.frame, "Añadiendo...", false);
+                    	//interfaz.interfaz.setDonador(donana, ventana);
+                        faz.ShowMessage("No hay datos para Buscar citas");
+                    });
+                    }
+            	}
+            	else {
+                        faz.showMessageDialog(faz.frame, "Buscando...", false);
+            		faz.ShowMessage("No hay datos para Buscar citas");
+            	}
+                
+
+            } catch (Exception e) {
+                System.err.println("Error al consultar datos: " + e.getMessage());
+            }
+        }).start();
+    }
+    
+    public void busqCitaNomDoc(String busq, JTable tabla) {
+    	faz.showMessageDialog(faz.frame, "Buscando...", true);
+        new Thread(() -> {								// Hilo que hace la consulta 
+            try {
+            	if(busq != null) {
+                    System.out.println("ñ :"+busq+": ñ");
+                    ResultSet donana = CDAO.busquedaPorNombreDoc(busq);
+                    if (donana != null){
+                        ListadosConcurrentes l = new ListadosConcurrentes();
+                        TableModel model = l.crearModeloTabla(donana);
+                        tabla.setModel(model);
+                        final int rowCount = model.getRowCount();
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	faz.showMessageDialog(faz.frame, "Añadiendo...", false);
+                    	if (rowCount > 0){
+                            faz.ShowMessageFeerback("Resultados encontrados");
+                        } else {
+                            faz.ShowMessage("No se encontraron citas con ese criterio.");
+                        }
+                    });
+                    }else{
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	faz.showMessageDialog(faz.frame, "Añadiendo...", false);
+                    	//interfaz.interfaz.setDonador(donana, ventana);
+                        faz.ShowMessage("No hay datos para Buscar citas");
+                    });
+                    }
+            	}
+            	else {
+                        faz.showMessageDialog(faz.frame, "Buscando...", false);
+            		faz.ShowMessage("No hay datos para Buscar citas");
+            	}
+                
+
+            } catch (Exception e) {
+                System.err.println("Error al consultar datos: " + e.getMessage());
+            }
+        }).start();
+    }
+    
+    
+    
 }

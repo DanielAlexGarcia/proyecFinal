@@ -71,6 +71,7 @@ public class CitaDAO extends AbstracDAO{
     }
     
     public ResultSet busquedaPorEstadoCita (String estado){
+        System.out.println("m"+estado+"n");
         String sql = "select * from fn_buscarCitasEstado (?)";
         StatementSetter setter = (stmt) -> {
             stmt.setString(1, estado);

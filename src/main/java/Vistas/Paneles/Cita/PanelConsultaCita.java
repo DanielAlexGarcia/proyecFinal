@@ -4,8 +4,12 @@
  */
 package Vistas.Paneles.Cita;
 
+import Controlador.CitaDAO;
 import Controlador.ListadosConcurrentes;
+import Hilos.HilosCita;
 import Vistas.VentanaInicio;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -31,7 +35,11 @@ public class PanelConsultaCita extends javax.swing.JPanel {
         BGBusqueda.add(RBBusqEstado);
         BGBusqueda.add(RBBusqNomPac);
         BGBusqueda.add(RBBusqNomPersonal);
+        CBEstado.setModel(lists.crearModeloComboBox(lists.getListaEstados()));
+        CBPaciente.setModel(lists.crearModeloComboBox2(lists.getListaPacientes()));
+        CBPersonal.setModel(lists.crearModeloComboBox2(lists.getListaPersonal()));
         setVaciarComponentes();
+        
     }
     
     public void setVaciarComponentes(){
@@ -51,7 +59,7 @@ public class PanelConsultaCita extends javax.swing.JPanel {
     }
     
     private void disableSelectRB(ButtonGroup buttonGroup){
-            buttonGroup.setSelected((ButtonModel)null, false);
+            buttonGroup.clearSelection();
         
     }
     
@@ -210,29 +218,62 @@ public class PanelConsultaCita extends javax.swing.JPanel {
 
     private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
         setEnableRBFromGroup(BGBusqueda);
-        if (opcion ==1){
-            if(CBEstado.getSelectedItem() == null){
-                faz.ShowMessageFeerback("elige una opcion para hacer la busqueda");
-            }else{
-                
-            }
-        }else if (opcion == 2){
-            if (CBPaciente.getSelectedItem() == null){
-                faz.ShowMessageFeerback("elige una opcion para hacer la busqueda");
-            }else{
-                
-            }
-        }else if (opcion == 3){
-            if (CBPersonal.getSelectedItem() == null){
-                faz.ShowMessageFeerback("elige una opcion para hacer la busqueda");
-            }else{
-                
-            }
+        HilosCita hcit = new HilosCita(faz, null);
+        if (opcion >=1 && opcion <= 3){
+                String criterio= "";
+                switch (opcion) {
+                    case 1 -> criterio = (String) CBEstado.getSelectedItem();
+                    case 2 -> criterio = (String) CBPaciente.getSelectedItem();
+                    case 3 -> criterio = (String) CBPersonal.getSelectedItem();
+                }
+                criterio = returnLocarVariable(criterio, opcion);
+                hcit.selectHiloBusq(criterio,opcion, tablaResult);
         }else{
             faz.ShowMessageFeerback("selecciona el metodo de busqueda");
         }
     }//GEN-LAST:event_BBuscarActionPerformed
 
+    private String returnLocarVariable(String criterio, int o){
+        ArrayList<String[]> pac = lists.getListaPacientesNom();
+        ArrayList<String[]> per = lists.getListaPersonalNom();
+        ArrayList<String[]> pac2 = lists.getListaPacientes();
+        ArrayList<String[]> per2 = lists.getListaPersonal();
+        String sal = criterio;
+        String id = "";
+        if(o == 2){
+            for (String[] n : pac2){
+                if(n[1].equalsIgnoreCase(criterio)){
+                    id = n[0];
+                    System.out.println(id);
+                    break;
+                }
+            }
+            for (String[] m : pac){
+                if(m[0].equalsIgnoreCase(id)){
+                    sal = m[1];
+                    System.out.println(sal);
+                    break;
+                }
+            }
+        }
+        else if (o==3){
+            for (String[] m : per2){
+                if(m[1].equalsIgnoreCase(criterio)){
+                    id = m[0];
+                    System.out.println(id);
+                    break;
+                }
+            }
+            for (String[] n : per){
+                if(n[0].equalsIgnoreCase(id)){
+                    sal = n[1];
+                    System.out.println(sal);
+                    break;
+                }
+            }
+        }
+        return sal;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BBuscar;

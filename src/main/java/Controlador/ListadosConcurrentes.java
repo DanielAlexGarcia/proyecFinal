@@ -26,11 +26,23 @@ public class ListadosConcurrentes extends AbstracDAO{
     ArrayList<String[]> listaPersonas;
     ArrayList<String[]> listaPersonal;
     ArrayList<String[]> listaPacientes;
+    ArrayList<String[]> listaPersonalNom;
+    ArrayList<String[]> listaPacientesNom;
     ArrayList<String> listaEstados = new ArrayList<>();
     
     ResultSet listadoPersonas;
     ResultSet listadoPersonal;
     ResultSet listadoPacientes;
+    ResultSet listadoPersonal2;
+    ResultSet listadoPacientes2;
+
+    public ArrayList<String[]> getListaPersonalNom() {
+        return listaPersonalNom;
+    }
+
+    public ArrayList<String[]> getListaPacientesNom() {
+        return listaPacientesNom;
+    }
     
     
     
@@ -38,6 +50,10 @@ public class ListadosConcurrentes extends AbstracDAO{
         listadoPersonas = listaPersona();
         listadoPersonal = listaPersonal();
         listadoPacientes = listaPaciente();
+        listadoPersonal2 = listaPersonal();
+        listadoPacientes2 = listaPaciente();
+        listaPacientesNom = new ArrayList<>();
+        listaPersonalNom = new ArrayList<>();
         
         listaEstados.add("Reprogramada");
         listaEstados.add("Completada");
@@ -48,11 +64,15 @@ public class ListadosConcurrentes extends AbstracDAO{
             listaPacientes = transformarResultSet(listadoPacientes);
             listaPersonal = transformarResultSet(listadoPersonal);
             listaPersonas = transformarResultSet(listadoPersonas);
+            listaPacientesNom = transformRSTONom(listadoPacientes2);
+            listaPersonalNom = transformRSTONom(listadoPersonal2);
         } catch (Exception e) {
             System.out.println("Error al obtener listados");
         }
         System.out.println("listas completas");
     }
+    
+   
     
     public void imprimirArrayListBidimensional(ArrayList<String[]> listados){
         for (String[] list : listados){
@@ -146,9 +166,44 @@ public class ListadosConcurrentes extends AbstracDAO{
         return false;
     }
 }
-
     
-    public static ArrayList<String[]> transformarResultSet(ResultSet rs) throws SQLException {
+    
+    private static ArrayList<String[]> transformRSTONom(ResultSet rs) throws SQLException{
+        // El ArrayList final que almacenará los datos de personas.
+        ArrayList<String[]> listaPersonas = new ArrayList<>();
+        
+        // El bucle principal para recorrer todas las filas del ResultSet.
+        while (rs.next()) {
+            
+            int id = rs.getInt(1);
+            System.out.println(id);
+            String nombres = rs.getString(2);
+            System.out.println(nombres);
+            // 2. Obtener el resto de los datos
+            // Usamos getString para FechaNaci para mantener todo como String
+            String fechaNaci = rs.getString(5);
+            String telefono = rs.getString(6);
+            
+            // 3. Crear el Nombre Completo (el elemento deseado)
+            // Se asume que el Segundo Apellido puede ser nulo o vacío
+            String nombreCompleto = nombres;
+            
+            
+            // 4. Crear el String[] final con el nuevo orden y combinación (4 elementos)
+            // Estructura: [ID, Nombre Completo, FechaNaci, Telefono]
+            String[] filaPersona = new String[4];
+            filaPersona[0] = String.valueOf(id);
+            filaPersona[1] = nombreCompleto;
+            System.out.println(filaPersona);
+
+            // 5. Agregar el arreglo a la lista
+            listaPersonas.add(filaPersona);
+        }
+        
+        return listaPersonas;
+    }
+    
+    private static ArrayList<String[]> transformarResultSet(ResultSet rs) throws SQLException {
         
         // El ArrayList final que almacenará los datos de personas.
         ArrayList<String[]> listaPersonas = new ArrayList<>();
