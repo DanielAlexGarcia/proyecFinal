@@ -11,8 +11,11 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Vector;
 import javax.swing.text.*;
 import java.util.regex.Pattern;
@@ -139,32 +142,40 @@ public class formatosTextArea {
     
     public static void FormatoSalario(JFormattedTextField textField) {
     try {
-        // 1. Definir el patrón decimal (5 enteros, 2 decimales)
-        // # se usa para dígitos opcionales; 0 para dígitos obligatorios.
-        // #####.00 asegura que siempre haya 2 decimales, y un máximo de 5 enteros.
-        DecimalFormat formatoDecimal = new DecimalFormat("#####.00");
-        formatoDecimal.setParseIntegerOnly(false); // Permitir decimales
+        // Usar locale explícito si quieres forzar el punto como separador decimal
+        Locale locale = Locale.ENGLISH; // o Locale.getDefault() si prefieres respetar la máquina
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
+        symbols.setDecimalSeparator('.'); // forzar '.' como separador (opcional)
 
-        // 2. Crear el NumberFormatter con el patrón
-        NumberFormatter formatter = new NumberFormatter(formatoDecimal);
-        
-        // 3. Establecer límites (opcional pero bueno para forzar el tipo de datos)
-        // Aunque el DecimalFormat define el patrón, el setMaximum establece el valor máximo parseable.
-        // Un valor máximo de 99999.99 asegura que se respeta el límite de 5 enteros.
-        formatter.setMaximum(99999.99); 
-        formatter.setMinimum(0.00); 
-        
-        // 4. Aplicar el FormatterFactory
-        textField.setFormatterFactory(new JFormattedTextField.AbstractFormatterFactory() {
-            @Override
-            public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
-                return formatter;
-            }
-        });
-        
-        // Opcional: Establecer un valor inicial y alineación
+        // Crear un DecimalFormat con 2 decimales, sin agrupadores (no comas)
+        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance(locale);
+        decimalFormat.setDecimalFormatSymbols(symbols);
+        decimalFormat.setGroupingUsed(false);
+        decimalFormat.setMaximumFractionDigits(2);
+        decimalFormat.setMinimumFractionDigits(2);
+
+        // Formatter para números
+        NumberFormatter formatter = new NumberFormatter(decimalFormat);
+        formatter.setValueClass(Double.class);       // tratar valores como Double
+        formatter.setAllowsInvalid(false);           // evita introducir caracteres inválidos
+        formatter.setOverwriteMode(false);           // no sobreescribe mientras editas
+        formatter.setMinimum(0.00);                  // mínimo
+        formatter.setMaximum(99999.99);              // máximo
+
+        // Que el edit se aplique inmediatamente cuando sea válido
+        formatter.setCommitsOnValidEdit(true);
+
+        // Instalar el factory
+        DefaultFormatterFactory ff = new DefaultFormatterFactory(formatter);
+        textField.setFormatterFactory(ff);
+
+        // Comportamiento al perder foco:
+        // COMMIT_OR_REVERT intentará parsear y si es inválido, revertirá al último valor válido.
+        textField.setFocusLostBehavior(JFormattedTextField.COMMIT_OR_REVERT);
+
         textField.setHorizontalAlignment(JFormattedTextField.RIGHT);
-        textField.setValue(0.00); 
+        // Inicializar con null o 0.0 según prefieras:
+        textField.setValue(0.00);
 
     } catch (Exception e) {
         System.err.println("Error al crear el formato de salario: " + e.getMessage());

@@ -29,7 +29,7 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         formatosTextArea.setSoloLetras(txtRol, 70);
         formatosTextArea.setSoloLetras(txtDepart, 70);
         formatosTextArea.setSoloLetras(txtEspecialidad, 70);
-        formatosTextArea.FormatoSalario(jTextField1);
+        formatosTextArea.FormatoSalario(txtSalario);
         CBPersona.setModel(lists.crearModeloComboBox2(lists.getListaPersonas()));
         setVaciarComponentes();
     }
@@ -38,7 +38,7 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         txtDepart.setText("");
         txtEspecialidad.setText("");
         txtRol.setText("");
-        jTextField1.setText("");
+        txtSalario.setText("");
         CBPersona.setSelectedItem(null);
     }
 
@@ -165,12 +165,12 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         boolean n = txtDepart.getText().trim().equals("");
         boolean n2 = txtEspecialidad.getText().trim().equals("");
         boolean n3 = txtRol.getText().trim().equals("");
-        boolean n4 = jTextField1.getText().trim().equals("");
+        boolean n4 = txtSalario.getText().trim().equals("");
         boolean n5 = CBPersona.getSelectedItem() == null;
         boolean n6;
         BigDecimal salario = new BigDecimal("0");
         try {
-            salario = new BigDecimal(jTextField1.getText().trim());
+            salario = new BigDecimal(txtSalario.getText().trim());
             n6 = salario.signum() == 1;
         } catch (NumberFormatException e) {
             // Manejo de errores: si el String no es un número válido.
