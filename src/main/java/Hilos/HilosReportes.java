@@ -114,11 +114,10 @@ public class HilosReportes {
             	if(tabla != null) {
                     ResultSet donana = RDAO.RegistrosCambios();
                     ListadosConcurrentes lis = new ListadosConcurrentes();
-                    tabla.setModel(lis.crearModeloTabla(donana));
                     TableModel model = lis.crearModeloTabla(donana);
                     tabla.setModel(model);
                     if (donana != null){
-                        final int rowCount = model.getRowCount();
+                        int rowCount = model.getRowCount();
                         // Actualizar GUI en el hilo de eventos de Swing
                     SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
                     	faz.showMessageDialog(faz.frame, "Bucando...", false);
