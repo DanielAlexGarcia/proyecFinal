@@ -5,6 +5,7 @@
 package Vistas;
 
 import Hilos.HilosCita;
+import Hilos.HilosGraficas;
 import java.awt.BorderLayout;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.chart.ChartFactory;
@@ -19,6 +20,7 @@ import org.jfree.chart.ChartPanel;
 public class GraficasEdit extends javax.swing.JInternalFrame {
     HilosCita hcit;
     VentanaInicio faz;
+    HilosGraficas Hgraf;
 
     /**
      * Creates new form GraficasEdit
@@ -26,51 +28,51 @@ public class GraficasEdit extends javax.swing.JInternalFrame {
     public GraficasEdit(VentanaInicio fa) {
         initComponents();
         this.faz = fa;
-        
+        this.Hgraf = new HilosGraficas(faz);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-        // 2. Añadir valores: (Valor, Serie/Fila, Categoría/Columna)
-        dataset.addValue(1.0, "Producto A", "Enero");
-        dataset.addValue(4.0, "Producto A", "Febrero");
-        dataset.addValue(3.0, "Producto B", "Enero");
-        dataset.addValue(6.0, "Producto B", "Febrero");
         
-        // 1. Crear el gráfico usando un método de ChartFactory
-JFreeChart chart = ChartFactory.createBarChart(
-    "Ventas Mensuales",   // Título del gráfico
-    "Mes",                // Etiqueta para el eje X (Categorías)
-    "Unidades Vendidas",  // Etiqueta para el eje Y (Valores)
-    dataset,              // El conjunto de datos creado
-    PlotOrientation.VERTICAL, // Orientación (Vertical u Horizontal)
-    true,                 // Incluir leyenda
-    true,                 // Incluir tooltips
-    false                 // Incluir URLs
-);
 
-ChartPanel chartPanel = new ChartPanel(chart);
-    
-    // Opcional: Esto asegura que el gráfico se redimensione con el internal frame
-    chartPanel.setPreferredSize(new java.awt.Dimension(PanelGraficos.getWidth(), PanelGraficos.getHeight()));
-
-    // --- 3. Limpiar y Añadir al Contenedor del Internal Frame ---
-    
-    // 3a. Limpiar cualquier componente anterior del panel
-    PanelGraficos.removeAll(); 
-    
-    // 3b. Usar BorderLayout para que el gráfico ocupe todo el espacio del panel
-    PanelGraficos.setLayout(new BorderLayout());
-    
-    // 3c. Añadir el ChartPanel al centro
-    PanelGraficos.add(chartPanel, BorderLayout.CENTER);
-    
-    // 3d. Asegurar que los cambios se refresquen visualmente
-    PanelGraficos.validate();
-    PanelGraficos.repaint();
         
     }
 
+    public void graficosCitasEstados(){
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        
+        Hgraf.AñadirCita(dataset);
+        
+        JFreeChart chart = ChartFactory.createBarChart(
+            "Estados de citas",   // Título del gráfico
+            null,   // Etiqueta para el eje X (Categorías)
+            "Cantidad de citas",  // Etiqueta para el eje Y (Valores)
+            dataset,              // El conjunto de datos creado
+            PlotOrientation.VERTICAL, // Orientación (Vertical u Horizontal)
+            true,                 // Incluir leyenda
+            true,                 // Incluir tooltips
+            false                 // Incluir URLs
+        );
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+    
+        // Opcional: Esto asegura que el gráfico se redimensione con el internal frame
+        chartPanel.setPreferredSize(new java.awt.Dimension(PanelGraficos.getWidth(), PanelGraficos.getHeight()));
+
+        // --- 3. Limpiar y Añadir al Contenedor del Internal Frame ---
+    
+        // 3a. Limpiar cualquier componente anterior del panel
+        PanelGraficos.removeAll(); 
+    
+        // 3b. Usar BorderLayout para que el gráfico ocupe todo el espacio del panel
+        PanelGraficos.setLayout(new BorderLayout());
+    
+        // 3c. Añadir el ChartPanel al centro
+        PanelGraficos.add(chartPanel, BorderLayout.CENTER);
+
+        // 3d. Asegurar que los cambios se refresquen visualmente
+        PanelGraficos.validate();
+        PanelGraficos.repaint();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,6 +94,11 @@ ChartPanel chartPanel = new ChartPanel(chart);
         BGrafEstCit.setFocusable(false);
         BGrafEstCit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BGrafEstCit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BGrafEstCit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BGrafEstCitActionPerformed(evt);
+            }
+        });
         jToolBar1.add(BGrafEstCit);
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.NORTH);
@@ -100,17 +107,21 @@ ChartPanel chartPanel = new ChartPanel(chart);
         PanelGraficos.setLayout(PanelGraficosLayout);
         PanelGraficosLayout.setHorizontalGroup(
             PanelGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 535, Short.MAX_VALUE)
         );
         PanelGraficosLayout.setVerticalGroup(
             PanelGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 494, Short.MAX_VALUE)
+            .addGap(0, 421, Short.MAX_VALUE)
         );
 
         getContentPane().add(PanelGraficos, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BGrafEstCitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGrafEstCitActionPerformed
+        graficosCitasEstados();
+    }//GEN-LAST:event_BGrafEstCitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

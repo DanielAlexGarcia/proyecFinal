@@ -5,6 +5,7 @@
 package Controlador;
 
 import Vistas.VentanaInicio;
+import java.sql.ResultSet;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -20,6 +21,7 @@ public class GraficasDAO extends AbstracDAO{
         this.Interfaz = fa;
         dataset = new DefaultCategoryDataset();
     }
+    
     
     
     

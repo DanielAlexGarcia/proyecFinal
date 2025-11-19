@@ -459,7 +459,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     private void itemGraficoEstCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGraficoEstCitaActionPerformed
         GrafEdit.setVisible(true);
-        
+        GrafEdit.graficosCitasEstados();
     }//GEN-LAST:event_itemGraficoEstCitaActionPerformed
 
     
