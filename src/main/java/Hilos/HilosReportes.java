@@ -10,6 +10,7 @@ import Vistas.VentanaInicio;
 import java.sql.ResultSet;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.table.TableModel;
 
 /**admin
  *
@@ -31,13 +32,18 @@ public class HilosReportes {
             	if(tabla != null) {
                     ResultSet donana = RDAO.RegistrosAltas();
                     ListadosConcurrentes lis = new ListadosConcurrentes();
-                    tabla.setModel(lis.crearModeloTabla(donana));
+                    TableModel model = lis.crearModeloTabla(donana);
+                    tabla.setModel(model);
                     if (donana != null){
-                        
+                        final int rowCount = model.getRowCount();
                         // Actualizar GUI en el hilo de eventos de Swing
                     SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
                     	faz.showMessageDialog(faz.frame, "Bucando...", false);
-                    	faz.ShowMessageFeerback("Registros encontrados");
+                    	if(rowCount >0){
+                            faz.ShowMessageFeerback("Registros encontrados");
+                        }else{
+                            faz.ShowMessage("No hay registros que mostrar");
+                        }
                     });
                     }else{
                     SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
@@ -66,13 +72,20 @@ public class HilosReportes {
             	if(tabla != null) {
                     ResultSet donana = RDAO.RegistrosBajas();
                     ListadosConcurrentes lis = new ListadosConcurrentes();
-                    tabla.setModel(lis.crearModeloTabla(donana));
+                    TableModel model = lis.crearModeloTabla(donana);
+                    tabla.setModel(model);
                     if (donana != null){
                         
                         // Actualizar GUI en el hilo de eventos de Swing
-                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    SwingUtilities.invokeLater(() -> {	
+                        final int rowCount = model.getRowCount();
+                        //delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
                     	faz.showMessageDialog(faz.frame, "Bucando...", false);
-                    	faz.ShowMessageFeerback("Registros encontrados");
+                    	if(rowCount >0){
+                            faz.ShowMessageFeerback("Registros encontrados");
+                        }else{
+                            faz.ShowMessage("No hay registros que mostrar");
+                        }
                     });
                     }else{
                     SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
@@ -102,12 +115,18 @@ public class HilosReportes {
                     ResultSet donana = RDAO.RegistrosCambios();
                     ListadosConcurrentes lis = new ListadosConcurrentes();
                     tabla.setModel(lis.crearModeloTabla(donana));
+                    TableModel model = lis.crearModeloTabla(donana);
+                    tabla.setModel(model);
                     if (donana != null){
-                        
+                        final int rowCount = model.getRowCount();
                         // Actualizar GUI en el hilo de eventos de Swing
                     SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
                     	faz.showMessageDialog(faz.frame, "Bucando...", false);
-                    	faz.ShowMessageFeerback("Registros encontrados");
+                    	if(rowCount >0){
+                            faz.ShowMessageFeerback("Registros encontrados");
+                        }else{
+                            faz.ShowMessage("No hay registros que mostrar");
+                        }
                     });
                     }else{
                     SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)

@@ -63,9 +63,6 @@ public class PanelConsultaCita extends javax.swing.JPanel {
         
     }
     
-    public void ActualizarTabla(TableModel model){
-        tablaResult.setModel(model);
-    }
     
     
  public void setEnableRBFromGroup(ButtonGroup grupo) {                           // Metodo para abilitar/desbilitar campos de texto en base a RB dentro de un buttonGroup

@@ -33,4 +33,8 @@ public class ReportesDAO extends AbstracDAO {
         return ejecutarQueryTemplate(sql, setter, "consultar reportes bajas");
     }
     
+    public void imprimirRS(ResultSet rs){
+        imprimirResultSet(rs);
+    }
+    
 }

@@ -27,6 +27,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     PersoEdit perEdit;
     PacEdit pacdit;
     CitEdit citdit;
+    ReportEdit Repdit;
+    GraficasEdit GrafEdit;
     
 
     /**
@@ -46,9 +48,13 @@ public class VentanaInicio extends javax.swing.JFrame {
         perEdit = new PersoEdit(instance, listados);
         pacdit = new PacEdit(instance, listados);
         citdit = new CitEdit(instance, listados);
+        Repdit = new ReportEdit(instance);
+        GrafEdit = new GraficasEdit(instance);
         destopPanel.add(perEdit);
         destopPanel.add(pacdit);
         destopPanel.add(citdit);
+        destopPanel.add(Repdit);
+        destopPanel.add(GrafEdit);
     }
     public void showMessageDialog(JFrame fame, String n, boolean activar) {
 		  // ventana = JFrame padre
@@ -93,6 +99,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jMenuItem4 = new javax.swing.JMenuItem();
         cargando = new javax.swing.JDialog();
+        jMenuItem1 = new javax.swing.JMenuItem();
         destopPanel = new javax.swing.JDesktopPane();
         InicioSecion = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
@@ -116,7 +123,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         CitaEditar = new javax.swing.JMenuItem();
         CitaConsultar = new javax.swing.JMenuItem();
         estadistica = new javax.swing.JMenu();
+        itemGraficoEstCita = new javax.swing.JMenuItem();
         Reporte = new javax.swing.JMenu();
+        menuReporAlta = new javax.swing.JMenuItem();
+        menuRepoBajas = new javax.swing.JMenuItem();
+        menuRepoCambios = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -130,6 +141,8 @@ public class VentanaInicio extends javax.swing.JFrame {
             cargandoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -294,9 +307,43 @@ public class VentanaInicio extends javax.swing.JFrame {
         MenuBarOP.add(MenuCita);
 
         estadistica.setText("Grafico");
+
+        itemGraficoEstCita.setText("Estado citas");
+        itemGraficoEstCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemGraficoEstCitaActionPerformed(evt);
+            }
+        });
+        estadistica.add(itemGraficoEstCita);
+
         MenuBarOP.add(estadistica);
 
         Reporte.setText("Reporte");
+
+        menuReporAlta.setText("Reporte de altas");
+        menuReporAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReporAltaActionPerformed(evt);
+            }
+        });
+        Reporte.add(menuReporAlta);
+
+        menuRepoBajas.setText("Reporte de bajas");
+        menuRepoBajas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRepoBajasActionPerformed(evt);
+            }
+        });
+        Reporte.add(menuRepoBajas);
+
+        menuRepoCambios.setText("Reporte de cambios");
+        menuRepoCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRepoCambiosActionPerformed(evt);
+            }
+        });
+        Reporte.add(menuRepoCambios);
+
         MenuBarOP.add(Reporte);
 
         setJMenuBar(MenuBarOP);
@@ -395,6 +442,26 @@ public class VentanaInicio extends javax.swing.JFrame {
        citdit.setWindowShow(4);
     }//GEN-LAST:event_CitaConsultarActionPerformed
 
+    private void menuReporAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporAltaActionPerformed
+        Repdit.setVisible(true);
+        Repdit.showAltas();
+    }//GEN-LAST:event_menuReporAltaActionPerformed
+
+    private void menuRepoBajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRepoBajasActionPerformed
+        Repdit.setVisible(true);
+        Repdit.showBajas();
+    }//GEN-LAST:event_menuRepoBajasActionPerformed
+
+    private void menuRepoCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRepoCambiosActionPerformed
+        Repdit.setVisible(true);
+        Repdit.showCambios();
+    }//GEN-LAST:event_menuRepoCambiosActionPerformed
+
+    private void itemGraficoEstCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGraficoEstCitaActionPerformed
+        GrafEdit.setVisible(true);
+        
+    }//GEN-LAST:event_itemGraficoEstCitaActionPerformed
+
     
     private void añadirOpciones(boolean accion){
         MenuBarOP.setVisible(accion);
@@ -463,11 +530,16 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JDesktopPane destopPanel;
     private javax.swing.JMenu estadistica;
+    private javax.swing.JMenuItem itemGraficoEstCita;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem menuRepoBajas;
+    private javax.swing.JMenuItem menuRepoCambios;
+    private javax.swing.JMenuItem menuReporAlta;
     private javax.swing.JLabel problema1;
     private javax.swing.JLabel problema2;
     // End of variables declaration//GEN-END:variables

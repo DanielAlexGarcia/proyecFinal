@@ -5,6 +5,7 @@
 package Vistas;
 
 import Controlador.ListadosConcurrentes;
+import Hilos.HilosReportes;
 import javax.swing.JTable;
 
 /**
@@ -14,6 +15,8 @@ import javax.swing.JTable;
 public class ReportEdit extends javax.swing.JInternalFrame {
     ListadosConcurrentes lists;
     VentanaInicio faz; 
+    HilosReportes HRep;
+    int opcion;
 
     /**
      * Creates new form ReportEdit
@@ -21,10 +24,33 @@ public class ReportEdit extends javax.swing.JInternalFrame {
     public ReportEdit(VentanaInicio fa) {
         initComponents();
         lists = new ListadosConcurrentes();
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        HRep = new HilosReportes(fa);
         this.faz = fa;
         
     }
     
+    public void showAltas(){
+        HRep.reportesAltas(TablaReportes);
+        opcion = 1;
+    }
+    public void showBajas(){
+        HRep.reportesBajas(TablaReportes);
+        opcion = 2;
+    }
+    public void showCambios(){
+        HRep.reportesCambios(TablaReportes);
+        opcion = 3; 
+    }
+    
+    private void Actualizar(int op){
+        switch (op) {
+            case 1 -> showAltas();
+            case 2 -> showBajas();
+            case 3 -> showCambios();
+            default -> System.out.print("ninguna coincidencia");
+        }
+    }
     
 
     /**
@@ -40,8 +66,11 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         BAltas = new javax.swing.JButton();
         BBajas = new javax.swing.JButton();
         BCambios = new javax.swing.JButton();
+        BActualizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaReportes = new javax.swing.JTable();
+
+        setClosable(true);
 
         jToolBar1.setRollover(true);
 
@@ -51,7 +80,7 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         BAltas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         BAltas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BAltasActionPerformed(evt);
+                showAltas(evt);
             }
         });
         jToolBar1.add(BAltas);
@@ -60,13 +89,34 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         BBajas.setFocusable(false);
         BBajas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BBajas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BBajas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showBajas(evt);
+            }
+        });
         jToolBar1.add(BBajas);
 
         BCambios.setText("Cambios");
         BCambios.setFocusable(false);
         BCambios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BCambios.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BCambiosActionPerformed(evt);
+            }
+        });
         jToolBar1.add(BCambios);
+
+        BActualizar.setText("Actualizar resultados");
+        BActualizar.setFocusable(false);
+        BActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BActualizarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BActualizar);
 
         TablaReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,12 +149,25 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAltasActionPerformed
-        
-    }//GEN-LAST:event_BAltasActionPerformed
+    private void showAltas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAltas
+        showAltas();
+    }//GEN-LAST:event_showAltas
+
+    private void showBajas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBajas
+        showBajas();
+    }//GEN-LAST:event_showBajas
+
+    private void BCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCambiosActionPerformed
+        showCambios();
+    }//GEN-LAST:event_BCambiosActionPerformed
+
+    private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
+        Actualizar(opcion);
+    }//GEN-LAST:event_BActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BActualizar;
     private javax.swing.JButton BAltas;
     private javax.swing.JButton BBajas;
     private javax.swing.JButton BCambios;
