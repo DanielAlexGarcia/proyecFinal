@@ -9,6 +9,7 @@ import Vistas.VentanaInicio;
 import javax.swing.SwingUtilities;
 import Modelo.Personal;
 import Controlador.PersonalDAO;
+import Modelo.Persona;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -44,7 +45,7 @@ public class HilosPersonal {
                     SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
                     	interfaz.showMessageDialog(interfaz.frame, "Añadiendo...", false);
                     	//interfaz.interfaz.setDonador(donana, ventana);
-                        interfaz.ShowMessage("Conflico al intentar añadir personal");
+                        interfaz.ShowMessage("Pesonal ya existente");
                     });
                     }
             	}
@@ -122,6 +123,38 @@ public class HilosPersonal {
             	else {
             		interfaz.showMessageDialog(interfaz.frame, "Eliminando...", false);
             		interfaz.ShowMessage("No hay datos para eliminar personal");
+            	}
+                
+
+            } catch (Exception e) {
+                System.err.println("Error al consultar datos: " + e.getMessage());
+            }
+        }).start();
+    }
+    
+    public void AñadirPersonalYPersona(Persona p) {
+    	interfaz.showMessageDialog(interfaz.frame, "Añadiendo...", true);
+        new Thread(() -> {								// Hilo que hace la consulta 
+            try {
+            	if(perso != null && p != null) {
+                    boolean donana = PDAO.transaccionAddPersonaYPersonal(perso, p);
+                    if (donana){
+                        // Actualizar GUI en el hilo de eventos de Swing
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	interfaz.showMessageDialog(interfaz.frame, "Añadiendo...", false);
+                    	interfaz.ShowMessageFeerback("Personal añadidio con exito");
+                    });
+                    }else{
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	interfaz.showMessageDialog(interfaz.frame, "Añadiendo...", false);
+                    	//interfaz.interfaz.setDonador(donana, ventana);
+                        interfaz.ShowMessage("No se pudo añadir, hubo un conflicto de datos");
+                    });
+                    }
+            	}
+            	else {
+            		interfaz.showMessageDialog(interfaz.frame, "Buscando...", false);
+            		interfaz.ShowMessage("No hay datos para añadir personal");
             	}
                 
 

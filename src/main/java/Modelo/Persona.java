@@ -15,11 +15,11 @@ public class Persona {
     String nombres;
     String primerAP;
     String segundoAP;
-    Date fechNaci;
+    String fechNaci;
     String telefono;
     
     public Persona (int dni, String Nombres, String PerimerAP, String segAP, 
-            Date FechNaci, String Telefono){
+            String FechNaci, String Telefono){
         this.DNI = dni;
         this.nombres = Nombres;
         this.primerAP = PerimerAP;
@@ -60,11 +60,11 @@ public class Persona {
         this.segundoAP = segundoAP;
     }
 
-    public Date getFechNaci() {
+    public String getFechNaci() {
         return fechNaci;
     }
 
-    public void setFechNaci(Date fechNaci) {
+    public void setFechNaci(String fechNaci) {
         this.fechNaci = fechNaci;
     }
 

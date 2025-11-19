@@ -6,6 +6,7 @@ package Vistas.Paneles.Personal;
 
 import Controlador.ListadosConcurrentes;
 import Hilos.HilosPersonal;
+import Modelo.Persona;
 import Modelo.Personal;
 import Vistas.*;
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class PanelAltasPersonal extends javax.swing.JPanel {
     ListadosConcurrentes lists;
     VentanaInicio faz;
+    boolean siPersona = false;
     /**
      * Creates new form PanelAltasPersonal
      */
@@ -30,6 +32,12 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         formatosTextArea.setSoloLetras(txtDepart, 70);
         formatosTextArea.setSoloLetras(txtEspecialidad, 70);
         formatosTextArea.FormatoSalario(txtSalario);
+        formatosTextArea.setSoloLetras(txtnombres, 70);
+        formatosTextArea.setSoloLetras(txtPAP, 45);
+        formatosTextArea.setSoloLetras(txtSAP, 45);
+        formatosTextArea.FormatoFecha(txtFechaNaci);
+        formatosTextArea.FormatoTelefono(txtTelefono);
+        
         CBPersona.setModel(lists.crearModeloComboBox2(lists.getListaPersonas()));
         setVaciarComponentes();
     }
@@ -39,7 +47,13 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         txtEspecialidad.setText("");
         txtRol.setText("");
         txtSalario.setText("");
+        txtnombres.setText("");
+        txtPAP.setText("");
+        txtSAP.setText("");
+        txtFechaNaci.setText("");
+        txtTelefono.setText("");
         CBPersona.setSelectedItem(null);
+        enableOpcionADDPersona(false);
     }
 
     /**
@@ -64,6 +78,17 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         txtEspecialidad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtSalario = new javax.swing.JFormattedTextField();
+        ChBEnablePersona = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtnombres = new javax.swing.JTextField();
+        txtPAP = new javax.swing.JTextField();
+        txtSAP = new javax.swing.JTextField();
+        txtFechaNaci = new javax.swing.JFormattedTextField();
+        txtTelefono = new javax.swing.JFormattedTextField();
 
         jLabel1.setText("Añadir personal");
 
@@ -93,67 +118,118 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
 
         jLabel6.setText("Salario");
 
+        ChBEnablePersona.setText("Añadir aparte");
+        ChBEnablePersona.setActionCommand("");
+        ChBEnablePersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChBEnablePersonaActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Nombres");
+
+        jLabel8.setText("Primer apellido");
+
+        jLabel9.setText("Segundo apellido");
+
+        jLabel10.setText("Fecha de nacimiento");
+
+        jLabel11.setText("Telefono de contacto");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(367, 367, 367))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(jLabel1))
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(CBPersona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtRol)
+                                    .addComponent(txtDepart)
+                                    .addComponent(txtEspecialidad)
+                                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(txtFechaNaci)
+                                    .addComponent(txtSAP)
+                                    .addComponent(txtPAP)
+                                    .addComponent(txtnombres)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(338, 338, 338)
+                                .addComponent(ChBEnablePersona))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CBPersona, 0, 238, Short.MAX_VALUE)
-                            .addComponent(txtRol)
-                            .addComponent(txtDepart)
-                            .addComponent(txtEspecialidad)
-                            .addComponent(txtSalario)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
+                        .addGap(299, 299, 299)
                         .addComponent(BReset)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BGuardar)))
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(54, 54, 54)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(CBPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ChBEnablePersona))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtnombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDepart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtPAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtSAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(108, 108, 108)
+                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtFechaNaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BGuardar)
                     .addComponent(BReset))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -161,6 +237,15 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         setVaciarComponentes();
     }//GEN-LAST:event_BResetActionPerformed
 
+    private void enableOpcionADDPersona(boolean si){
+        CBPersona.setEnabled(!si);
+        txtnombres.setEditable(si);
+        txtPAP.setEditable(si);
+        txtSAP.setEditable(si);
+        txtFechaNaci.setEditable(si);
+        txtTelefono.setEditable(si);
+    }
+    
     private void BGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGuardarActionPerformed
         boolean n = txtDepart.getText().trim().equals("");
         boolean n2 = txtEspecialidad.getText().trim().equals("");
@@ -168,6 +253,7 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         boolean n4 = txtSalario.getText().trim().equals("");
         boolean n5 = CBPersona.getSelectedItem() == null;
         boolean n6;
+        boolean n7 = ChBEnablePersona.isSelected();
         BigDecimal salario = new BigDecimal("0");
         try {
             salario = new BigDecimal(txtSalario.getText().trim());
@@ -177,20 +263,45 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
             System.err.println("Error: El String no es un formato numérico válido.");
             n6 = false;
         }
+        if (n7) n5 = false;
         if(n || n2 || n3 || n4 || n5){
             faz.ShowMessage("uno o mas campos estan vacios");
             if(!n6){
                 faz.ShowMessage("salario no valido");
             }
         }else{
-            String nombre =(String) CBPersona.getSelectedItem();
-            int dni = esta(nombre);
-            Personal perso = new Personal(0,dni , txtRol.getText().trim(), txtDepart.getText().trim(), txtEspecialidad.getText().trim(), salario );
-            Hilos.HilosPersonal per = new HilosPersonal(faz, perso);
-            per.AñadirPersonal();
+            if (!siPersona){
+                String nombre =(String) CBPersona.getSelectedItem();
+                int dni = esta(nombre);
+                Personal perso = new Personal(0,dni , txtRol.getText().trim(), txtDepart.getText().trim(), txtEspecialidad.getText().trim(), salario );
+                HilosPersonal per = new HilosPersonal(faz, perso);
+                per.AñadirPersonal();
+            }else{
+                boolean m = !txtnombres.getText().trim().equals("");
+                boolean m2 = !txtPAP.getText().trim().equals("");
+                boolean m3 = !txtSAP.getText().trim().equals("");
+                boolean m4 = !lists.fechaValida(txtFechaNaci.getText().trim());
+                //boolean m5 = 
+                
+                if (m || m2 || m3 || m4){
+                    Personal perso = new Personal(0,0 , txtRol.getText().trim(), txtDepart.getText().trim(), txtEspecialidad.getText().trim(), salario );
+                    Persona p = new Persona(0, txtnombres.getText().trim(), txtPAP.getText().trim(), txtSAP.getText().trim(), txtFechaNaci.getText().trim(), txtTelefono.getText().trim());
+                    HilosPersonal per = new HilosPersonal(faz, perso);
+                    per.AñadirPersonalYPersona(p);
+                    lists.actualizarPersonas();
+                    lists.actualizarPersonal();
+                }
+
+            }
         }
         
     }//GEN-LAST:event_BGuardarActionPerformed
+
+    private void ChBEnablePersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChBEnablePersonaActionPerformed
+        boolean addPerso = ChBEnablePersona.isSelected();
+        siPersona = addPerso;
+        enableOpcionADDPersona(addPerso);
+    }//GEN-LAST:event_ChBEnablePersonaActionPerformed
 
     private int esta (String nom){
         for (String[] n : lists.getListaPersonas()){
@@ -207,15 +318,26 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
     private javax.swing.JButton BGuardar;
     private javax.swing.JButton BReset;
     private javax.swing.JComboBox<String> CBPersona;
+    private javax.swing.JCheckBox ChBEnablePersona;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtDepart;
     private javax.swing.JTextField txtEspecialidad;
+    private javax.swing.JFormattedTextField txtFechaNaci;
+    private javax.swing.JTextField txtPAP;
     private javax.swing.JTextField txtRol;
+    private javax.swing.JTextField txtSAP;
     private javax.swing.JFormattedTextField txtSalario;
+    private javax.swing.JFormattedTextField txtTelefono;
+    private javax.swing.JTextField txtnombres;
     // End of variables declaration//GEN-END:variables
 }

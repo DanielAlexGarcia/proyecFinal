@@ -104,6 +104,30 @@ public class ListadosConcurrentes extends AbstracDAO{
         }
     }
     
+    public void actualizarPersonas(){
+        listaPersonas = null;
+        listadoPersonas = null;
+        listadoPersonas = listaPaciente();
+        try {
+            listaPersonas = transformarResultSet(listadoPersonas);
+            System.out.println("Lista de personas actualizada");
+        } catch (Exception e) {
+            System.out.println("Error al actualizar datos");
+        }
+    }
+    
+    public void actualizarPersonal(){
+        listaPersonal = null;
+        listadoPersonal = null;
+        listadoPersonal = listaPaciente();
+        try {
+            listaPersonal = transformarResultSet(listadoPersonal);
+            System.out.println("Lista de personal actualizada");
+        } catch (Exception e) {
+            System.out.println("Error al actualizar datos");
+        }
+    }
+    
     private ResultSet listaPaciente(){
         String sql = "select * from fn_AllPacienteList()";
         StatementSetter setter = (stmt) -> {

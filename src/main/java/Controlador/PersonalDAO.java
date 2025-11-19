@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Controlador;
+import Modelo.Persona;
 import Modelo.Personal;
 import Vistas.VentanaInicio;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 
 /**
@@ -48,6 +50,34 @@ public class PersonalDAO extends AbstracDAO{
                 };
         return ejecutarQueryTemplate(sql, setter, "Consultar personal por nombre");
         
+    }
+    
+    public boolean transaccionAddPersonaYPersonal(Personal p, Persona pe){
+        String sql = "EXEC SP_AltaPersonalTransaccion "
+                + "@Nombres = ?, " +
+                    "@PrimerAP = ?, " +
+                    "@SegundoAP = ?, " +
+                    "@FechaNaci = ?, " +
+                    "@Telefono = ?, " +
+                    "@Rol  =?, " +
+                    "@Departamento = ?, " +
+                    "@Especialidad = ?, " +
+                    "@Salario = ?";
+        
+        StatementSetter setter = (stmt) -> {
+            stmt.setString(1, pe.getNombres());
+            stmt.setString(2, pe.getPrimerAP());
+            stmt.setString(3, pe.getSegundoAP());
+            stmt.setString(4, pe.getFechNaci());
+            stmt.setString(5, pe.getTelefono());
+            stmt.setString(6, p.getRol());
+            stmt.setString(7, p.getDepart());
+            stmt.setString(8, p.getEspecial());
+            stmt.setBigDecimal(9, p.getSalario());
+            
+                };
+        
+        return ejecutarCRUDTemplate(sql, setter, "Transaccion insertar personal y persona");
     }
     
     public ResultSet allPersonal(){
