@@ -71,6 +71,7 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         TablaReportes = new javax.swing.JTable();
 
         setClosable(true);
+        setIconifiable(true);
 
         jToolBar1.setRollover(true);
 

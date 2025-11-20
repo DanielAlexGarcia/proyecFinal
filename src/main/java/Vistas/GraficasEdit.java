@@ -87,6 +87,7 @@ public class GraficasEdit extends javax.swing.JInternalFrame {
         PanelGraficos = new javax.swing.JPanel();
 
         setClosable(true);
+        setIconifiable(true);
 
         jToolBar1.setRollover(true);
 

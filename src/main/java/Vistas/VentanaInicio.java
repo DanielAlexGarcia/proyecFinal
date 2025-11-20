@@ -5,13 +5,8 @@
 package Vistas;
 
 
-import Controlador.ConexionBD;
 import Controlador.ListadosConcurrentes;
-import Controlador.PersonaDAO;
 import java.beans.PropertyVetoException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -23,6 +18,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     public static VentanaInicio instance;
     public static JFrame frame = new JFrame();
     private ListadosConcurrentes listados;
+    
     
     PersoEdit perEdit;
     PacEdit pacdit;
@@ -43,6 +39,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         
         
     }
+    
+    
     
     private void loadPags(){
         perEdit = new PersoEdit(instance, listados);
@@ -100,7 +98,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         cargando = new javax.swing.JDialog();
         jMenuItem1 = new javax.swing.JMenuItem();
-        destopPanel = new javax.swing.JDesktopPane();
+        destopPanel = destopPanel = new Vistas.DestopConFondo("/Recursos/FondoAll.jpg");
+        ;
         InicioSecion = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -235,12 +234,18 @@ public class VentanaInicio extends javax.swing.JFrame {
             .addGroup(destopPanelLayout.createSequentialGroup()
                 .addGap(139, 139, 139)
                 .addComponent(InicioSecion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
+        MenuBarOP.setBackground(new java.awt.Color(0, 182, 193));
+        MenuBarOP.setBorder(null);
+
+        MenuPersonal.setBorder(null);
         MenuPersonal.setText("Personal");
 
+        PersonalAlta.setBackground(new java.awt.Color(117, 247, 235));
         PersonalAlta.setText("Dar de alta");
+        PersonalAlta.setBorder(null);
         PersonalAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PersonalAltaActionPerformed(evt);
@@ -248,7 +253,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         MenuPersonal.add(PersonalAlta);
 
+        PersonalBaja.setBackground(new java.awt.Color(117, 247, 235));
         PersonalBaja.setText("Dar de baja");
+        PersonalBaja.setBorder(null);
         PersonalBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PersonalBajaActionPerformed(evt);
@@ -260,7 +267,9 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         MenuPaciente.setText("Paciente");
 
+        PacienteAlta.setBackground(new java.awt.Color(117, 247, 235));
         PacienteAlta.setText("Nuevo");
+        PacienteAlta.setBorder(null);
         PacienteAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PacienteAltaActionPerformed(evt);
@@ -268,7 +277,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         MenuPaciente.add(PacienteAlta);
 
+        PacienteModificar.setBackground(new java.awt.Color(117, 247, 235));
         PacienteModificar.setText("Modificar");
+        PacienteModificar.setBorder(null);
         PacienteModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PacienteModificarActionPerformed(evt);
@@ -280,7 +291,9 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         MenuCita.setText("Cita");
 
+        CitaAgendar.setBackground(new java.awt.Color(117, 247, 235));
         CitaAgendar.setText("Egendar");
+        CitaAgendar.setBorder(null);
         CitaAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CitaAgendarActionPerformed(evt);
@@ -288,7 +301,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         MenuCita.add(CitaAgendar);
 
+        CitaEditar.setBackground(new java.awt.Color(117, 247, 235));
         CitaEditar.setText("Editar");
+        CitaEditar.setBorder(null);
         CitaEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CitaEditarActionPerformed(evt);
@@ -296,7 +311,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         MenuCita.add(CitaEditar);
 
+        CitaConsultar.setBackground(new java.awt.Color(117, 247, 235));
         CitaConsultar.setText("Consultar");
+        CitaConsultar.setBorder(null);
         CitaConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CitaConsultarActionPerformed(evt);
@@ -308,6 +325,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         estadistica.setText("Grafico");
 
+        itemGraficoEstCita.setBackground(new java.awt.Color(117, 247, 235));
         itemGraficoEstCita.setText("Estado citas");
         itemGraficoEstCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

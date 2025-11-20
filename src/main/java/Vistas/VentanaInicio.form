@@ -28,15 +28,32 @@
       </Properties>
     </Component>
     <Menu class="javax.swing.JMenuBar" name="MenuBarOP">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c1" green="b6" red="0" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+      </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="MenuPersonal">
           <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Personal"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="PersonalAlta">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Dar de alta"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PersonalAltaActionPerformed"/>
@@ -44,7 +61,13 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PersonalBaja">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Dar de baja"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PersonalBajaActionPerformed"/>
@@ -59,7 +82,13 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="PacienteAlta">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Nuevo"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PacienteAltaActionPerformed"/>
@@ -67,7 +96,13 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="PacienteModificar">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Modificar"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PacienteModificarActionPerformed"/>
@@ -82,7 +117,13 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="CitaAgendar">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Egendar"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CitaAgendarActionPerformed"/>
@@ -90,7 +131,13 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="CitaEditar">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Editar"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CitaEditarActionPerformed"/>
@@ -98,7 +145,13 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="CitaConsultar">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CitaConsultarActionPerformed"/>
@@ -113,6 +166,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemGraficoEstCita">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Estado citas"/>
               </Properties>
               <Events>
@@ -189,11 +245,15 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="destopPanel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="destopPanel = new Vistas.DestopConFondo(&quot;/Recursos/FondoAll.jpg&quot;);&#xd;&#xa;"/>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VentanaInicio_destopPanel"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
                   <Component id="InicioSecion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="249" max="32767" attributes="0"/>
@@ -205,7 +265,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
                   <Component id="InicioSecion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="228" max="32767" attributes="0"/>
+                  <EmptySpace pref="229" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

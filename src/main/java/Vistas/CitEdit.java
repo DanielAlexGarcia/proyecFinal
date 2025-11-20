@@ -98,6 +98,7 @@ public class CitEdit extends javax.swing.JInternalFrame {
         BModifiEstate = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
 
         jToolBar1.setRollover(true);
 

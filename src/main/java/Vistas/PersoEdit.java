@@ -93,6 +93,7 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setClosable(true);
+        setIconifiable(true);
 
         jToolBar1.setRollover(true);
 

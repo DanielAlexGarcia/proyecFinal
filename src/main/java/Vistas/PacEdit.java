@@ -93,6 +93,7 @@ public class PacEdit extends javax.swing.JInternalFrame {
         BModifi = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
 
         jToolBar1.setRollover(true);
 
