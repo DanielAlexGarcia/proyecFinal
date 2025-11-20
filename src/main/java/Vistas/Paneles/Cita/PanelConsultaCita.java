@@ -32,6 +32,7 @@ public class PanelConsultaCita extends javax.swing.JPanel {
         this.faz = fa;
         this.lists = listas;
         initComponents();
+        setOpaque(false);
         BGBusqueda.add(RBBusqEstado);
         BGBusqueda.add(RBBusqNomPac);
         BGBusqueda.add(RBBusqNomPersonal);

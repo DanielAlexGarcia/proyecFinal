@@ -49,8 +49,8 @@ public class CitEdit extends javax.swing.JInternalFrame {
         this.citConsult = new PanelConsultaCita(lists, faz);
         
         cardLayout = new CardLayout();
-        panelDeContenido = new JPanel(cardLayout);
-        
+        panelDeContenido = new Vistas.Paneles.PanelConFondoInterno("/Recursos/FondoSingle.jpg");
+        panelDeContenido.setLayout(cardLayout);
         panelDeContenido.add(citAlta, PanelAñadir);
         panelDeContenido.add(citCambio, PanelModificar);
         panelDeContenido.add(citConsult, PanelConsultar);

@@ -26,6 +26,7 @@ public class PanelCambiosCita extends javax.swing.JPanel {
         this.lists = listas;
         this.faz = fa;
         initComponents();
+        setOpaque(false);
         CBEstado.setModel(lists.crearModeloComboBox(lists.getListaEstados()));
         CBPersonal.setModel(lists.crearModeloComboBox2(lists.getListaPersonal()));
         formatosTextArea.setSoloNumeros(txtIDCita, 10);

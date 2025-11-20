@@ -23,6 +23,7 @@ public class PanelAltasCita extends javax.swing.JPanel {
         this.lists = listas;
         this.interfaz = faz;
         initComponents();
+        setOpaque(false);
         formatosTextArea.FormatoFecha(txtFecha);
         formatosTextArea.FormatoHora(txtHora);
         formatosTextArea.setSoloLetras(txtMotivo, 70);
