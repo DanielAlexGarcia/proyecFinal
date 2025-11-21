@@ -48,7 +48,8 @@ public class PacEdit extends javax.swing.JInternalFrame {
 
     private void iniciarCardLayaout(){
         cardLayout = new CardLayout();
-        panelDeContenido = new JPanel(cardLayout);
+        panelDeContenido = new Vistas.Paneles.PanelConFondoInterno("/Recursos/FondoSingle.jpg");
+        panelDeContenido.setLayout(cardLayout);
         
         panelDeContenido.add(PacAlta, panelAñadi);
         panelDeContenido.add(PacCambio, panelEdit);
@@ -96,6 +97,7 @@ public class PacEdit extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jToolBar1.setRollover(true);
+        jToolBar1.setOpaque(false);
 
         BAñadir.setText("Nuevo");
         BAñadir.setFocusable(false);

@@ -47,7 +47,8 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     
     private void iniciarCardLayout() {
         cardLayout = new CardLayout();
-        panelDeContenido = new JPanel(cardLayout);
+        panelDeContenido = new Vistas.Paneles.PanelConFondoInterno("/Recursos/FondoSingle.jpg");
+        panelDeContenido.setLayout(cardLayout);
 
         panelDeContenido.add(PersoAlta, PanelAlta);
         panelDeContenido.add(persoBaja, PanelBaja);
@@ -96,6 +97,7 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jToolBar1.setRollover(true);
+        jToolBar1.setOpaque(false);
 
         BAñadir.setText("Añadir");
         BAñadir.setFocusable(false);

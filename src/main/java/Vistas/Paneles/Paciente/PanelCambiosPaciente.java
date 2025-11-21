@@ -81,6 +81,8 @@ public class PanelCambiosPaciente extends javax.swing.JPanel {
         tablaPacientes = new javax.swing.JTable();
         BBuscar = new javax.swing.JButton();
 
+        setOpaque(false);
+
         jLabel1.setText("Actualizar Paciente");
 
         jLabel2.setText("Nombre del paciente");

@@ -63,6 +63,8 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         txtIDDelete = new javax.swing.JTextField();
         BDelete = new javax.swing.JButton();
 
+        setOpaque(false);
+
         jLabel1.setText("Eliminar personal");
 
         jLabel2.setText("Buscar por nombre");
@@ -85,6 +87,7 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablePersonal.setOpaque(false);
         jScrollPane1.setViewportView(tablePersonal);
 
         jLabel3.setText("ID del personal a eliminar");

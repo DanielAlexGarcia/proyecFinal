@@ -60,6 +60,8 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
         BReset = new javax.swing.JButton();
         BGuardar = new javax.swing.JButton();
 
+        setOpaque(false);
+
         jLabel1.setText("Añadir paciente");
 
         jLabel2.setText("Nombre");

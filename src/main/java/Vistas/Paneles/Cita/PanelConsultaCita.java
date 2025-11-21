@@ -113,6 +113,7 @@ public class PanelConsultaCita extends javax.swing.JPanel {
 
         jLabel1.setText("Consultar citas");
 
+        tablaResult.setForeground(new java.awt.Color(33, 33, 33));
         tablaResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -124,6 +125,7 @@ public class PanelConsultaCita extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaResult.setOpaque(false);
         jScrollPane1.setViewportView(tablaResult);
 
         jLabel2.setText("Resultados");

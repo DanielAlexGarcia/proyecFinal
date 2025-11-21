@@ -90,6 +90,8 @@ public class PanelAltasPersonal extends javax.swing.JPanel {
         txtFechaNaci = new javax.swing.JFormattedTextField();
         txtTelefono = new javax.swing.JFormattedTextField();
 
+        setOpaque(false);
+
         jLabel1.setText("Añadir personal");
 
         jLabel2.setText("Persona");
