@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="161dp"
+        android:text="@string/Tittle_PagInicio"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/agenCit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="36dp"
+        android:onClick="loadPage"
+        android:text="@string/boton_citas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAgenCita" />
+
+    <ImageButton
+        android:id="@+id/btnAgenCita"
+        android:layout_width="113dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="38dp"
+        android:onClick="loadPage"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/calendario" />
+
+    <TextView
+        android:id="@+id/loadCit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="85dp"
+        android:onClick="loadPage"
+        android:text="@string/txt_verCitas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/agenCit"
+        app:layout_constraintTop_toBottomOf="@+id/btnConsultCitas" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="126dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="126dp"
+        android:text="@string/txt_hoyHacer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageButton
+        android:id="@+id/btnGestAfil"
+        android:layout_width="131dp"
+        android:layout_height="129dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="276dp"
+        android:layout_marginEnd="140dp"
+        android:onClick="loadPage"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/miembrospoliza" />
+
+    <TextView
+        android:id="@+id/gestAfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="101dp"
+        android:onClick="loadPage"
+        android:text="@string/txt_Gestionarafiliados"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGestAfil" />
+
+    <ImageButton
+        android:id="@+id/btnConsultCitas"
+        android:layout_width="118dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="71dp"
+        android:onClick="loadPage"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnAgenCita"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/consultarcitas" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

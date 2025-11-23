@@ -1,3 +1,34 @@
 <resources>
-    <string name="app_name">Your_Clinic</string>
+    <string name="app_name">Clinica local</string>
+    <string name="Tittle_inicio"> Bienvenido</string>
+    <string name="txt_ingresCampos">Accede con tu usuario y contraseña</string>
+    <string name="string_NumSeguro">Numero de seguro</string>
+    <string name="Tittle_AltasCita">AGENDAR CITA</string>
+    <string name="Text_bntEntrar">ENTRAR</string>
+    <string name="Tittle_PagInicio">HOLA DE NUEVO</string>
+    <string name="boton_citas">Agendar nueva cita</string>
+    <string name="txt_afiliados">Miembros de la poliza</string>
+    <string name="txt_verCitas">Consultar citas</string>
+    <string name="txt_hoyHacer">¿Que vamos a hacer hoy?</string>
+    <string name="txt_Gestionarafiliados">Gestionar mieembros de la poliza</string>
+    <string name="txt_Doctor">Doctor</string>
+    <string name="txt_fecha">Fecha a agendar</string>
+    <string name="txt_hora">Hora a solicitar</string>
+    <string name="txt_motivo">Motivo de consulta</string>
+    <string name="txt_estado">Estado actual</string>
+    <string name="txt_Nombres">Nombres</string>
+    <string name="txt_PAP">Primer apellido</string>
+    <string name="txt_SAP">Segundo apellido</string>
+    <string name="txt_fechNaci">Fecha de nacimiento</string>
+    <string name="txt_Parentezco">Parentezco</string>
+    <string name="txt_agendarCit">Agendar</string>
+    <string name="txt_agenAfil">Seleccionar Paciente</string>
+    <string-array name="SP_Doctores">
+        <item>Ana Maria Garcia López</item>
+        <item>Juan Carlos Pérez Martinez</item>
+        <item>Sofia Hernández Ramos</item>
+        <item>Luis Alberto Diaz Sánchez</item>
+        <item>Felipe Blanco Guzmán</item>
+        <item>Natalia Rojas Marín</item>
+    </string-array>
 </resources>
