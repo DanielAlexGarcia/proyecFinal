@@ -23,6 +23,9 @@
         <activity android:name=".classActivityInicio"></activity>
         <activity android:name=".classActivityAgendarCita"></activity>
         <activity android:name=".classActivityConsultCitas"></activity>
+        <activity android:name=".classActivityModifCitas"></activity>
+        <activity android:name=".classActivityGestionAfil"></activity>
+        <activity android:name=".modifiCitSelect"></activity>
     </application>
 
 </manifest>

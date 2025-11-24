@@ -26,11 +26,16 @@
     <string name="txt_restore">cargar datos por defecto</string>
     <string name="txt_cambiosCit">Modificar cita</string>
 
-    <string name="Tittle_ConsultCit">Buscar citas</string>
+    <string name="Tittle_ConsultCit">BUSCAR CITAS</string>
     <string name="txt_estadoCit">Estado de la cita</string>
     <string name="txt_NameDoc">Nombre del doctor</string>
     <string name="txt_ResultCit">Resultados de la busqueda</string>
     <string name="txtbtn_Buscar">Buscar</string>
+
+    <string name="Tittle_ModifCita">REAGENDAR CITA</string>
+    <string name="txt_buscarCita">Buscar cita</string>
+    <string name="txt_NomPac">Nombre del paciente</string>
+    <string name="txt_LoadCit">Cargar cita</string>
 
 
 
