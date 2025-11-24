@@ -113,7 +113,7 @@ public class classActivityInicio extends AppCompatActivity {
         } else if (v.getId() == R.id.btnGestAfil || v.getId() == R.id.gestAfil) {
 
         } else if (v.getId() == R.id.btnCambioCit || v.getId() == R.id.cambioCit) {
-            
+            i = new Intent(this, classActivityModifCitas.class);
         } else if (i == null) {
             Toast.makeText(this, "Problemas al intentar cargar la interfaz", Toast.LENGTH_SHORT).show();
         }else{

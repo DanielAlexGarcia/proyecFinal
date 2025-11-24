@@ -10,7 +10,7 @@
     <string name="txt_afiliados">Miembros de la poliza</string>
     <string name="txt_verCitas">Consultar citas</string>
     <string name="txt_hoyHacer">¿Que vamos a hacer hoy?</string>
-    <string name="txt_Gestionarafiliados">Gestionar mieembros\nde la poliza</string>
+    <string name="txt_Gestionarafiliados">Gestionar miembros\nde la poliza</string>
     <string name="txt_Doctor">Doctor</string>
     <string name="txt_fecha">Fecha a agendar</string>
     <string name="txt_hora">Hora a solicitar</string>
@@ -32,12 +32,17 @@
     <string name="txt_ResultCit">Resultados de la busqueda</string>
     <string name="txtbtn_Buscar">Buscar</string>
 
-    <string name="Tittle_ModifCita">REAGENDAR CITA</string>
+    <string name="Tittle_ModifCita">Paso 1</string>
     <string name="txt_buscarCita">Buscar cita</string>
     <string name="txt_NomPac">Nombre del paciente</string>
-    <string name="txt_LoadCit">Cargar cita</string>
+    <string name="txt_intoID">ID de la cita a modificar</string>
+    <string name="btn_cargar">Cargar Cita</string>
+    <string name="txt_intruccion1">Selecciona la cita a modificar\nen base a la lista de resultados</string>
+    <string name="Paso2">Paso 2</string>
 
+    <string name="TittleModCita">REAGENDAR CITA</string>
 
+    <string name="TittleModCitaSelet">REAGENDAR CITA SELECCIONADA</string>
 
     <string-array name="SP_Doctores">
         <item>Ana Maria Garcia López</item>

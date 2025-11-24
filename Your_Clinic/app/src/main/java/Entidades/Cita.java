@@ -108,5 +108,25 @@ public class Cita {
                 "Estado: "+this.estado+"\n\n";
     }
 
+    public String seeall(int op){
+        if (op == 1){
+            return "Doctor: "+ this.doctor+"\n" +
+                    "Paciente: "+this.paciente+"\n" +
+                    "Fecha: "+this.fecha+"\n" +
+                    "Hora: "+this.hora+"\n" +
+                    "Motivo: "+this.motivo+"\n" +
+                    "Estado: "+this.estado+"\n\n";
+        }else{
+            return "ID cita: "+this.id+"\n"+
+                    "Doctor: "+ this.doctor+"\n" +
+                    "Paciente: "+this.paciente+"\n" +
+                    "Fecha: "+this.fecha+"\n" +
+                    "Hora: "+this.hora+"\n" +
+                    "Motivo: "+this.motivo+"\n" +
+                    "Estado: "+this.estado+"\n\n";
+        }
+
+    }
+
 
 }
