@@ -2,6 +2,7 @@ package Controlador;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import Entidades.Cita;
 @Dao
 public interface CitaDAO {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void addCita(Cita cit);
 
     @Query("SELECT * FROM Cita")

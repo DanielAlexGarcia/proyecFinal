@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".classActivityInicio"></activity>
         <activity android:name=".classActivityAgendarCita"></activity>
+        <activity android:name=".classActivityConsultCitas"></activity>
     </application>
 
 </manifest>

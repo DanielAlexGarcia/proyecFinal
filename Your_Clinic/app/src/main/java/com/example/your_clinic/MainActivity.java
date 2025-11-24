@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         boolean si =false;
         String User = txtUser.getText().toString();
         String pasword = txtPassword.getText().toString();
-        Log.i("imprimir", "si: "+User+" :si");
-        Log.i("imprimir", "si: "+pasword+" :si");
         if(User.equals("") && pasword.equals("")){
             status = 8;
         } else if (User.equals("")) {
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         } else if (!paso) {
-
+            Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         } else{
             Log.i("MSJ=>", "Error al intentar acceder, Reinicia la aplicasion");
             Toast.makeText(this, "No se pudo cargar, Reinicia la aplicasion", Toast.LENGTH_SHORT).show();

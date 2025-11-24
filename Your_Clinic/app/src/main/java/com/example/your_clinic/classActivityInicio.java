@@ -17,8 +17,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 import Controlador.AfiliadoDAO;
 import Entidades.Afiliado;
+import Entidades.Cita;
 import db.ClinicaBD;
 
 public class classActivityInicio extends AppCompatActivity {
@@ -50,6 +53,55 @@ public class classActivityInicio extends AppCompatActivity {
         // Muestra un mensaje al usuario.
         Toast.makeText(this, "Presiona de nuevo para salir", Toast.LENGTH_SHORT).show();
     }
+    public void cargarDefault(View v){
+        ArrayList<Afiliado> listaDefault = new ArrayList<>();
+        listaDefault.add(new Afiliado(1, "Jose", "Torres", "Castro","Propietario", "7N4937B438CJJ3"));
+        listaDefault.add(new Afiliado(2, "Marta", "Ortega", "Cruz", "Hermana", "230NDOW08E"));
+        listaDefault.add(new Afiliado(3, "Gabriel", "Hidalgo", "Lara", "Hijo", "8NOF9YB"));
+        listaDefault.add(new Afiliado(4, "Natalia", "Rojas", "Marin", "Hermana", "7FO6W97D"));
+        listaDefault.add(new Afiliado(5, "Felipe", "Blanco", "Guzman", "Tio", "8N48F08V"));
+        listaDefault.add(new Afiliado(6, "Andrea", "Serrano", "Paz", "Madre", "78N3OY478F"));
+
+        ArrayList<Cita> listaDefault2  = new ArrayList<>();
+        listaDefault2.add(new Cita(1,"Ana Maria Garcia López", "Jose Torres Castro", "20-02-2020", "13:30", "Revision", "Completada"));
+        listaDefault2.add(new Cita(2, "Juan Carlos Pérez Martinez", "Jose Torres Castro", "20-02-2026", "12:00", "Continuidad", "Programada"));
+        listaDefault2.add(new Cita(3, "Luis Alberto Diaz Sánchez", "Gabriel Hidalgo Lara", "10-11-2025","11:30", "Especialista", "Cancelada"));
+        listaDefault2.add(new Cita(4, "Sofia Hernandez Ramos", "Marta Ortega Cruz", "20-10-2025", "15:30", "consulta", "Completada"));
+        listaDefault2.add(new Cita(5, "Juan Carlos Perez, Martinez", "Andrea Serrano Paz", "28-02-2026", "13:30", "Revision", "Reprogramada"));
+
+        ClinicaBD db = ClinicaBD.getAppDatabase((getBaseContext()));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(Afiliado n : listaDefault){
+                    db.afilDAO().addAfiliado(n);
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getBaseContext(), "Datos añadidos", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (Cita m : listaDefault2){
+                    db.citDAO().addCita(m);
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getBaseContext(), "Datos añadidos", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        }).start();
+
+    }
     
     public void loadPage(View v){
         Intent i = null;
@@ -57,9 +109,11 @@ public class classActivityInicio extends AppCompatActivity {
         if (v.getId() == R.id.btnAgenCita || v.getId() == R.id.agenCit){
             i = new Intent(this, classActivityAgendarCita.class);
         } else if (v.getId() == R.id.btnConsultCitas || v.getId() == R.id.loadCit) {
-            test(1);
+            i = new Intent(this, classActivityConsultCitas.class);
         } else if (v.getId() == R.id.btnGestAfil || v.getId() == R.id.gestAfil) {
 
+        } else if (v.getId() == R.id.btnCambioCit || v.getId() == R.id.cambioCit) {
+            
         } else if (i == null) {
             Toast.makeText(this, "Problemas al intentar cargar la interfaz", Toast.LENGTH_SHORT).show();
         }else{

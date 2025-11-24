@@ -10,7 +10,7 @@
     <string name="txt_afiliados">Miembros de la poliza</string>
     <string name="txt_verCitas">Consultar citas</string>
     <string name="txt_hoyHacer">¿Que vamos a hacer hoy?</string>
-    <string name="txt_Gestionarafiliados">Gestionar mieembros de la poliza</string>
+    <string name="txt_Gestionarafiliados">Gestionar mieembros\nde la poliza</string>
     <string name="txt_Doctor">Doctor</string>
     <string name="txt_fecha">Fecha a agendar</string>
     <string name="txt_hora">Hora a solicitar</string>
@@ -23,6 +23,17 @@
     <string name="txt_Parentezco">Parentezco</string>
     <string name="txt_agendarCit">Agendar</string>
     <string name="txt_agenAfil">Seleccionar Paciente</string>
+    <string name="txt_restore">cargar datos por defecto</string>
+    <string name="txt_cambiosCit">Modificar cita</string>
+
+    <string name="Tittle_ConsultCit">Buscar citas</string>
+    <string name="txt_estadoCit">Estado de la cita</string>
+    <string name="txt_NameDoc">Nombre del doctor</string>
+    <string name="txt_ResultCit">Resultados de la busqueda</string>
+    <string name="txtbtn_Buscar">Buscar</string>
+
+
+
     <string-array name="SP_Doctores">
         <item>Ana Maria Garcia López</item>
         <item>Juan Carlos Pérez Martinez</item>
@@ -30,5 +41,12 @@
         <item>Luis Alberto Diaz Sánchez</item>
         <item>Felipe Blanco Guzmán</item>
         <item>Natalia Rojas Marín</item>
+    </string-array>
+
+    <string-array name="SP_EstadoCita">
+        <item>Completada</item>
+        <item>Programada</item>
+        <item>Reprogramada</item>
+        <item>Cancelada</item>
     </string-array>
 </resources>

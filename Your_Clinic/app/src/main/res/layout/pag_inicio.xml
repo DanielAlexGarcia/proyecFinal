@@ -69,29 +69,25 @@
 
     <ImageButton
         android:id="@+id/btnGestAfil"
-        android:layout_width="131dp"
-        android:layout_height="129dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="276dp"
-        android:layout_marginEnd="140dp"
+        android:layout_width="120dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="63dp"
         android:onClick="loadPage"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/agenCit"
         app:srcCompat="@drawable/miembrospoliza" />
 
     <TextView
         android:id="@+id/gestAfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="101dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="20dp"
         android:onClick="loadPage"
         android:text="@string/txt_Gestionarafiliados"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGestAfil" />
 
@@ -108,5 +104,43 @@
         app:layout_constraintStart_toEndOf="@+id/btnAgenCita"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:srcCompat="@drawable/consultarcitas" />
+
+    <Button
+        android:id="@+id/btnRestoreDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginEnd="93dp"
+        android:layout_marginBottom="44dp"
+        android:onClick="cargarDefault"
+        android:text="@string/txt_restore"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnCambioCit"
+        android:layout_width="118dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="71dp"
+        android:onClick="loadPage"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loadCit"
+        app:srcCompat="@drawable/modifcit" />
+
+    <TextView
+        android:id="@+id/cambioCit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="92dp"
+        android:onClick="loadPage"
+        android:text="@string/txt_cambiosCit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gestAfil"
+        app:layout_constraintTop_toBottomOf="@+id/btnCambioCit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

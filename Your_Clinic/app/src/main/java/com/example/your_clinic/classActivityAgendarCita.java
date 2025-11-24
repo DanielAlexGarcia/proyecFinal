@@ -12,16 +12,22 @@ import android.content.DialogInterface;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Entidades.Afiliado;
 import Entidades.Cita;
 import db.ClinicaBD;
 import plantillas.PlantillasComponentes;
 
 public class classActivityAgendarCita extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    Spinner SPDoctores;
+    Spinner SPDoctores, SPAfil;
     EditText Date, hora, motivo;
     PlantillasComponentes PComp = new PlantillasComponentes();
     Cita cit;
+    List<Afiliado> afiliados;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,8 +37,19 @@ public class classActivityAgendarCita extends AppCompatActivity implements Adapt
         Date = findViewById(R.id.txtDate);
         hora = findViewById(R.id.txtHora);
         motivo = findViewById(R.id.txtMotivo);
+        SPAfil = findViewById(R.id.SPAfiliados);
 
+        adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                new ArrayList<String>()
+        );
 
+// Define cómo se verá el elemento cuando está seleccionado
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+// 3. Conecta el Adaptador al Spinner
+        SPAfil.setAdapter(adapter);
 
         SPDoctores = findViewById(R.id.SPDoctor); // Reemplaza R.id.SPDoctores con el ID real de tu XML
 
@@ -52,6 +69,41 @@ public class classActivityAgendarCita extends AppCompatActivity implements Adapt
         // 4. Asignar el listener para manejar selecciones
         SPDoctores.setOnItemSelectedListener(this);
 
+        getAfil();
+
+    }
+
+    private void getAfil(){
+        ClinicaBD db = ClinicaBD.getAppDatabase((getBaseContext()));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                afiliados = db.afilDAO().allAfiliados();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        actualizarSPPaciente();
+                    }
+                });
+            }
+        }).start();
+
+    }
+    private void actualizarSPPaciente(){
+        adapter.clear();
+
+        // 2. Extrae solo los NOMBRES de la lista de Afiliados
+        List<String> nombresAfiliados = new ArrayList<>();
+        for (Afiliado afiliado : afiliados) {
+            // Asumiendo que tu clase Afiliado tiene un método getName()
+            nombresAfiliados.add(afiliado.getNombres() +" " + afiliado.getPrimerAP() +" "+ afiliado.getSegundoAP());
+        }
+
+        // 3. Añade los nuevos nombres al Adaptador
+        adapter.addAll(nombresAfiliados);
+
+        // 4. Notifica al Spinner que los datos han cambiado
+        adapter.notifyDataSetChanged();
     }
     private void mostrarVentanaError(String titulo, String mensaje) {
         // 1. Crear una nueva instancia del Builder. Se usa 'this' como Contexto.
@@ -99,7 +151,7 @@ public class classActivityAgendarCita extends AppCompatActivity implements Adapt
     private void VerificarDatos(){
         boolean fecha = PComp.fechaValida(Date.getText().toString(), Date);
         boolean hor = PComp.horaValida(hora.getText().toString(), hora);
-        boolean mot = (motivo.getText().toString().trim().length() >= 10);
+        boolean mot = (motivo.getText().toString().trim().length() >= 5);
         String Mensaje = "";
         int error= 0;
 
@@ -128,7 +180,7 @@ public class classActivityAgendarCita extends AppCompatActivity implements Adapt
     }
 
     private void agregarCita (){
-        cit = new Cita((String) SPDoctores.getSelectedItem(), "Jose", Date.getText().toString(), hora.getText().toString(), motivo.getText().toString(), "Programada");
+        cit = new Cita((String) SPDoctores.getSelectedItem(), (String) SPAfil.getSelectedItem(), Date.getText().toString(), hora.getText().toString(), motivo.getText().toString(), "Programada");
         ClinicaBD db = ClinicaBD.getAppDatabase((getBaseContext()));
         new Thread(new Runnable() {
             @Override
@@ -143,6 +195,8 @@ public class classActivityAgendarCita extends AppCompatActivity implements Adapt
             }
         }).start();
     }
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
