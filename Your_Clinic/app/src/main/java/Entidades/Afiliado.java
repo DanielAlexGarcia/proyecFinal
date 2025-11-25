@@ -112,4 +112,10 @@ public class Afiliado {
                 "Parentezco: "+this.parentezco+"\n" +
                 "Numero de seguro: "+this.numSeg+"\n\n";
     }
+
+    public String seeAll(){
+        return this.nombres+" "+this.primerAP+" "+this.segundoAP+"\n" +
+                "Parentezco: "+this.parentezco+"\n" +
+                "Numero de seguro: "+this.numSeg+"\n\n";
+    }
 }

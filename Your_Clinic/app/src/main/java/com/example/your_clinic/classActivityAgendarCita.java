@@ -20,7 +20,7 @@ import Entidades.Cita;
 import db.ClinicaBD;
 import plantillas.PlantillasComponentes;
 
-public class classActivityAgendarCita extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class classActivityAgendarCita extends AppCompatActivity{
 
     Spinner SPDoctores, SPAfil;
     EditText Date, hora, motivo;
@@ -67,7 +67,7 @@ public class classActivityAgendarCita extends AppCompatActivity implements Adapt
         SPDoctores.setAdapter(adapter);
 
         // 4. Asignar el listener para manejar selecciones
-        SPDoctores.setOnItemSelectedListener(this);
+        //SPDoctores.setOnItemSelectedListener(this);
 
         getAfil();
 
@@ -197,33 +197,5 @@ public class classActivityAgendarCita extends AppCompatActivity implements Adapt
     }
 
 
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // 'position' es la posición del elemento seleccionado (0, 1, 2, ...)
-        String itemSeleccionado = parent.getItemAtPosition(position).toString();
-
-        if (position > 0) { // Evita mostrar el Toast si selecciona la primera opción ("Selecciona un Producto")
-            Toast.makeText(parent.getContext(), "Seleccionaste: " + itemSeleccionado, Toast.LENGTH_SHORT).show();
-        }
-
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.SP_Doctores, // La lista de opciones
-                android.R.layout.simple_spinner_item // Layout de cómo se ve el Spinner cerrado
-        );
-
-        // 2. Establecer el layout para la vista desplegable
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        SPDoctores.setAdapter(adapter);
-        SPDoctores.setOnItemSelectedListener(this);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Se llama si la selección desaparece (raro en un Spinner)
-    }
 
 }

@@ -1,7 +1,10 @@
 package com.example.your_clinic;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +40,7 @@ public class classActivityModifCitas extends AppCompatActivity{
     private ArrayList<Cita> datos = null;
     private RecyclerView.LayoutManager layoutManager;
     private List<Cita> citas;
+    private ArrayList<Cita> citasBusq;
 
     private EditText idCita;
 
@@ -62,6 +66,7 @@ public class classActivityModifCitas extends AppCompatActivity{
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        citasBusq = new ArrayList<>(datos);
                         adapte = new CustomAdapter(datos);
                         adapte.opcionImpres = 2;
                         results.setAdapter(adapte);
@@ -75,7 +80,12 @@ public class classActivityModifCitas extends AppCompatActivity{
 
     }
     public void loadResultsModifi(View v){
-        loadCits(SPPac.getSelectedItem().toString());
+
+        if(SPPac.getSelectedItemPosition() == 0){
+            mostrarVentanaError("Error", "No se puede hacer la busqueda si no eliges al paciente primero");
+        }else{
+            loadCits(SPPac.getSelectedItem().toString());
+        }
     }
 
 private void loadCits(String Pac){
@@ -86,38 +96,96 @@ private void loadCits(String Pac){
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    actualizarResultados(citas);
+                    if (citas.size() > 0) {
+                        citasBusq = null;
+                        citasBusq = new ArrayList<>(citas);
+                        actualizarResultados(citas);
+                    }else{
+                        Toast.makeText(getBaseContext(), "No hay citas con ese criterio de busqueda", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
     }).start();
 }
 
-public void loadCitSelect(View v){
-        int i = Integer.parseInt(idCita.getText().toString());
-        boolean esta = false;
-        int IDcit = 0;
-        for (Cita m : citas){
-            if(i == m.getId()){
-                esta = true;
-                IDcit = m.getId();
-                break;
+private void getIDcitVal(){
+        try {
+            String idCit = (String) idCita.getText().toString();
+            if(idCit.equals("")){
+                mostrarVentanaError("Error", "Ingresa el id de la cita a modificar");
+            }else {
+                int CitID = Integer.parseInt(idCit);
+                boolean paso = false;
+                String[] citaSelect = new String[7];
+                Cita ci = null;
+                if (CitID > 0) {
+                    Log.i("Erors1", "entro:" + CitID + ":entro");
+                    Log.i("Erors2", "m:" + citasBusq.size());
+                    Log.i("Erors3", "l:" + citasBusq.get(0));
+                    for (Cita m : citasBusq) {
+                        if (m.getId() == CitID) {
+                            paso = true;
+                            ci = m;
+                            citaSelect[0] = String.valueOf(ci.getId());
+                            citaSelect[1] = ci.getDoctor();
+                            citaSelect[2] = ci.getPaciente();
+                            citaSelect[3] = ci.getFecha();
+                            citaSelect[4] = ci.getHora();
+                            citaSelect[5] = ci.getMotivo();
+                            citaSelect[6] = ci.getEstado();
+
+                            break;
+                        }
+                    }
+                    if (paso) {
+                        Intent i = new Intent(this, modifiCitSelect.class);
+                        String clave_dat = "com.example.your_clinic.ID_CITA_SELECCIONADA";
+                        i.putExtra(clave_dat, citaSelect);
+                        idCita.setText("");
+                        SPPac.setSelection(0);
+                        startActivity(i);
+                    } else {
+                        mostrarVentanaError("Error", "No se encontro una cita con ese ID\n que coincida con alguna de las citas mostradas en la lista");
+                    }
+                } else {
+                    Toast.makeText(this, "Ingresa un ID primero", Toast.LENGTH_SHORT).show();
+                }
             }
+        } catch (Exception e) {
+            Toast.makeText(this, "No se pudo obtener el id", Toast.LENGTH_SHORT).show();
         }
-        Intent l = new Intent(this, modifiCitSelect.class);
-        if(esta && l != null){
-            //String clave_dat = "com.example.your_clinic.ID_CITA_SELECCIONADA";
-            //l.putExtra(clave_dat, IDcit);
-            startActivity(l);
-        }else{
-        if(!esta){
-            Toast.makeText(this, "No existe una cita con ese ID", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "Problemas al cargarlo", Toast.LENGTH_SHORT).show();
-        }
-    }
+
+
 
 }
+
+public void loadCitSelect(View v){
+        getIDcitVal();
+}
+
+    private void mostrarVentanaError(String titulo, String mensaje) {
+        // 1. Crear una nueva instancia del Builder. Se usa 'this' como Contexto.
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // 2. Configurar las propiedades de la ventana: Título y Mensaje.
+        builder.setTitle(titulo);
+        builder.setMessage(mensaje);
+
+        // 3. Agregar un botón de acción (Positivo).
+        // Este botón es el que generalmente se usa para "Aceptar", "OK" o "Continuar".
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Opcional: Código que se ejecuta cuando el usuario presiona "Aceptar".
+                // Por ejemplo: reintentar la acción, limpiar un campo, o simplemente cerrar.
+                dialog.dismiss(); // Cierra el diálogo.
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
     private void actualizarResultados(List<Cita> listaDeResult) {
         if (adapte != null) {
@@ -159,6 +227,7 @@ public void loadCitSelect(View v){
 
         // 2. Extrae solo los NOMBRES de la lista de Afiliados
         List<String> nombresAfiliados = new ArrayList<>();
+        nombresAfiliados.add("Seleccionar paciente");
         for (Afiliado afiliado : lista) {
             // Asumiendo que tu clase Afiliado tiene un método getName()
             nombresAfiliados.add(afiliado.getNombres() +" " + afiliado.getPrimerAP() +" "+ afiliado.getSegundoAP());

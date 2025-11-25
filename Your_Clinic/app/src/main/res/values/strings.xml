@@ -23,7 +23,7 @@
     <string name="txt_Parentezco">Parentezco</string>
     <string name="txt_agendarCit">Agendar</string>
     <string name="txt_agenAfil">Seleccionar Paciente</string>
-    <string name="txt_restore">cargar datos por defecto</string>
+    <string name="txt_restore">Restaurar datos por defecto</string>
     <string name="txt_cambiosCit">Modificar cita</string>
 
     <string name="Tittle_ConsultCit">BUSCAR CITAS</string>
@@ -43,6 +43,23 @@
     <string name="TittleModCita">REAGENDAR CITA</string>
 
     <string name="TittleModCitaSelet">REAGENDAR CITA SELECCIONADA</string>
+    <string name="txt_showDescripCita">Detalles de la cita</string>
+    <string name="txt_DoctorCitMod">Doctor</string>
+    <string name="txt_PacienteCitMod">Paciente</string>
+    <string name="txt_motCitMod">Motivo</string>
+    <string name="txt_FechCitMod">Cambiar fecha</string>
+    <string name="txt_HoraCitMod">Cambiar hora</string>
+    <string name="txt_saveCambios">Guardar cambios</string>
+    <string name="txt_DetModificables">Reagendar fecha y hora</string>
+
+    <string name="Tittle_GestionAfil">Gestionar miembros\nde la poliza de seguro</string>
+    <string name="txtbtn_addAfiliado">Añadir nuevo mienbro</string>
+
+    <string name="Tittle_addAfiliado">Añadir miembro</string>
+    <string name="txt_NombresAfil">Nombres</string>
+    <string name="txt_PrimerAPAfil">Primer apellido</string>
+    <string name="txt_SegApAfil">Segundo apellido</string>
+    <string name="txt_parentezcoAfil">Parentezco</string>
 
     <string-array name="SP_Doctores">
         <item>Ana Maria Garcia López</item>
@@ -58,5 +75,15 @@
         <item>Programada</item>
         <item>Reprogramada</item>
         <item>Cancelada</item>
+    </string-array>
+
+    <string-array name="SP_Parentezco">
+        <item>Hermano/a</item>
+        <item>Hijo/a</item>
+        <item>Madre</item>
+        <item>Padre</item>
+        <item>Tio/a</item>
+        <item>Primo/a</item>
+        <item>Abuelo/a</item>
     </string-array>
 </resources>

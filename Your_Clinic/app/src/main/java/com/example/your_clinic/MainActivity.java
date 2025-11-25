@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             MensajeTOAST("Noo puedes entrar sin contraseña");
         } else if (status == 1) {
             if (User.equals("Jose") && pasword.equals("2308")){
+                Toast.makeText(this, "Datos correctos", Toast.LENGTH_SHORT).show();
                 return true;
             }else{
                 return false;

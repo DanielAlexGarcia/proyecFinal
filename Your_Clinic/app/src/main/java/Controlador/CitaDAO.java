@@ -30,7 +30,7 @@ public interface CitaDAO {
     @Query(("SELECT * FROM Cita WHERE paciente =:pac"))
     public List<Cita> consultCitaPac(String pac);
 
-    @Query("UPDATE Cita SET Fecha =:fech, Hora =:hor WHERE id =:ID")
-    public void actualizarCita(String fech, String hor, int ID);
+    @Query("UPDATE Cita SET Fecha =:fech, Hora =:hor, estado=:est WHERE id =:ID")
+    public void actualizarCita(String fech, String hor,String est, int ID);
 
 }

@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Controlador.AfiliadoDAO;
 import Entidades.Afiliado;
@@ -34,7 +35,18 @@ public class classActivityInicio extends AppCompatActivity {
     protected void onCreate(@Nullable  Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pag_inicio);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ClinicaBD db = ClinicaBD.getAppDatabase((getBaseContext()));
+                List<Cita> cit = db.citDAO().AllCitas();
+                if(cit.size() > 0){
 
+                }else{
+                    loadDatDefault();
+                }
+            }
+        }).start();
     }
 
     @Override
@@ -53,13 +65,14 @@ public class classActivityInicio extends AppCompatActivity {
         // Muestra un mensaje al usuario.
         Toast.makeText(this, "Presiona de nuevo para salir", Toast.LENGTH_SHORT).show();
     }
-    public void cargarDefault(View v){
+
+    private void loadDatDefault(){
         ArrayList<Afiliado> listaDefault = new ArrayList<>();
         listaDefault.add(new Afiliado(1, "Jose", "Torres", "Castro","Propietario", "7N4937B438CJJ3"));
-        listaDefault.add(new Afiliado(2, "Marta", "Ortega", "Cruz", "Hermana", "230NDOW08E"));
-        listaDefault.add(new Afiliado(3, "Gabriel", "Hidalgo", "Lara", "Hijo", "8NOF9YB"));
-        listaDefault.add(new Afiliado(4, "Natalia", "Rojas", "Marin", "Hermana", "7FO6W97D"));
-        listaDefault.add(new Afiliado(5, "Felipe", "Blanco", "Guzman", "Tio", "8N48F08V"));
+        listaDefault.add(new Afiliado(2, "Marta", "Ortega", "Cruz", "Hermano/a", "230NDOW08E"));
+        listaDefault.add(new Afiliado(3, "Gabriel", "Hidalgo", "Lara", "Hijo/a", "8NOF9YB"));
+        listaDefault.add(new Afiliado(4, "Natalia", "Rojas", "Marin", "Hermano/a", "7FO6W97D"));
+        listaDefault.add(new Afiliado(5, "Felipe", "Blanco", "Guzman", "Tio/a", "8N48F08V"));
         listaDefault.add(new Afiliado(6, "Andrea", "Serrano", "Paz", "Madre", "78N3OY478F"));
 
         ArrayList<Cita> listaDefault2  = new ArrayList<>();
@@ -76,12 +89,7 @@ public class classActivityInicio extends AppCompatActivity {
                 for(Afiliado n : listaDefault){
                     db.afilDAO().addAfiliado(n);
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getBaseContext(), "Datos añadidos", Toast.LENGTH_SHORT).show();
-                    }
-                });
+
 
             }
         }).start();
@@ -91,15 +99,14 @@ public class classActivityInicio extends AppCompatActivity {
                 for (Cita m : listaDefault2){
                     db.citDAO().addCita(m);
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getBaseContext(), "Datos añadidos", Toast.LENGTH_SHORT).show();
-                    }
-                });
+
 
             }
         }).start();
+        Toast.makeText(this, "Datos por defecto restaurados/añadidos", Toast.LENGTH_SHORT).show();
+    }
+    public void cargarDefault(View v){
+        loadDatDefault();
 
     }
     
@@ -111,7 +118,7 @@ public class classActivityInicio extends AppCompatActivity {
         } else if (v.getId() == R.id.btnConsultCitas || v.getId() == R.id.loadCit) {
             i = new Intent(this, classActivityConsultCitas.class);
         } else if (v.getId() == R.id.btnGestAfil || v.getId() == R.id.gestAfil) {
-
+            i = new Intent(this, classActivityGestionAfil.class);
         } else if (v.getId() == R.id.btnCambioCit || v.getId() == R.id.cambioCit) {
             i = new Intent(this, classActivityModifCitas.class);
         } else if (i == null) {
@@ -123,34 +130,6 @@ public class classActivityInicio extends AppCompatActivity {
         if(i != null){
             startActivity(i);
         }
-    }
-
-    private void test(int op){
-        String un ="paco"      ;
-        String dos ="deco"     ;
-        String tre ="enco"     ;
-        String fort ="hermano"    ;
-        String five = "76JG93H4T"    ;
-        String Six      ;
-        String Seven    ;
-        String eit      ;
-        ClinicaBD bd = ClinicaBD.getAppDatabase(getBaseContext());
-        if(op == 1){
-            Afiliado alfil = new Afiliado(null, un, dos,tre, fort, five);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    bd.afilDAO().addAfiliado(alfil);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getBaseContext(), "Insercion correcta", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            }).start();
-        }
-
     }
 
 

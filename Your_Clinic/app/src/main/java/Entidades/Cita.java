@@ -100,7 +100,8 @@ public class Cita {
 
     @Override
     public String toString(){
-        return "Doctor: "+ this.doctor+"\n" +
+        return  "ID: "+ this.id+"\n"+
+                "Doctor: "+ this.doctor+"\n" +
                 "Paciente: "+this.paciente+"\n" +
                 "Fecha: "+this.fecha+"\n" +
                 "Hora: "+this.hora+"\n" +
