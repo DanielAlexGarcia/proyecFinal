@@ -20,14 +20,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".classActivityInicio"></activity>
-        <activity android:name=".classActivityAgendarCita"></activity>
-        <activity android:name=".classActivityConsultCitas"></activity>
+        <activity android:name=".classActivityInicio"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".classActivityAgendarCita"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".classActivityConsultCitas"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".classActivityModifCitas"
-            android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name=".classActivityGestionAfil"></activity>
-        <activity android:name=".modifiCitSelect"></activity>
-        <activity android:name=".addAfiliado"></activity>
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".classActivityGestionAfil"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity android:name=".modifiCitSelect"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".addAfiliado"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
