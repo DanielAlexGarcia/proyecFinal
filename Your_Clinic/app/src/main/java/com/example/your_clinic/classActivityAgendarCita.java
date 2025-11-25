@@ -1,6 +1,8 @@
 package com.example.your_clinic;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,35 +41,30 @@ public class classActivityAgendarCita extends AppCompatActivity{
         motivo = findViewById(R.id.txtMotivo);
         SPAfil = findViewById(R.id.SPAfiliados);
 
+        PComp.configurarFormatoFecha(Date);
+        PComp.configurarFormatoHora(hora);
+
         adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
                 new ArrayList<String>()
         );
 
-// Define cómo se verá el elemento cuando está seleccionado
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-// 3. Conecta el Adaptador al Spinner
         SPAfil.setAdapter(adapter);
 
-        SPDoctores = findViewById(R.id.SPDoctor); // Reemplaza R.id.SPDoctores con el ID real de tu XML
+        SPDoctores = findViewById(R.id.SPDoctor);
 
-        // 1. Crear el ArrayAdapter (¡SOLO AQUÍ!)
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
-                R.array.SP_Doctores, // ✅ Tu lista de opciones (desde resources/arrays.xml)
+                R.array.SP_Doctores,
                 android.R.layout.simple_spinner_item
         );
 
-        // 2. Establecer el layout para la vista desplegable
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // 3. Asignar el adaptador al Spinner
         SPDoctores.setAdapter(adapter);
-
-        // 4. Asignar el listener para manejar selecciones
-        //SPDoctores.setOnItemSelectedListener(this);
 
         getAfil();
 
@@ -92,49 +89,45 @@ public class classActivityAgendarCita extends AppCompatActivity{
     private void actualizarSPPaciente(){
         adapter.clear();
 
-        // 2. Extrae solo los NOMBRES de la lista de Afiliados
         List<String> nombresAfiliados = new ArrayList<>();
         for (Afiliado afiliado : afiliados) {
-            // Asumiendo que tu clase Afiliado tiene un método getName()
             nombresAfiliados.add(afiliado.getNombres() +" " + afiliado.getPrimerAP() +" "+ afiliado.getSegundoAP());
         }
 
-        // 3. Añade los nuevos nombres al Adaptador
         adapter.addAll(nombresAfiliados);
 
-        // 4. Notifica al Spinner que los datos han cambiado
         adapter.notifyDataSetChanged();
     }
     private void mostrarVentanaError(String titulo, String mensaje) {
-        // 1. Crear una nueva instancia del Builder. Se usa 'this' como Contexto.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        // 2. Configurar las propiedades de la ventana: Título y Mensaje.
         builder.setTitle(titulo);
         builder.setMessage(mensaje);
 
-        // 3. Agregar un botón de acción (Positivo).
-        // Este botón es el que generalmente se usa para "Aceptar", "OK" o "Continuar".
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Opcional: Código que se ejecuta cuando el usuario presiona "Aceptar".
-                // Por ejemplo: reintentar la acción, limpiar un campo, o simplemente cerrar.
-                dialog.dismiss(); // Cierra el diálogo.
+                dialog.dismiss();
+
             }
         });
-            /*
-        // 4. (Opcional) Agregar un botón de acción Negativo (Cancelar/Salir)
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void mostrarVentanaExito(String titulo, String mensaje) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(titulo);
+        builder.setMessage(mensaje);
+
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Código que se ejecuta si el usuario presiona "Cancelar".
-                // Por ejemplo: no hacer nada o registrar el error.
-                dialog.cancel(); // Cierra el diálogo.
+                dialog.dismiss();
+                    finish();
             }
-        });*/
-
-        // 5. Crear y mostrar la ventana de diálogo.
+        });
         AlertDialog dialog = builder.create();
         dialog.show();
     }
@@ -189,12 +182,14 @@ public class classActivityAgendarCita extends AppCompatActivity{
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mostrarVentanaError("Exito", "Se agendo la cita correctamente");
+                        mostrarVentanaExito("Exito", "Se agendo la cita correctamente");
                     }
                 });
             }
         }).start();
     }
+
+
 
 
 

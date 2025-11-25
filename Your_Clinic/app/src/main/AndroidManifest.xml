@@ -23,7 +23,8 @@
         <activity android:name=".classActivityInicio"></activity>
         <activity android:name=".classActivityAgendarCita"></activity>
         <activity android:name=".classActivityConsultCitas"></activity>
-        <activity android:name=".classActivityModifCitas"></activity>
+        <activity android:name=".classActivityModifCitas"
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity android:name=".classActivityGestionAfil"></activity>
         <activity android:name=".modifiCitSelect"></activity>
         <activity android:name=".addAfiliado"></activity>

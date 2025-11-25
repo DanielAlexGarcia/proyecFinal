@@ -27,6 +27,8 @@ import java.util.List;
 import Entidades.Afiliado;
 import Entidades.Cita;
 import db.ClinicaBD;
+import plantillas.PlantillasComponentes;
+
 import com.example.your_clinic.CustomAdapter;
 
 public class classActivityModifCitas extends AppCompatActivity{
@@ -36,6 +38,7 @@ public class classActivityModifCitas extends AppCompatActivity{
     private ArrayAdapter<String> adapter;
     private RecyclerView results;
     private CustomAdapter adapte;
+
 
     private ArrayList<Cita> datos = null;
     private RecyclerView.LayoutManager layoutManager;
@@ -165,21 +168,15 @@ public void loadCitSelect(View v){
 }
 
     private void mostrarVentanaError(String titulo, String mensaje) {
-        // 1. Crear una nueva instancia del Builder. Se usa 'this' como Contexto.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        // 2. Configurar las propiedades de la ventana: Título y Mensaje.
         builder.setTitle(titulo);
         builder.setMessage(mensaje);
 
-        // 3. Agregar un botón de acción (Positivo).
-        // Este botón es el que generalmente se usa para "Aceptar", "OK" o "Continuar".
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // Opcional: Código que se ejecuta cuando el usuario presiona "Aceptar".
-                // Por ejemplo: reintentar la acción, limpiar un campo, o simplemente cerrar.
-                dialog.dismiss(); // Cierra el diálogo.
+                dialog.dismiss();
             }
         });
 
@@ -199,10 +196,8 @@ public void loadCitSelect(View v){
                 new ArrayList<String>()
         );
 
-// Define cómo se verá el elemento cuando está seleccionado
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-// 3. Conecta el Adaptador al Spinner
         SPPac.setAdapter(adapter);
     }
 
@@ -225,18 +220,14 @@ public void loadCitSelect(View v){
     private void actualizarSPPaciente(){
         adapter.clear();
 
-        // 2. Extrae solo los NOMBRES de la lista de Afiliados
         List<String> nombresAfiliados = new ArrayList<>();
         nombresAfiliados.add("Seleccionar paciente");
         for (Afiliado afiliado : lista) {
-            // Asumiendo que tu clase Afiliado tiene un método getName()
             nombresAfiliados.add(afiliado.getNombres() +" " + afiliado.getPrimerAP() +" "+ afiliado.getSegundoAP());
         }
 
-        // 3. Añade los nuevos nombres al Adaptador
         adapter.addAll(nombresAfiliados);
 
-        // 4. Notifica al Spinner que los datos han cambiado
         adapter.notifyDataSetChanged();
     }
 

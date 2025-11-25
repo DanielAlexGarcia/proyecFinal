@@ -20,6 +20,8 @@ public class modifiCitSelect extends AppCompatActivity {
     private String[] IDcit;
     private EditText txtDoc, txtPac, txtMot, txtFech, txtHora;
 
+    private PlantillasComponentes PComp;
+
     private Cita citaModificar;
 
 
@@ -34,6 +36,9 @@ public class modifiCitSelect extends AppCompatActivity {
         txtFech = findViewById(R.id.txtFechaEdit);
         txtHora = findViewById(R.id.txtHoraEdit);
         boolean si = false;
+        PComp = new PlantillasComponentes();
+        PComp.configurarFormatoFecha(txtFech);
+        PComp.configurarFormatoHora(txtHora);
 
         new Thread(new Runnable() {
             @Override

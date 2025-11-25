@@ -60,6 +60,7 @@
     <string name="txt_PrimerAPAfil">Primer apellido</string>
     <string name="txt_SegApAfil">Segundo apellido</string>
     <string name="txt_parentezcoAfil">Parentezco</string>
+    <string name="txtbtn_addAfil">Añadir afiliado</string>
 
     <string-array name="SP_Doctores">
         <item>Ana Maria Garcia López</item>
@@ -78,6 +79,7 @@
     </string-array>
 
     <string-array name="SP_Parentezco">
+        <item>Seleccionar</item>
         <item>Hermano/a</item>
         <item>Hijo/a</item>
         <item>Madre</item>
