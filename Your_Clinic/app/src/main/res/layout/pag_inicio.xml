@@ -45,14 +45,11 @@
         android:id="@+id/loadCit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="85dp"
         android:onClick="loadPage"
         android:text="@string/txt_verCitas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/agenCit"
         app:layout_constraintTop_toBottomOf="@+id/btnConsultCitas" />
 
     <TextView
@@ -98,8 +95,10 @@
         android:layout_marginStart="49dp"
         android:layout_marginTop="38dp"
         android:layout_marginEnd="71dp"
+        android:layout_marginBottom="34dp"
         android:onClick="loadPage"
         android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/loadCit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnAgenCita"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
@@ -124,8 +123,10 @@
         android:layout_height="124dp"
         android:layout_marginTop="58dp"
         android:layout_marginEnd="71dp"
+        android:layout_marginBottom="37dp"
         android:onClick="loadPage"
         android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/cambioCit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loadCit"
         app:srcCompat="@drawable/modifcit" />
@@ -134,13 +135,11 @@
         android:id="@+id/cambioCit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         android:layout_marginTop="37dp"
         android:layout_marginEnd="92dp"
         android:onClick="loadPage"
         android:text="@string/txt_cambiosCit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/gestAfil"
         app:layout_constraintTop_toBottomOf="@+id/btnCambioCit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

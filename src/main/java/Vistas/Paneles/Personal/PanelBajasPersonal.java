@@ -69,6 +69,12 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
 
         jLabel2.setText("Buscar por nombre");
 
+        txtbusqNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbusqNombreKeyReleased(evt);
+            }
+        });
+
         BBusqueda.setText("Buscar");
         BBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +158,7 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         }else{
             busco = true;
             System.out.println("paso");
-            hper.BuscarCoincidenciaPersonal(tablePersonal, txtbusqNombre.getText().trim());
+            hper.BuscarCoincidenciaPersonalBTN(tablePersonal, txtbusqNombre.getText().trim());
         }
     }//GEN-LAST:event_BBusquedaActionPerformed
 
@@ -164,6 +170,15 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
             hper.EliminarPersonal(i, tablePersonal);
         }
     }//GEN-LAST:event_BDeleteActionPerformed
+
+    private void txtbusqNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusqNombreKeyReleased
+        if (txtbusqNombre.getText().trim().equals("")){
+        }else{
+            busco = true;
+            System.out.println("paso");
+            hper.BuscarCoincidenciaPersonal(tablePersonal, txtbusqNombre.getText().trim());
+        }
+    }//GEN-LAST:event_txtbusqNombreKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

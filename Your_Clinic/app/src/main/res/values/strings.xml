@@ -62,6 +62,12 @@
     <string name="txt_parentezcoAfil">Parentezco</string>
     <string name="txtbtn_addAfil">Añadir afiliado</string>
 
+    <string name="txt_busqForPac">Nombre del paciente</string>
+
+    <string name="tittle_windowModif">Reagendar a  </string>
+    <string name="txt_fechReagend">Fecha</string>
+    <string name="txt_horReagen">Hora</string>
+
     <string-array name="SP_Doctores">
         <item>Ana Maria Garcia López</item>
         <item>Juan Carlos Pérez Martinez</item>
@@ -80,6 +86,7 @@
 
     <string-array name="SP_Parentezco">
         <item>Seleccionar</item>
+        <item>Conyuge</item>
         <item>Hermano/a</item>
         <item>Hijo/a</item>
         <item>Madre</item>

@@ -103,7 +103,12 @@ public class classActivityInicio extends AppCompatActivity {
 
             }
         }).start();
-        Toast.makeText(this, "Datos por defecto restaurados/añadidos", Toast.LENGTH_SHORT).show();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), "Datos por defecto restaurados/añadidos", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     public void cargarDefault(View v){
         loadDatDefault();

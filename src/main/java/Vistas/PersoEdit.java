@@ -8,6 +8,7 @@ import Controlador.ListadosConcurrentes;
 import Vistas.Paneles.Personal.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
@@ -47,7 +48,8 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     
     private void iniciarCardLayout() {
         cardLayout = new CardLayout();
-        panelDeContenido = new Vistas.Paneles.PanelConFondoInterno("/Recursos/FondoSingle.jpg");
+        panelDeContenido = new JPanel();
+        panelDeContenido.setBackground(new Color(51,255,255));
         panelDeContenido.setLayout(cardLayout);
 
         panelDeContenido.add(PersoAlta, PanelAlta);
@@ -55,7 +57,7 @@ public class PersoEdit extends javax.swing.JInternalFrame {
 
         getContentPane().removeAll(); // quitamos el layout vacío generado por NetBeans
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(jToolBar1, BorderLayout.NORTH);
+        getContentPane().add(jToolBar1, BorderLayout.WEST);
         getContentPane().add(panelDeContenido, BorderLayout.CENTER);
         
         revalidate();
@@ -66,14 +68,17 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         if(namePanel.equals(PanelAlta)){
             
         }else if (namePanel.equals(PanelBaja)){
+            
         }
     }
     
     public void setWindowShow(int numVentana){
         if(numVentana == 1){
             setCardLayaout(PanelAlta);
+            
         }else if (numVentana == 2){
             setCardLayaout(PanelBaja);
+            setTitle("Eliminar");
         }
     }
 
@@ -95,10 +100,21 @@ public class PersoEdit extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
+        setTitle("PERSONAL");
+        setOpaque(true);
 
+        jToolBar1.setBackground(new java.awt.Color(165, 249, 143));
+        jToolBar1.setBorder(new javax.swing.border.MatteBorder(null));
+        jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar1.setRollover(true);
-        jToolBar1.setOpaque(false);
 
+        BAñadir.setBackground(new java.awt.Color(0, 0, 255));
+        BAñadir.setForeground(new java.awt.Color(225, 225, 225));
+        BAñadir.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/addUser.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         BAñadir.setText("Añadir");
         BAñadir.setFocusable(false);
         BAñadir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -110,9 +126,17 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(BAñadir);
 
+        Beliminar.setBackground(new java.awt.Color(0, 0, 255));
+        Beliminar.setForeground(new java.awt.Color(255, 255, 255));
+        Beliminar.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/removUser.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         Beliminar.setText("Eliminar");
         Beliminar.setFocusable(false);
         Beliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Beliminar.setOpaque(true);
         Beliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Beliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,13 +149,13 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 807, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 744, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 466, Short.MAX_VALUE))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
         );
 
         pack();

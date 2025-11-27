@@ -30,17 +30,23 @@
     <Menu class="javax.swing.JMenuBar" name="MenuBarOP">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c1" green="b6" red="0" type="rgb"/>
+          <Color blue="90" green="f2" red="c7" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder bottom="5" left="3" right="3" top="1">
+              <Color PropertyName="color" blue="23" green="ae" red="72" type="rgb"/>
+            </MatteColorBorder>
+          </Border>
         </Property>
       </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="MenuPersonal">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
             </Property>
             <Property name="text" type="java.lang.String" value="Personal"/>
           </Properties>
@@ -48,7 +54,13 @@
             <MenuItem class="javax.swing.JMenuItem" name="PersonalAlta">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(&#xd;&#xa;    new javax.swing.ImageIcon(getClass().getResource(&quot;/Recursos/addUser.png&quot;))&#xd;&#xa;        .getImage()&#xd;&#xa;        .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)&#xd;&#xa;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Dar de alta"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -62,7 +74,13 @@
             <MenuItem class="javax.swing.JMenuItem" name="PersonalBaja">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(&#xd;&#xa;    new javax.swing.ImageIcon(getClass().getResource(&quot;/Recursos/removUser.png&quot;))&#xd;&#xa;        .getImage()&#xd;&#xa;        .getScaledInstance(30,30, java.awt.Image.SCALE_SMOOTH)&#xd;&#xa;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Dar de baja"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -77,13 +95,21 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="MenuPaciente">
           <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
             <Property name="text" type="java.lang.String" value="Paciente"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="PacienteAlta">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(&#xd;&#xa;    new javax.swing.ImageIcon(getClass().getResource(&quot;/Recursos/addUser.png&quot;))&#xd;&#xa;        .getImage()&#xd;&#xa;        .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)&#xd;&#xa;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nuevo"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -97,7 +123,10 @@
             <MenuItem class="javax.swing.JMenuItem" name="PacienteModificar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(&#xd;&#xa;    new javax.swing.ImageIcon(getClass().getResource(&quot;/Recursos/editUser.png&quot;))&#xd;&#xa;        .getImage()&#xd;&#xa;        .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)&#xd;&#xa;)" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Modificar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -112,13 +141,18 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="MenuCita">
           <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cita"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="CitaAgendar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Egendar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -132,7 +166,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="CitaEditar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Editar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -146,7 +180,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="CitaConsultar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Consultar"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -161,13 +195,18 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="estadistica">
           <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
             <Property name="text" type="java.lang.String" value="Grafico"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemGraficoEstCita">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="eb" green="f7" red="75" type="rgb"/>
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Estado citas"/>
               </Properties>
@@ -179,11 +218,19 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="Reporte">
           <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
             <Property name="text" type="java.lang.String" value="Reporte"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuReporAlta">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Reporte de altas"/>
               </Properties>
               <Events>
@@ -192,6 +239,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuRepoBajas">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Reporte de bajas"/>
               </Properties>
               <Events>
@@ -200,6 +250,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuRepoCambios">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="77" green="f9" red="4c" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Reporte de cambios"/>
               </Properties>
               <Events>
@@ -245,8 +298,12 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="destopPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a3" green="df" red="c5" type="rgb"/>
+        </Property>
+      </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="destopPanel = new Vistas.DestopConFondo(&quot;/Recursos/FondoAll.jpg&quot;);&#xd;&#xa;"/>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VentanaInicio_destopPanel"/>
       </AuxValues>
 
@@ -265,7 +322,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
                   <Component id="InicioSecion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="229" max="32767" attributes="0"/>
+                  <EmptySpace pref="224" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -273,6 +330,9 @@
       <SubComponents>
         <Container class="javax.swing.JInternalFrame" name="InicioSecion">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8c" green="d6" red="b6" type="rgb"/>
+            </Property>
             <Property name="visible" type="boolean" value="true"/>
           </Properties>
 

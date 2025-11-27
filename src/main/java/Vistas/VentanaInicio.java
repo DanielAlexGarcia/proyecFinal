@@ -98,8 +98,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         cargando = new javax.swing.JDialog();
         jMenuItem1 = new javax.swing.JMenuItem();
-        destopPanel = destopPanel = new Vistas.DestopConFondo("/Recursos/FondoAll.jpg");
-        ;
+        destopPanel = new javax.swing.JDesktopPane();
         InicioSecion = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -145,6 +144,9 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        destopPanel.setBackground(new java.awt.Color(197, 223, 163));
+
+        InicioSecion.setBackground(new java.awt.Color(182, 214, 140));
         InicioSecion.setVisible(true);
 
         jLabel1.setText("Iniciar secion");
@@ -234,16 +236,22 @@ public class VentanaInicio extends javax.swing.JFrame {
             .addGroup(destopPanelLayout.createSequentialGroup()
                 .addGap(139, 139, 139)
                 .addComponent(InicioSecion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
-        MenuBarOP.setBackground(new java.awt.Color(0, 182, 193));
-        MenuBarOP.setBorder(null);
+        MenuBarOP.setBackground(new java.awt.Color(199, 242, 144));
+        MenuBarOP.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 3, 5, 3, new java.awt.Color(114, 174, 35)));
 
-        MenuPersonal.setBorder(null);
+        MenuPersonal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         MenuPersonal.setText("Personal");
 
-        PersonalAlta.setBackground(new java.awt.Color(117, 247, 235));
+        PersonalAlta.setBackground(new java.awt.Color(76, 249, 119));
+        PersonalAlta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PersonalAlta.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/addUser.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         PersonalAlta.setText("Dar de alta");
         PersonalAlta.setBorder(null);
         PersonalAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -253,7 +261,13 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         MenuPersonal.add(PersonalAlta);
 
-        PersonalBaja.setBackground(new java.awt.Color(117, 247, 235));
+        PersonalBaja.setBackground(new java.awt.Color(76, 249, 119));
+        PersonalBaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        PersonalBaja.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/removUser.png"))
+            .getImage()
+            .getScaledInstance(30,30, java.awt.Image.SCALE_SMOOTH)
+        ));
         PersonalBaja.setText("Dar de baja");
         PersonalBaja.setBorder(null);
         PersonalBaja.addActionListener(new java.awt.event.ActionListener() {
@@ -265,9 +279,15 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         MenuBarOP.add(MenuPersonal);
 
+        MenuPaciente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         MenuPaciente.setText("Paciente");
 
-        PacienteAlta.setBackground(new java.awt.Color(117, 247, 235));
+        PacienteAlta.setBackground(new java.awt.Color(76, 249, 119));
+        PacienteAlta.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/addUser.png"))
+            .getImage()
+            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+        ));
         PacienteAlta.setText("Nuevo");
         PacienteAlta.setBorder(null);
         PacienteAlta.addActionListener(new java.awt.event.ActionListener() {
@@ -277,7 +297,12 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         MenuPaciente.add(PacienteAlta);
 
-        PacienteModificar.setBackground(new java.awt.Color(117, 247, 235));
+        PacienteModificar.setBackground(new java.awt.Color(76, 249, 119));
+        PacienteModificar.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/editUser.png"))
+            .getImage()
+            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+        ));
         PacienteModificar.setText("Modificar");
         PacienteModificar.setBorder(null);
         PacienteModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -289,9 +314,10 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         MenuBarOP.add(MenuPaciente);
 
+        MenuCita.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         MenuCita.setText("Cita");
 
-        CitaAgendar.setBackground(new java.awt.Color(117, 247, 235));
+        CitaAgendar.setBackground(new java.awt.Color(76, 249, 119));
         CitaAgendar.setText("Egendar");
         CitaAgendar.setBorder(null);
         CitaAgendar.addActionListener(new java.awt.event.ActionListener() {
@@ -301,7 +327,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         MenuCita.add(CitaAgendar);
 
-        CitaEditar.setBackground(new java.awt.Color(117, 247, 235));
+        CitaEditar.setBackground(new java.awt.Color(76, 249, 119));
         CitaEditar.setText("Editar");
         CitaEditar.setBorder(null);
         CitaEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -311,7 +337,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         MenuCita.add(CitaEditar);
 
-        CitaConsultar.setBackground(new java.awt.Color(117, 247, 235));
+        CitaConsultar.setBackground(new java.awt.Color(76, 249, 119));
         CitaConsultar.setText("Consultar");
         CitaConsultar.setBorder(null);
         CitaConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -323,9 +349,10 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         MenuBarOP.add(MenuCita);
 
+        estadistica.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         estadistica.setText("Grafico");
 
-        itemGraficoEstCita.setBackground(new java.awt.Color(117, 247, 235));
+        itemGraficoEstCita.setBackground(new java.awt.Color(76, 249, 119));
         itemGraficoEstCita.setText("Estado citas");
         itemGraficoEstCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,8 +363,10 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         MenuBarOP.add(estadistica);
 
+        Reporte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Reporte.setText("Reporte");
 
+        menuReporAlta.setBackground(new java.awt.Color(76, 249, 119));
         menuReporAlta.setText("Reporte de altas");
         menuReporAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,6 +375,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         Reporte.add(menuReporAlta);
 
+        menuRepoBajas.setBackground(new java.awt.Color(76, 249, 119));
         menuRepoBajas.setText("Reporte de bajas");
         menuRepoBajas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,6 +384,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         Reporte.add(menuRepoBajas);
 
+        menuRepoCambios.setBackground(new java.awt.Color(76, 249, 119));
         menuRepoCambios.setText("Reporte de cambios");
         menuRepoCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
