@@ -74,6 +74,7 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setResizable(true);
 
+        jToolBar1.setBorder(new javax.swing.border.MatteBorder(null));
         jToolBar1.setRollover(true);
         jToolBar1.setOpaque(false);
 

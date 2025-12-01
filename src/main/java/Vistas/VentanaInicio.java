@@ -331,6 +331,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         CitaAgendar.setBackground(new java.awt.Color(178, 223, 178));
         CitaAgendar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CitaAgendar.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/addCita.png"))
+            .getImage()
+            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+        ));
         CitaAgendar.setText("Egendar");
         CitaAgendar.setBorder(null);
         CitaAgendar.addActionListener(new java.awt.event.ActionListener() {
@@ -342,6 +347,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         CitaEditar.setBackground(new java.awt.Color(178, 223, 178));
         CitaEditar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CitaEditar.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/modifCita.png"))
+            .getImage()
+            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+        ));
         CitaEditar.setText("Editar");
         CitaEditar.setBorder(null);
         CitaEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -353,6 +363,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         CitaConsultar.setBackground(new java.awt.Color(178, 223, 178));
         CitaConsultar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CitaConsultar.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/consuCita.png"))
+            .getImage()
+            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+        ));
         CitaConsultar.setText("Consultar");
         CitaConsultar.setBorder(null);
         CitaConsultar.addActionListener(new java.awt.event.ActionListener() {

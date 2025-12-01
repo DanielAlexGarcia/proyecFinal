@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -56,6 +57,37 @@ public class HilosCita {
             	else {
                         faz.showMessageDialog(faz.frame, "Buscando...", false);
             		faz.ShowMessage("No hay datos para agendar cita");
+            	}
+                
+
+            } catch (Exception e) {
+                System.err.println("Error al consultar datos: " + e.getMessage());
+            }
+        }).start();
+    }
+    
+    public void busqCitNomPac(JTextField nomPac, JTable tabla){
+        new Thread(() -> {								// Hilo que hace la consulta 
+            try {
+            	if(nomPac.getText().trim()!= null && tabla != null) {
+                    ResultSet c = CDAO.busquedaPorNombrePac(nomPac.getText().trim());
+                    if (c != null){
+                        ListadosConcurrentes l = new ListadosConcurrentes();
+                        DefaultTableModel model = l.crearModeloTabla(c);
+                    SwingUtilities.invokeLater(() -> {
+                        tabla.setModel(model);
+                    });
+                    }else{
+                    SwingUtilities.invokeLater(() -> {	
+                        
+                    });
+                    }
+            	}
+            	else {
+                       ResultSet don = CDAO.allCitas();
+                       ListadosConcurrentes l = new ListadosConcurrentes();
+                        DefaultTableModel model = l.crearModeloTabla(don);
+                        tabla.setModel(model);
             	}
                 
 
