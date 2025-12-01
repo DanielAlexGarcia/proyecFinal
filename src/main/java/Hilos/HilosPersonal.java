@@ -90,6 +90,35 @@ public class HilosPersonal {
         }).start();
     }
     
+    public void allPersonal(JTable tabla) {
+        new Thread(() -> {								// Hilo que hace la consulta 
+            try {
+            	if(tabla != null) {
+                    ResultSet donana = PDAO.allPersonal();
+                    ListadosConcurrentes lis = new ListadosConcurrentes();
+                    tabla.setModel(lis.crearModeloTabla(donana));
+                    if (donana != null){
+                        
+                        // Actualizar GUI en el hilo de eventos de Swing
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	
+                    });
+                    }else{
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	
+                    });
+                    }
+            	}
+            	else {
+            	}
+                
+
+            } catch (Exception e) {
+                System.err.println("Error al consultar datos: " + e.getMessage());
+            }
+        }).start();
+    }
+    
     public void BuscarCoincidenciaPersonalBTN(JTable tabla, String nombre) {
     	interfaz.showMessageDialog(interfaz.frame, "Buscando...", true);
         new Thread(() -> {								// Hilo que hace la consulta 

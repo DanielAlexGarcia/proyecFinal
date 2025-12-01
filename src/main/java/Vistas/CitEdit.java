@@ -9,6 +9,7 @@ import Controlador.ListadosConcurrentes;
 import Vistas.Paneles.Cita.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -49,7 +50,8 @@ public class CitEdit extends javax.swing.JInternalFrame {
         this.citConsult = new PanelConsultaCita(lists, faz);
         
         cardLayout = new CardLayout();
-        panelDeContenido = new Vistas.Paneles.PanelConFondoInterno("/Recursos/FondoSingle.jpg");
+        panelDeContenido = new JPanel();
+        panelDeContenido.setBackground(new Color(245,245,245));
         panelDeContenido.setLayout(cardLayout);
         panelDeContenido.add(citAlta, PanelAñadir);
         panelDeContenido.add(citCambio, PanelModificar);
@@ -57,7 +59,7 @@ public class CitEdit extends javax.swing.JInternalFrame {
         
         getContentPane().removeAll(); // quitamos el layout vacío generado por NetBeans
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(jToolBar1, BorderLayout.NORTH);
+        getContentPane().add(jToolBar1, BorderLayout.WEST);
         getContentPane().add(panelDeContenido, BorderLayout.CENTER);
         
         revalidate();
@@ -100,8 +102,18 @@ public class CitEdit extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
 
+        jToolBar1.setBackground(new java.awt.Color(245, 245, 245));
+        jToolBar1.setBorder(new javax.swing.border.MatteBorder(null));
+        jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar1.setRollover(true);
 
+        BNewCita.setBackground(new java.awt.Color(178, 223, 178));
+        BNewCita.setForeground(new java.awt.Color(0, 0, 0));
+        BNewCita.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/addCita.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         BNewCita.setText("Nueva");
         BNewCita.setFocusable(false);
         BNewCita.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -113,6 +125,13 @@ public class CitEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(BNewCita);
 
+        BModifiCita.setBackground(new java.awt.Color(178, 223, 178));
+        BModifiCita.setForeground(new java.awt.Color(0, 0, 0));
+        BModifiCita.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/modifCita.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         BModifiCita.setText("Modificar");
         BModifiCita.setFocusable(false);
         BModifiCita.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -124,7 +143,14 @@ public class CitEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(BModifiCita);
 
-        BModifiEstate.setText("Consultar citas");
+        BModifiEstate.setBackground(new java.awt.Color(178, 223, 178));
+        BModifiEstate.setForeground(new java.awt.Color(0, 0, 0));
+        BModifiEstate.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/consuCita.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
+        BModifiEstate.setText("Consultar cita");
         BModifiEstate.setFocusable(false);
         BModifiEstate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BModifiEstate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -139,13 +165,13 @@ public class CitEdit extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 578, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 451, Short.MAX_VALUE))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
         );
 
         pack();

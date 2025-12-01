@@ -63,6 +63,37 @@ public class HilosPaciente {
         }).start();
     }
     
+    public void BusqPacNombre(String nomPac, JTable tabla){
+        new Thread(() -> {								// Hilo que hace la consulta 
+            try {
+            	if((nomPac != null || nomPac.trim().equals("")) && tabla != null) {
+                    ResultSet donana = PDAO.resultadosBusquedaPacientes(nomPac);
+                    if (donana != null){
+                        ListadosConcurrentes lis = new ListadosConcurrentes();
+                        DefaultTableModel model = lis.crearModeloTabla(donana);
+                        
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	tabla.setModel(model);
+                    });
+                    }else{
+                    SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
+                    	
+                    });
+                    }
+            	}
+            	else {
+            		ResultSet don = PDAO.todosPacientes();
+                        ListadosConcurrentes lis = new ListadosConcurrentes();
+                        tabla.setModel(lis.crearModeloTabla(don));
+            	}
+                
+
+            } catch (Exception e) {
+                System.err.println("Error al consultar datos: " + e.getMessage());
+            }
+        }).start();
+    }
+    
     public void BuscarPaciente(int idPac, JTextField numseg, JTextArea alergi) {
     	interfaz.showMessageDialog(interfaz.frame, "Buscando...", true);
         new Thread(() -> {								// Hilo que hace la consulta 
@@ -140,10 +171,11 @@ public class HilosPaciente {
                     if (donana != null){
                         ListadosConcurrentes li = new ListadosConcurrentes();
                         DefaultTableModel modelo = li.resultSetToTableModel(donana);
-                        tp.setModel(modelo);
+                        
                         // Actualizar GUI en el hilo de eventos de Swing
                     SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)
                     	interfaz.showMessageDialog(interfaz.frame, "Añadiendo...", false);
+                        tp.setModel(modelo);
                     });
                     }else{
                     SwingUtilities.invokeLater(() -> {				//delega la tarea de actualizar la GUI al hilo principal (el que maneja la GUI)

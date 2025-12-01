@@ -62,9 +62,10 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
 
         setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Añadir paciente");
 
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Seleccionar persona");
 
         CBPersona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -78,13 +79,27 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
         txtAlergias.setRows(5);
         jScrollPane1.setViewportView(txtAlergias);
 
-        BReset.setText("Reset");
+        BReset.setBackground(new java.awt.Color(158, 158, 158));
+        BReset.setForeground(new java.awt.Color(38, 50, 56));
+        BReset.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/reset.png"))
+            .getImage()
+            .getScaledInstance(35,35, java.awt.Image.SCALE_SMOOTH)
+        ));
+        BReset.setText("Borrar");
         BReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BResetActionPerformed(evt);
             }
         });
 
+        BGuardar.setBackground(new java.awt.Color(158, 158, 158));
+        BGuardar.setForeground(new java.awt.Color(38, 50, 56));
+        BGuardar.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/guardar-datos.png"))
+            .getImage()
+            .getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH)
+        ));
         BGuardar.setText("Guardar");
         BGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,16 +111,13 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(129, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
+                            .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -115,18 +127,22 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
                             .addComponent(txtGrupSangineo)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
+                        .addGap(79, 79, 79)
                         .addComponent(BReset)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BGuardar)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(121, 121, 121))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addGap(113, 113, 113)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(CBPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -146,7 +162,7 @@ public class PanelAltasPaciente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BReset)
                     .addComponent(BGuardar))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

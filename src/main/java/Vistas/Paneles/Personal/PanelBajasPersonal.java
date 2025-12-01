@@ -27,21 +27,17 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         this.faz = fa;
         initComponents();
         formatosTextArea.setSoloLetras(txtbusqNombre, 70);
-        formatosTextArea.setSoloNumeros(txtIDDelete, 10);
         hper = new HilosPersonal(faz, null);
         setVaciarComponentes();
         
     }
     public void setVaciarComponentes(){
-        txtIDDelete.setText("");
         txtbusqNombre.setText("");
         busco = false;
         tablaDEfault();
     }
     public void tablaDEfault(){
-        String[][] dat = {{"no hay datos"}};
-        String[] col = {"resultados de la busqueda"};
-        tablePersonal.setModel(new DefaultTableModel(dat,col));
+        hper.allPersonal(tablePersonal);
     }
 
     /**
@@ -56,17 +52,16 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtbusqNombre = new javax.swing.JTextField();
-        BBusqueda = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePersonal = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        txtIDDelete = new javax.swing.JTextField();
-        BDelete = new javax.swing.JButton();
 
         setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Eliminar personal");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Buscar por nombre");
 
         txtbusqNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -75,13 +70,9 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
             }
         });
 
-        BBusqueda.setText("Buscar");
-        BBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BBusquedaActionPerformed(evt);
-            }
-        });
-
+        tablePersonal.setBackground(new java.awt.Color(245, 245, 245));
+        tablePersonal.setFont(new java.awt.Font("Segoe UI Light", 2, 18)); // NOI18N
+        tablePersonal.setForeground(new java.awt.Color(0, 0, 0));
         tablePersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -94,102 +85,110 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
             }
         ));
         tablePersonal.setOpaque(false);
-        jScrollPane1.setViewportView(tablePersonal);
-
-        jLabel3.setText("ID del personal a eliminar");
-
-        BDelete.setText("Eliminar");
-        BDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BDeleteActionPerformed(evt);
+        tablePersonal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePersonalMouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(tablePersonal);
+
+        jLabel3.setText("Selecciona al personal a eliminar en la lista siguiente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(jLabel1))
+                        .addGap(224, 224, 224)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtbusqNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtbusqNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BBusqueda)))
+                        .addGap(206, 206, 206)
+                        .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIDDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BDelete)
-                .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(49, 49, 49)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtbusqNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BBusqueda))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtIDDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BDelete))
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtbusqNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBusquedaActionPerformed
-        if (txtbusqNombre.getText().trim().equals("")){
-            faz.ShowMessage("Ingresa un nombre para buscar");
-        }else{
-            busco = true;
-            System.out.println("paso");
-            hper.BuscarCoincidenciaPersonalBTN(tablePersonal, txtbusqNombre.getText().trim());
-        }
-    }//GEN-LAST:event_BBusquedaActionPerformed
-
-    private void BDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDeleteActionPerformed
-        if (txtIDDelete.getText().trim().equals("")){
-            faz.ShowMessage("no hay un ID para poder borrar a un personal");
-        }else{
-            Integer i = Integer.parseInt(txtIDDelete.getText().trim());
-            hper.EliminarPersonal(i, tablePersonal);
-        }
-    }//GEN-LAST:event_BDeleteActionPerformed
 
     private void txtbusqNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusqNombreKeyReleased
         if (txtbusqNombre.getText().trim().equals("")){
         }else{
             busco = true;
-            System.out.println("paso");
             hper.BuscarCoincidenciaPersonal(tablePersonal, txtbusqNombre.getText().trim());
         }
     }//GEN-LAST:event_txtbusqNombreKeyReleased
 
+    private void tablePersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePersonalMouseClicked
+        int filaSeleccionada = tablePersonal.getSelectedRow();
+        
+        // Verifica que se haya seleccionado una fila válida y que la tabla no tenga el mensaje "no hay datos"
+        if (filaSeleccionada >= 0) {
+            TableModel model = tablePersonal.getModel();
+            
+            
+            
+            Object idObject = model.getValueAt(filaSeleccionada, 0);
+            Object nombreObject = model.getValueAt(filaSeleccionada, 1);
+            Object PAPObject = model.getValueAt(filaSeleccionada, 2);
+            Object SAPObject = model.getValueAt(filaSeleccionada, 3);
+            
+            // Convertir a String
+            String idPersonal = idObject != null ? idObject.toString() : "N/A";
+            String nombrePersonal = nombreObject != null ? nombreObject.toString() : "N/A";
+            String PAP = PAPObject != null ? PAPObject.toString() : "N/A";
+            String SAP = SAPObject != null ? SAPObject.toString() : "N/A";
+
+
+
+            // Mensaje de confirmación
+            String mensaje = "¿Estás seguro de que deseas eliminar a "+nombrePersonal+" "+PAP+" "+SAP+"?";
+            
+            // Mostrar la ventana emergente de confirmación
+            int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                this, 
+                mensaje, 
+                "Confirmar Eliminación", 
+                javax.swing.JOptionPane.YES_NO_OPTION,
+                javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+
+            // Procesar la respuesta del usuario
+            if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                
+                hper.EliminarPersonal(Integer.parseInt(idPersonal), tablePersonal);
+            } else {
+                tablePersonal.clearSelection(); //deseleccionar la fila
+            }
+        }
+    }//GEN-LAST:event_tablePersonalMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BBusqueda;
-    private javax.swing.JButton BDelete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablePersonal;
-    private javax.swing.JTextField txtIDDelete;
     private javax.swing.JTextField txtbusqNombre;
     // End of variables declaration//GEN-END:variables
 }

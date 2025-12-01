@@ -82,27 +82,10 @@ public class GraficasEdit extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToolBar1 = new javax.swing.JToolBar();
-        BGrafEstCit = new javax.swing.JButton();
         PanelGraficos = new javax.swing.JPanel();
 
         setClosable(true);
         setIconifiable(true);
-
-        jToolBar1.setRollover(true);
-
-        BGrafEstCit.setText("Estados citas");
-        BGrafEstCit.setFocusable(false);
-        BGrafEstCit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BGrafEstCit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BGrafEstCit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BGrafEstCitActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(BGrafEstCit);
-
-        getContentPane().add(jToolBar1, java.awt.BorderLayout.NORTH);
 
         javax.swing.GroupLayout PanelGraficosLayout = new javax.swing.GroupLayout(PanelGraficos);
         PanelGraficos.setLayout(PanelGraficosLayout);
@@ -112,7 +95,7 @@ public class GraficasEdit extends javax.swing.JInternalFrame {
         );
         PanelGraficosLayout.setVerticalGroup(
             PanelGraficosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 421, Short.MAX_VALUE)
+            .addGap(0, 449, Short.MAX_VALUE)
         );
 
         getContentPane().add(PanelGraficos, java.awt.BorderLayout.CENTER);
@@ -120,14 +103,8 @@ public class GraficasEdit extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BGrafEstCitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGrafEstCitActionPerformed
-        graficosCitasEstados();
-    }//GEN-LAST:event_BGrafEstCitActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BGrafEstCit;
     private javax.swing.JPanel PanelGraficos;
-    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,6 +10,7 @@ import Controlador.ListadosConcurrentes;
 import Vistas.Paneles.Paciente.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JPanel;
 
 /**
@@ -48,7 +49,8 @@ public class PacEdit extends javax.swing.JInternalFrame {
 
     private void iniciarCardLayaout(){
         cardLayout = new CardLayout();
-        panelDeContenido = new Vistas.Paneles.PanelConFondoInterno("/Recursos/FondoSingle.jpg");
+        panelDeContenido = new JPanel();
+        panelDeContenido.setBackground(new Color(245,245,245));
         panelDeContenido.setLayout(cardLayout);
         
         panelDeContenido.add(PacAlta, panelAñadi);
@@ -56,7 +58,7 @@ public class PacEdit extends javax.swing.JInternalFrame {
         
         getContentPane().removeAll(); // quitamos el layout vacío generado por NetBeans
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(jToolBar1, BorderLayout.NORTH);
+        getContentPane().add(jToolBar1, BorderLayout.WEST);
         getContentPane().add(panelDeContenido, BorderLayout.CENTER);
         
         revalidate();
@@ -68,7 +70,6 @@ public class PacEdit extends javax.swing.JInternalFrame {
         if(namePanel.equals(panelAñadi)){
             
         }else if (namePanel.equals(panelEdit)){
-            PacCambio.actualizarCBPacientes();
         }
     }
     
@@ -96,9 +97,18 @@ public class PacEdit extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
 
+        jToolBar1.setBackground(new java.awt.Color(245, 245, 245));
+        jToolBar1.setBorder(new javax.swing.border.MatteBorder(null));
+        jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar1.setRollover(true);
-        jToolBar1.setOpaque(false);
 
+        BAñadir.setBackground(new java.awt.Color(178, 223, 178));
+        BAñadir.setForeground(new java.awt.Color(0, 0, 0));
+        BAñadir.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/addUser.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         BAñadir.setText("Nuevo");
         BAñadir.setFocusable(false);
         BAñadir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -110,6 +120,13 @@ public class PacEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(BAñadir);
 
+        BModifi.setBackground(new java.awt.Color(178, 223, 178));
+        BModifi.setForeground(new java.awt.Color(0, 0, 0));
+        BModifi.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/editUser.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         BModifi.setText("Modificar");
         BModifi.setFocusable(false);
         BModifi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -125,13 +142,13 @@ public class PacEdit extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 589, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(410, Short.MAX_VALUE))
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
         );
 
         pack();

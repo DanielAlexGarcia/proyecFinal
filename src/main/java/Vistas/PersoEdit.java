@@ -18,6 +18,7 @@ import javax.swing.JPanel;
  * @author daniel
  */
 public class PersoEdit extends javax.swing.JInternalFrame {
+    private String tittle = "PERSONAL";
 
     private JPanel panelDeContenido;
     private CardLayout cardLayout;
@@ -49,7 +50,7 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     private void iniciarCardLayout() {
         cardLayout = new CardLayout();
         panelDeContenido = new JPanel();
-        panelDeContenido.setBackground(new Color(51,255,255));
+        panelDeContenido.setBackground(new Color(245,245,245));
         panelDeContenido.setLayout(cardLayout);
 
         panelDeContenido.add(PersoAlta, PanelAlta);
@@ -65,9 +66,15 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     }
     protected void setCardLayaout(String namePanel){
         cardLayout.show(panelDeContenido, namePanel);
+        persoBaja.setVaciarComponentes();
+        PersoAlta.setVaciarComponentes();
         if(namePanel.equals(PanelAlta)){
+            setTitle("");
+            setTitle("AÑADIR PERSONAL");
             
         }else if (namePanel.equals(PanelBaja)){
+            setTitle("");
+            setTitle("ELIMINAR PERSONAL");
             
         }
     }
@@ -75,10 +82,13 @@ public class PersoEdit extends javax.swing.JInternalFrame {
     public void setWindowShow(int numVentana){
         if(numVentana == 1){
             setCardLayaout(PanelAlta);
+            setTitle("");
+            setTitle("AÑADIR PERSONAL");
             
         }else if (numVentana == 2){
             setCardLayaout(PanelBaja);
-            setTitle("Eliminar");
+            setTitle("");
+            setTitle("ELIMINAR PERSONAL");
         }
     }
 
@@ -103,19 +113,21 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         setTitle("PERSONAL");
         setOpaque(true);
 
-        jToolBar1.setBackground(new java.awt.Color(165, 249, 143));
+        jToolBar1.setBackground(new java.awt.Color(245, 245, 245));
         jToolBar1.setBorder(new javax.swing.border.MatteBorder(null));
         jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jToolBar1.setRollover(true);
+        jToolBar1.setAlignmentX(CENTER_ALIGNMENT);
 
-        BAñadir.setBackground(new java.awt.Color(0, 0, 255));
-        BAñadir.setForeground(new java.awt.Color(225, 225, 225));
+        BAñadir.setBackground(new java.awt.Color(178, 223, 178));
+        BAñadir.setForeground(new java.awt.Color(0, 0, 0));
         BAñadir.setIcon(new javax.swing.ImageIcon(
             new javax.swing.ImageIcon(getClass().getResource("/Recursos/addUser.png"))
             .getImage()
             .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
         ));
         BAñadir.setText("Añadir");
+        BAñadir.setAlignmentX(CENTER_ALIGNMENT);
         BAñadir.setFocusable(false);
         BAñadir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BAñadir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -126,14 +138,15 @@ public class PersoEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(BAñadir);
 
-        Beliminar.setBackground(new java.awt.Color(0, 0, 255));
-        Beliminar.setForeground(new java.awt.Color(255, 255, 255));
+        Beliminar.setBackground(new java.awt.Color(178, 223, 178));
+        Beliminar.setForeground(new java.awt.Color(0, 0, 0));
         Beliminar.setIcon(new javax.swing.ImageIcon(
             new javax.swing.ImageIcon(getClass().getResource("/Recursos/removUser.png"))
             .getImage()
             .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
         ));
         Beliminar.setText("Eliminar");
+        Beliminar.setAlignmentX(CENTER_ALIGNMENT);
         Beliminar.setFocusable(false);
         Beliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Beliminar.setOpaque(true);
