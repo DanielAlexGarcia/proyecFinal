@@ -71,7 +71,7 @@ public class PanelBajasPersonal extends javax.swing.JPanel {
         });
 
         tablePersonal.setBackground(new java.awt.Color(245, 245, 245));
-        tablePersonal.setFont(new java.awt.Font("Segoe UI Light", 2, 18)); // NOI18N
+        tablePersonal.setFont(new java.awt.Font("Segoe UI Light", 2, 14)); // NOI18N
         tablePersonal.setForeground(new java.awt.Color(0, 0, 0));
         tablePersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

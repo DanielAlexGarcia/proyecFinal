@@ -78,6 +78,13 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         jToolBar1.setRollover(true);
         jToolBar1.setOpaque(false);
 
+        BAltas.setBackground(new java.awt.Color(158, 158, 158));
+        BAltas.setForeground(new java.awt.Color(38, 50, 56));
+        BAltas.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/report.png"))
+            .getImage()
+            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+        ));
         BAltas.setText("Altas");
         BAltas.setFocusable(false);
         BAltas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -89,6 +96,13 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(BAltas);
 
+        BBajas.setBackground(new java.awt.Color(158, 158, 158));
+        BBajas.setForeground(new java.awt.Color(38, 50, 56));
+        BBajas.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/reporte.png"))
+            .getImage()
+            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+        ));
         BBajas.setText("Bajas");
         BBajas.setFocusable(false);
         BBajas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -100,6 +114,13 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(BBajas);
 
+        BCambios.setBackground(new java.awt.Color(158, 158, 158));
+        BCambios.setForeground(new java.awt.Color(38, 50, 56));
+        BCambios.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/report1.png"))
+            .getImage()
+            .getScaledInstance(24,24, java.awt.Image.SCALE_SMOOTH)
+        ));
         BCambios.setText("Cambios");
         BCambios.setFocusable(false);
         BCambios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -111,6 +132,13 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(BCambios);
 
+        BActualizar.setBackground(new java.awt.Color(158, 158, 158));
+        BActualizar.setForeground(new java.awt.Color(38, 50, 56));
+        BActualizar.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/actuali.png"))
+            .getImage()
+            .getScaledInstance(24,24, java.awt.Image.SCALE_SMOOTH)
+        ));
         BActualizar.setText("Actualizar resultados");
         BActualizar.setFocusable(false);
         BActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

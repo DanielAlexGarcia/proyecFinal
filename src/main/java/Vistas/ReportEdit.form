@@ -44,6 +44,15 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="BAltas">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9e" green="9e" red="9e" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="38" green="32" red="26" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(&#xd;&#xa;    new javax.swing.ImageIcon(getClass().getResource(&quot;/Recursos/report.png&quot;))&#xd;&#xa;        .getImage()&#xd;&#xa;        .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)&#xd;&#xa;)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Altas"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -55,6 +64,15 @@
         </Component>
         <Component class="javax.swing.JButton" name="BBajas">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9e" green="9e" red="9e" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="38" green="32" red="26" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(&#xd;&#xa;    new javax.swing.ImageIcon(getClass().getResource(&quot;/Recursos/reporte.png&quot;))&#xd;&#xa;        .getImage()&#xd;&#xa;        .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)&#xd;&#xa;)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Bajas"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -66,6 +84,15 @@
         </Component>
         <Component class="javax.swing.JButton" name="BCambios">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9e" green="9e" red="9e" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="38" green="32" red="26" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(&#xd;&#xa;    new javax.swing.ImageIcon(getClass().getResource(&quot;/Recursos/report1.png&quot;))&#xd;&#xa;        .getImage()&#xd;&#xa;        .getScaledInstance(24,24, java.awt.Image.SCALE_SMOOTH)&#xd;&#xa;)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cambios"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -77,6 +104,15 @@
         </Component>
         <Component class="javax.swing.JButton" name="BActualizar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="9e" green="9e" red="9e" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="38" green="32" red="26" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(&#xd;&#xa;    new javax.swing.ImageIcon(getClass().getResource(&quot;/Recursos/actuali.png&quot;))&#xd;&#xa;        .getImage()&#xd;&#xa;        .getScaledInstance(24,24, java.awt.Image.SCALE_SMOOTH)&#xd;&#xa;)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Actualizar resultados"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>

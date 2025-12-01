@@ -103,12 +103,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Usuario = new javax.swing.JTextArea();
         contraseña = new javax.swing.JPasswordField();
         BEntrar = new javax.swing.JButton();
         problema1 = new javax.swing.JLabel();
         problema2 = new javax.swing.JLabel();
+        Usuario = new javax.swing.JTextField();
         MenuBarOP = new javax.swing.JMenuBar();
         MenuPersonal = new javax.swing.JMenu();
         PersonalAlta = new javax.swing.JMenuItem();
@@ -156,10 +155,6 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña");
 
-        Usuario.setColumns(20);
-        Usuario.setRows(5);
-        jScrollPane1.setViewportView(Usuario);
-
         contraseña.setText("jPasswordField2");
         contraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +166,12 @@ public class VentanaInicio extends javax.swing.JFrame {
         BEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BEntrarActionPerformed(evt);
+            }
+        });
+
+        Usuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                UsuarioKeyReleased(evt);
             }
         });
 
@@ -192,12 +193,12 @@ public class VentanaInicio extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(problema1)
-                            .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                             .addComponent(problema2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                            .addComponent(Usuario))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         InicioSecionLayout.setVerticalGroup(
             InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,9 +206,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(InicioSecionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(problema1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -237,7 +238,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             .addGroup(destopPanelLayout.createSequentialGroup()
                 .addGap(139, 139, 139)
                 .addComponent(InicioSecion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         MenuBarOP.setBackground(new java.awt.Color(245, 245, 245));
@@ -294,7 +295,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         PacienteAlta.setIcon(new javax.swing.ImageIcon(
             new javax.swing.ImageIcon(getClass().getResource("/Recursos/addUser.png"))
             .getImage()
-            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
         ));
         PacienteAlta.setText("Nuevo");
         PacienteAlta.setBorder(null);
@@ -310,7 +311,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         PacienteModificar.setIcon(new javax.swing.ImageIcon(
             new javax.swing.ImageIcon(getClass().getResource("/Recursos/editUser.png"))
             .getImage()
-            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
         ));
         PacienteModificar.setText("Modificar");
         PacienteModificar.setBorder(null);
@@ -334,7 +335,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         CitaAgendar.setIcon(new javax.swing.ImageIcon(
             new javax.swing.ImageIcon(getClass().getResource("/Recursos/addCita.png"))
             .getImage()
-            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+            .getScaledInstance(30,30, java.awt.Image.SCALE_SMOOTH)
         ));
         CitaAgendar.setText("Egendar");
         CitaAgendar.setBorder(null);
@@ -350,7 +351,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         CitaEditar.setIcon(new javax.swing.ImageIcon(
             new javax.swing.ImageIcon(getClass().getResource("/Recursos/modifCita.png"))
             .getImage()
-            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+            .getScaledInstance(30,30, java.awt.Image.SCALE_SMOOTH)
         ));
         CitaEditar.setText("Editar");
         CitaEditar.setBorder(null);
@@ -366,7 +367,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         CitaConsultar.setIcon(new javax.swing.ImageIcon(
             new javax.swing.ImageIcon(getClass().getResource("/Recursos/consuCita.png"))
             .getImage()
-            .getScaledInstance(24, 24, java.awt.Image.SCALE_SMOOTH)
+            .getScaledInstance(30,30, java.awt.Image.SCALE_SMOOTH)
         ));
         CitaConsultar.setText("Consultar");
         CitaConsultar.setBorder(null);
@@ -387,6 +388,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         itemGraficoEstCita.setBackground(new java.awt.Color(178, 223, 178));
         itemGraficoEstCita.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        itemGraficoEstCita.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/grafico.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         itemGraficoEstCita.setText("Estado citas");
         itemGraficoEstCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,6 +411,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         menuReporAlta.setBackground(new java.awt.Color(178, 223, 178));
         menuReporAlta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuReporAlta.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/report.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         menuReporAlta.setText("Reporte de altas");
         menuReporAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -415,6 +426,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         menuRepoBajas.setBackground(new java.awt.Color(178, 223, 178));
         menuRepoBajas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuRepoBajas.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/reporte.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         menuRepoBajas.setText("Reporte de bajas");
         menuRepoBajas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -425,6 +441,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         menuRepoCambios.setBackground(new java.awt.Color(178, 223, 178));
         menuRepoCambios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuRepoCambios.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/report1.png"))
+            .getImage()
+            .getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)
+        ));
         menuRepoCambios.setText("Reporte de cambios");
         menuRepoCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -551,6 +572,12 @@ public class VentanaInicio extends javax.swing.JFrame {
         GrafEdit.graficosCitasEstados();
     }//GEN-LAST:event_itemGraficoEstCitaActionPerformed
 
+    private void UsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsuarioKeyReleased
+        if(false){
+            
+        }
+    }//GEN-LAST:event_UsuarioKeyReleased
+
     
     private void añadirOpciones(boolean accion){
         MenuBarOP.setVisible(accion);
@@ -614,7 +641,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem PersonalAlta;
     private javax.swing.JMenuItem PersonalBaja;
     private javax.swing.JMenu Reporte;
-    private javax.swing.JTextArea Usuario;
+    private javax.swing.JTextField Usuario;
     private javax.swing.JDialog cargando;
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JDesktopPane destopPanel;
@@ -625,7 +652,6 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem menuRepoBajas;
     private javax.swing.JMenuItem menuRepoCambios;
     private javax.swing.JMenuItem menuReporAlta;
