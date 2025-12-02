@@ -6,6 +6,7 @@ package Vistas;
 
 import Controlador.ListadosConcurrentes;
 import Hilos.HilosReportes;
+import java.awt.print.PrinterException;
 import javax.swing.JTable;
 
 /**
@@ -67,6 +68,7 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         BBajas = new javax.swing.JButton();
         BCambios = new javax.swing.JButton();
         BActualizar = new javax.swing.JButton();
+        BImprimir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaReportes = new javax.swing.JTable();
 
@@ -150,6 +152,24 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(BActualizar);
 
+        BImprimir.setBackground(new java.awt.Color(158, 158, 158));
+        BImprimir.setForeground(new java.awt.Color(38, 50, 56));
+        BImprimir.setIcon(new javax.swing.ImageIcon(
+            new javax.swing.ImageIcon(getClass().getResource("/Recursos/imprimir.png"))
+            .getImage()
+            .getScaledInstance(24,24, java.awt.Image.SCALE_SMOOTH)
+        ));
+        BImprimir.setText("Imprimir  tabla actual");
+        BImprimir.setFocusable(false);
+        BImprimir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BImprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BImprimirActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(BImprimir);
+
         getContentPane().add(jToolBar1, java.awt.BorderLayout.NORTH);
 
         TablaReportes.setModel(new javax.swing.table.DefaultTableModel(
@@ -187,12 +207,21 @@ public class ReportEdit extends javax.swing.JInternalFrame {
         Actualizar(opcion);
     }//GEN-LAST:event_BActualizarActionPerformed
 
+    private void BImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BImprimirActionPerformed
+        try {
+            TablaReportes.print();
+        } catch (PrinterException ex) {
+            System.out.println("Error al intentar imprimir");
+        }
+    }//GEN-LAST:event_BImprimirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BActualizar;
     private javax.swing.JButton BAltas;
     private javax.swing.JButton BBajas;
     private javax.swing.JButton BCambios;
+    private javax.swing.JButton BImprimir;
     private javax.swing.JTable TablaReportes;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;

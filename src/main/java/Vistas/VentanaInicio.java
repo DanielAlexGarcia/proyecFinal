@@ -169,9 +169,9 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
 
-        Usuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                UsuarioKeyReleased(evt);
+        Usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioActionPerformed(evt);
             }
         });
 
@@ -493,12 +493,10 @@ public class VentanaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_CitaEditarActionPerformed
 
     private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
-        // TODO add your handling code here:
+        entrar();
     }//GEN-LAST:event_contraseñaActionPerformed
 
-    private void BEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEntrarActionPerformed
-        // TODO add your handling code here:
-        
+    private void entrar(){
         problema1.setText("");
 			problema2.setText("");
 			String usuarios = Usuario.getText();
@@ -535,6 +533,11 @@ public class VentanaInicio extends javax.swing.JFrame {
 				}
 				añadirOpciones(true);
 			}
+    }
+    
+    private void BEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEntrarActionPerformed
+        entrar();
+        
     }//GEN-LAST:event_BEntrarActionPerformed
 
     private void PacienteAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PacienteAltaActionPerformed
@@ -572,11 +575,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         GrafEdit.graficosCitasEstados();
     }//GEN-LAST:event_itemGraficoEstCitaActionPerformed
 
-    private void UsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UsuarioKeyReleased
-        if(false){
-            
-        }
-    }//GEN-LAST:event_UsuarioKeyReleased
+    private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioActionPerformed
+        contraseña.requestFocusInWindow();
+    }//GEN-LAST:event_UsuarioActionPerformed
 
     
     private void añadirOpciones(boolean accion){
